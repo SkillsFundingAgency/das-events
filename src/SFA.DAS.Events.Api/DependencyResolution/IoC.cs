@@ -26,8 +26,6 @@ namespace SFA.DAS.Events.Api.DependencyResolution
         {
             return new Container(c =>
             {
-                //todo: need messaging? 
-                //c.Policies.Add(new MessagePolicy(ServiceName));
                 c.AddRegistry<DefaultRegistry>();
             });
         }
