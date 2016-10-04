@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FluentValidation;
 using MediatR;
 using SFA.DAS.Events.Domain.Entities;
 using SFA.DAS.Events.Domain.Repositories;
@@ -18,6 +19,8 @@ namespace SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents
 
         public async Task<GetApprenticeshipEventsResponse> Handle(GetApprenticeshipEventsRequest message)
         {
+            Validate(message);
+
             var events = await _apprenticeshipEventRepository.GetByDateRange(message.FromDateTime, message.ToDateTime);
 
             return new GetApprenticeshipEventsResponse {Data = MapFrom(events)};
@@ -26,6 +29,16 @@ namespace SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents
         private static IEnumerable<ApprenticeshipEvent> MapFrom(IEnumerable<ApprenticeshipEvent> source)
         {
             return source; //todo: do mapping to API types
+        }
+
+        private void Validate(GetApprenticeshipEventsRequest request)
+        {
+            var validator = new GetApprenticeshipEventsRequestValidator();
+
+            var validationResult = validator.Validate(request);
+
+            if (!validationResult.IsValid)
+                throw new ValidationException(validationResult.Errors);
         }
     }
 }
