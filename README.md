@@ -29,19 +29,12 @@ To retrieve events:
 
 GET http://host:port/api/events?from=<fromDate>&to=<toDate>
 
-    {
-        TODO
-    }
-
 Where:
 
 - **fromDate** is the datetime range to query from (inclusive)
-- **toDate** is the datetime range to query up to (not inclusive)
-- **TODO** is TODO
+- **toDate** is the datetime range to query up to (not inclusive). Must be same or greater than *fromDate*
 
-#### Example ####
-
-TODO
+Datetimes are expressed as yyyyMMddHHmmss, eg. 20161231235959
 
 
 ## Security ##
