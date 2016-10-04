@@ -12,7 +12,7 @@ TODO
 
 To store a new event:
 
-POST http://host:port/api/events/
+POST http://host:port/api/events/apprenticeships/
 
     {
         TODO
@@ -27,7 +27,7 @@ Where:
 
 To retrieve events:
 
-GET http://host:port/api/events?from=<fromDate>&to=<toDate>
+GET http://host:port/api/events/apprenticeships?from=<fromDate>&to=<toDate>
 
 Where:
 
@@ -43,8 +43,8 @@ The API uses JWT bearer tokens to enforce authorised access to the API methods. 
 
 Supported permissions are:
 
-    StoreEvent
-    ReadEvent
+    StoreApprenticeshipEvent
+    ReadApprenticeshipEvent
 
 The token should be passed in an `authorization` header and prefixed with `bearer `, for example:
 
