@@ -230,10 +230,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SFA.DAS.Events.Infrastructure\SFA.DAS.Events.Infrastructure.csproj">
-      <Project>{383F9BC2-B631-4BE8-97E0-56362FC24D67}</Project>
-      <Name>SFA.DAS.Events.Infrastructure</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SFA.DAS.Events.Application\SFA.DAS.Events.Application.csproj">
       <Project>{3EA24C2A-D1D7-45A2-9F7A-8719F77021B1}</Project>
       <Name>SFA.DAS.Events.Application</Name>
@@ -241,6 +237,10 @@
     <ProjectReference Include="..\SFA.DAS.Events.Domain\SFA.DAS.Events.Domain.csproj">
       <Project>{B52B57EA-A3B8-4F62-89DE-5293B5C7E19D}</Project>
       <Name>SFA.DAS.Events.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFA.DAS.Events.Infrastructure\SFA.DAS.Events.Infrastructure.csproj">
+      <Project>{383f9bc2-b631-4be8-97e0-56362fc24d67}</Project>
+      <Name>SFA.DAS.Events.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Events.Infrastructure", "..\SFA.DAS.Events.Infrastructure\SFA.DAS.Events.Infrastructure.csproj", "{383F9BC2-B631-4BE8-97E0-56362FC24D67}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Events.Domain", "SFA.DAS.Events.Domain\SFA.DAS.Events.Domain.csproj", "{B52B57EA-A3B8-4F62-89DE-5293B5C7E19D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Events.Application", "SFA.DAS.Events.Application\SFA.DAS.Events.Application.csproj", "{3EA24C2A-D1D7-45A2-9F7A-8719F77021B1}"
@@ -19,6 +17,8 @@ EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SFA.DAS.Events.Database", "SFA.DAS.Events.Database\SFA.DAS.Events.Database.sqlproj", "{41663093-957B-45D9-A8F0-B1C89C9EC742}"
 EndProject
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "SFA.DAS.Events.CloudService", "SFA.DAS.Events.CloudService\SFA.DAS.Events.CloudService.ccproj", "{462CFCB3-14D8-4A3C-AAA2-B743F1FC3DA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Events.Infrastructure", "SFA.DAS.Events.Infrastructure\SFA.DAS.Events.Infrastructure.csproj", "{383F9BC2-B631-4BE8-97E0-56362FC24D67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,10 +30,6 @@ Global
 		{9D070101-BA80-4ED8-8EAA-7E095AC05888}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D070101-BA80-4ED8-8EAA-7E095AC05888}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D070101-BA80-4ED8-8EAA-7E095AC05888}.Release|Any CPU.Build.0 = Release|Any CPU
-		{383F9BC2-B631-4BE8-97E0-56362FC24D67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{383F9BC2-B631-4BE8-97E0-56362FC24D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{383F9BC2-B631-4BE8-97E0-56362FC24D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{383F9BC2-B631-4BE8-97E0-56362FC24D67}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B52B57EA-A3B8-4F62-89DE-5293B5C7E19D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B52B57EA-A3B8-4F62-89DE-5293B5C7E19D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B52B57EA-A3B8-4F62-89DE-5293B5C7E19D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -52,6 +48,10 @@ Global
 		{462CFCB3-14D8-4A3C-AAA2-B743F1FC3DA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{462CFCB3-14D8-4A3C-AAA2-B743F1FC3DA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{462CFCB3-14D8-4A3C-AAA2-B743F1FC3DA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{383F9BC2-B631-4BE8-97E0-56362FC24D67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{383F9BC2-B631-4BE8-97E0-56362FC24D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{383F9BC2-B631-4BE8-97E0-56362FC24D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{383F9BC2-B631-4BE8-97E0-56362FC24D67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
