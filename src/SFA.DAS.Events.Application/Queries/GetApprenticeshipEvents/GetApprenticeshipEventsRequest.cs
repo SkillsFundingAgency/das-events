@@ -7,5 +7,7 @@ namespace SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents
     {
         public DateTime FromDateTime { get; set; }
         public DateTime ToDateTime { get; set; }
+        public int PageSize { get; set; }
+        public int PageNumber { get; set; }
     }
 }

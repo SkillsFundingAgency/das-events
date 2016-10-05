@@ -56,14 +56,16 @@ namespace SFA.DAS.Events.Api.Orchestrators
             }
         }
 
-        public async Task<IEnumerable<ApprenticeshipEvent>> GetEvents(string @from, string to)
+        public async Task<IEnumerable<ApprenticeshipEvent>> GetEvents(string @from, string to, int pageSize, int pageNumber)
         {
             try
             {
                 var request = new GetApprenticeshipEventsRequest
                 {
                     FromDateTime = ParseDateTime(from),
-                    ToDateTime = ParseDateTime(to)
+                    ToDateTime = ParseDateTime(to),
+                    PageSize = pageSize,
+                    PageNumber = pageNumber
                 };
 
                 var response = await _mediator.SendAsync(request);

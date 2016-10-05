@@ -21,7 +21,7 @@ namespace SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents
         {
             Validate(request);
 
-            var events = await _apprenticeshipEventRepository.GetByDateRange(request.FromDateTime, request.ToDateTime);
+            var events = await _apprenticeshipEventRepository.GetByDateRange(request.FromDateTime, request.ToDateTime, request.PageSize, request.PageNumber);
 
             return new GetApprenticeshipEventsResponse {Data = MapFrom(events)};
         }
