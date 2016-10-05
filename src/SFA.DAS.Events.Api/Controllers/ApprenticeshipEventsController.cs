@@ -17,7 +17,7 @@ namespace SFA.DAS.Events.Api.Controllers
         }
 
         [Route("", Name = "GetAllEvents")]
-        public async Task<IHttpActionResult> Get(string from, string to, int pageSize, int pageNumber)
+        public async Task<IHttpActionResult> Get(string from, string to, int pageSize = 1000, int pageNumber = 1)
         {
             return Ok(await _orchestrator.GetEvents(@from, to, pageSize, pageNumber));
         }
