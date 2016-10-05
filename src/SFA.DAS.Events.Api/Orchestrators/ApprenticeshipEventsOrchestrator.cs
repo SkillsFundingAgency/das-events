@@ -29,7 +29,17 @@ namespace SFA.DAS.Events.Api.Orchestrators
             {
                 await _mediator.SendAsync(new CreateApprenticeshipEventCommand
                 {
-                    Event = request.Event
+                    Event = request.Event,
+                    PaymentStatus = request.PaymentStatus,
+                    AgreementStatus = request.AgreementStatus,
+                    ProviderId = request.ProviderId,
+                    LearnerId = request.LearnerId,
+                    EmployerAccountId = request.EmployerAccountId,
+                    TrainingType = request.TrainingType,
+                    TrainingId = request.TrainingId,
+                    TrainingStartDate = request.TrainingStartDate,
+                    TrainingEndDate = request.TrainingEndDate,
+                    TrainingTotalCost = request.TrainingTotalCost
                 });
             }
             catch (ValidationException ex)

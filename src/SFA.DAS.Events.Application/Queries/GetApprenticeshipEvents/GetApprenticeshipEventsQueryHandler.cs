@@ -17,11 +17,11 @@ namespace SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents
             _apprenticeshipEventRepository = apprenticeshipEventRepository;
         }
 
-        public async Task<GetApprenticeshipEventsResponse> Handle(GetApprenticeshipEventsRequest message)
+        public async Task<GetApprenticeshipEventsResponse> Handle(GetApprenticeshipEventsRequest request)
         {
-            Validate(message);
+            Validate(request);
 
-            var events = await _apprenticeshipEventRepository.GetByDateRange(message.FromDateTime, message.ToDateTime);
+            var events = await _apprenticeshipEventRepository.GetByDateRange(request.FromDateTime, request.ToDateTime);
 
             return new GetApprenticeshipEventsResponse {Data = MapFrom(events)};
         }

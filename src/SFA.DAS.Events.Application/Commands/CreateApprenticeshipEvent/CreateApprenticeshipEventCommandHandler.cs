@@ -19,32 +19,37 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
             _apprenticeshipEventRepository = apprenticeshipEventRepository;
         }
 
-        protected override async Task HandleCore(CreateApprenticeshipEventCommand message)
+        protected override async Task HandleCore(CreateApprenticeshipEventCommand command)
         {
-            Logger.Info($"Received message {message.Event}");
+            Logger.Info($"Received message {command.Event}");
 
-            Validate(message);
+            Validate(command);
 
             try
             {
-                //todo: add serialized apprenticeship data here?
-                var data = string.Empty;
-
                 var newApprenticeshipEvent = new ApprenticeshipEvent
                 {
-                    Event = message.Event,
-                    EventType = EventTypes.Apprenticeships,
+                    Event = command.Event,
                     CreatedOn = DateTime.UtcNow,
-                    Data = data
+                    PaymentStatus = command.PaymentStatus,
+                    AgreementStatus = command.AgreementStatus,
+                    ProviderId = command.ProviderId,
+                    LearnerId = command.LearnerId,
+                    EmployerAccountId = command.EmployerAccountId,
+                    TrainingType = command.TrainingType,
+                    TrainingId = command.TrainingId,
+                    TrainingStartDate = command.TrainingStartDate,
+                    TrainingEndDate = command.TrainingEndDate,
+                    TrainingTotalCost = command.TrainingTotalCost
                 };
 
                 await _apprenticeshipEventRepository.Create(newApprenticeshipEvent);
 
-                Logger.Info($"Finished processing message {message.Event}");
+                Logger.Info($"Finished processing message {command.Event}");
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, $"Error processing message {message.Event} - {ex.Message}");
+                Logger.Error(ex, $"Error processing message {command.Event} - {ex.Message}");
             }
         }
 

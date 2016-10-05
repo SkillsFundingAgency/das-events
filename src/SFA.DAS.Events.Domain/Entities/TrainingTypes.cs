@@ -2,8 +2,9 @@
 
 namespace SFA.DAS.Events.Domain.Entities
 {
-    public enum EventTypes
+    public enum TrainingTypes
     {
-        Apprenticeships = 1
+        Framework = 1,
+        Standard = 2
     }
 }

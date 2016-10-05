@@ -7,7 +7,7 @@ namespace SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents
     {
         public GetApprenticeshipEventsRequestValidator()
         {
-            RuleFor(from => from.FromDateTime).LessThanOrEqualTo(to => to.ToDateTime).NotEmpty();
+            RuleFor(from => from.FromDateTime).LessThanOrEqualTo(to => to.ToDateTime);
         }
     }
 }

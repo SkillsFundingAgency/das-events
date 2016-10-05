@@ -46,7 +46,7 @@
     </Compile>
     <Compile Include="Configuration\EventConfiguration.cs" />
     <Compile Include="Data\ApprenticeshipEventRepository.cs" />
-    <Compile Include="Data\BaseEventRepository.cs" />
+    <Compile Include="Data\BaseRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
