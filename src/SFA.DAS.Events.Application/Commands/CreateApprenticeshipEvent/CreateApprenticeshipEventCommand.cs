@@ -7,6 +7,7 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
     public sealed class CreateApprenticeshipEventCommand : IAsyncRequest
     {
         public string Event { get; set; }
+        public long ApprenticeshipId { get; set; }
         public string PaymentStatus { get; set; }
         public string AgreementStatus { get; set; }
         public string ProviderId { get; set; }

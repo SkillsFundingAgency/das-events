@@ -6,6 +6,7 @@ namespace SFA.DAS.Events.Api.Models
     public class CreateApprenticeshipEventRequest
     {
         public string Event { get; set; }
+        public long ApprenticeshipId { get; set; }
         public string PaymentStatus { get; set; }
         public string AgreementStatus { get; set; }
         public string ProviderId { get; set; }

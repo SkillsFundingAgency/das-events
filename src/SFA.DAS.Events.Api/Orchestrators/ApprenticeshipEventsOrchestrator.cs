@@ -30,6 +30,7 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 await _mediator.SendAsync(new CreateApprenticeshipEventCommand
                 {
                     Event = request.Event,
+                    ApprenticeshipId = request.ApprenticeshipId,
                     PaymentStatus = request.PaymentStatus,
                     AgreementStatus = request.AgreementStatus,
                     ProviderId = request.ProviderId,

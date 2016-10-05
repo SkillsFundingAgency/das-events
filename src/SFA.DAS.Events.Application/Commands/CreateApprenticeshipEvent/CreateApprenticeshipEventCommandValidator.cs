@@ -8,6 +8,7 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
         public CreateApprenticeshipEventCommandValidator()
         {
             RuleFor(model => model.Event).NotEmpty();
+            RuleFor(model => model.ApprenticeshipId).GreaterThan(0);
             RuleFor(model => model.PaymentStatus).NotEmpty();
             RuleFor(model => model.AgreementStatus).NotEmpty();
             RuleFor(model => model.ProviderId).NotEmpty();

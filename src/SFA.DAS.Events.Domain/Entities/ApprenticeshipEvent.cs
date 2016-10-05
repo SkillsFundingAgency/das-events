@@ -5,6 +5,7 @@ namespace SFA.DAS.Events.Domain.Entities
     public class ApprenticeshipEvent : BaseEvent
     {
         public string PaymentStatus { get; set; }
+        public long ApprenticeshipId { get; set; }
         public string AgreementStatus { get; set; }
         public string ProviderId { get; set; }
         public string LearnerId { get; set; }
