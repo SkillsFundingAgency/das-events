@@ -52,7 +52,7 @@ Where:
 
 To retrieve events:
 
-GET http://host:port/api/events/apprenticeships?from=<fromDate>&to=<toDate>&pageSize=<pageSize>&pageNumber=<pageNumber>
+	GET http://host:port/api/events/apprenticeships?from=<fromDate>&to=<toDate>&pageSize=<pageSize>&pageNumber=<pageNumber>
 
 Where:
 
