@@ -50,6 +50,7 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
             catch (Exception ex)
             {
                 Logger.Error(ex, $"Error processing message {command.Event} - {ex.Message}");
+                throw;
             }
         }
 
