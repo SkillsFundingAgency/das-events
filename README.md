@@ -28,14 +28,19 @@ Where:
 
 To retrieve events:
 
-GET http://host:port/api/events/apprenticeships?from=<fromDate>&to=<toDate>
+GET http://host:port/api/events/apprenticeships?from=<fromDate>&to=<toDate>&pageSize=<pageSize>&pageNumber=<pageNumber>
 
 Where:
 
 - **fromDate** is the datetime range to query from (inclusive)
 - **toDate** is the datetime range to query up to (not inclusive). Must be same or greater than *fromDate*
+- **pageSize** is the number of rows to be returned (eg. 100)
+- **pageNumber** is the "page" of data to be returned based on the *pageSize*
 
 Datetimes are expressed as yyyyMMddHHmmss, eg. 20161231235959
+
+Example:
+http://localhost:29638/api/events/apprenticeships?from=20160131000001&to=20171231235959&pageSize=100&pageNumber=1
 
 
 ## Security ##
