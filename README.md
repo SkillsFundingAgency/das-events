@@ -16,12 +16,36 @@ To store a new event:
 POST http://host:port/api/events/apprenticeships/
 
     {
-        TODO
-    }
+        "event": "An event",
+		"apprenticeshipId": 444,
+		"paymentStatus": "active",
+		"agreementStatus": "agreed",
+		"providerId": "1111",
+		"learnerId": "9999",
+		"trainingType": "framework",
+		"trainingId": "3333",
+		"employerAccountId": "2222",
+		"trainingStartDate": "2017-01-31T00:00:00",
+		"trainingEndDate": "2017-12-31T00:00:00",
+		"trainingTotalCost": 123.45
+	}
 
 Where:
 
-- **TODO** is TODO
+- **event** is an arbitrary string representation of an event (eg. "Paused")
+- **apprenticeshipId** is an identifier used to aggregate apprenticeship information
+- **paymentStatus** is the current status of the apprenticeship
+- **agreementStatus** denotes which parties have agreed the apprenticeship
+- **providerId** is the unique ID for a provider (eg. UKPRN)
+- **learnerId** is the unique ID for a learner (eg. ULN)
+- **trainingType** is:
+	- for frameworks either "framework" or 1
+	- for standards either "standard" or 2
+- **trainingId** is a framework or standard identifier
+- **employerAccountId** is the unique ID for an employer account
+- **trainingStartDate** is the start date of the apprenticeship training
+- **trainingEndDate** is the end date of the apprenticeship training
+- **trainingTotalCost** is the total price for the apprenticeship training
 
 
 ### Retrieving events ###
@@ -35,12 +59,15 @@ Where:
 - **fromDate** is the datetime range to query from (inclusive)
 - **toDate** is the datetime range to query up to (not inclusive). Must be same or greater than *fromDate*
 - **pageSize** is the number of rows to be returned (eg. 100)
-- **pageNumber** is the "page" of data to be returned based on the *pageSize*
+- **pageNumber** is the 1-based "page" of data to be returned based on the *pageSize*
 
 Datetimes are expressed as yyyyMMddHHmmss, eg. 20161231235959
 
 Example:
-http://localhost:29638/api/events/apprenticeships?from=20160131000001&to=20171231235959&pageSize=100&pageNumber=1
+
+	http://localhost:29638/api/events/apprenticeships?from=20160131000001&to=20171231235959&pageSize=100&pageNumber=1
+
+In addition to the event item properties, the response payload also includes an **id** property. This is the unique internal identifier for a single event.
 
 
 ## Security ##
