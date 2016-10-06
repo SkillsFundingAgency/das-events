@@ -50,24 +50,36 @@ Where:
 
 ### Retrieving events ###
 
+Apprenticeship events can be retrieved based on either:
+
+- in date order (events occurring between a specified date range)
+- in event ID order (events following a specified event ID)
+
+Paging of response data is supported or both.
+
 To retrieve events:
 
-	GET http://host:port/api/events/apprenticeships?from=<fromDate>&to=<toDate>&pageSize=<pageSize>&pageNumber=<pageNumber>
+	GET http://host:port/api/events/apprenticeships?from=<fromDate>&to=<toDate>&pageSize=<pageSize>&pageNumber=<pageNumber>&fromEventId=<fromEventId)
 
 Where:
 
 - **fromDate** is the datetime range to query from (inclusive)
 - **toDate** is the datetime range to query up to (not inclusive). Must be same or greater than *fromDate*
+- **fromEventId** is the "starting" event identifier to be returned (inclusive)
 - **pageSize** is the number of rows to be returned (eg. 100)
 - **pageNumber** is the 1-based "page" of data to be returned based on the *pageSize*
 
-Datetimes are expressed as yyyyMMddHHmmss, eg. 20161231235959
+Note: Datetimes passed on the querystring are expressed as yyyyMMddHHmmss, eg. 20161231235959
 
-Example:
+Note: Querying by event ID takes precedence over date based queries - dates will be ignored if an event ID is specified. 
+
+Examples:
 
 	http://localhost:29638/api/events/apprenticeships?from=20160131000001&to=20171231235959&pageSize=100&pageNumber=1
 
-In addition to the event item properties, the response payload also includes an **id** property. This is the unique internal identifier for a single event.
+	http://localhost:29638/api/events/apprenticeships?fromEventId=1&pageSize=100&pageNumber=1
+
+In addition to the event item properties, the response payload also includes an **id** property. This is the unique internal identifier for a single event and can be used to query by event ID in subsequent API calls.
 
 
 ## Security ##

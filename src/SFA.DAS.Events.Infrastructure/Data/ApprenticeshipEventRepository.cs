@@ -19,20 +19,36 @@ namespace SFA.DAS.Events.Infrastructure.Data
                 await c.ExecuteAsync($"INSERT INTO [dbo].[{TableName}](Event, CreatedOn, ApprenticeshipId, PaymentStatus, AgreementStatus, ProviderId, LearnerId, EmployerAccountId, TrainingType, TrainingId, TrainingStartDate, TrainingEndDate, TrainingTotalCost) VALUES (@event, @createdOn, @apprenticeshipId, @paymentStatus, @agreementStatus, @providerId, @learnerId, @employerAccountId, @trainingType, @trainingId, @trainingStartDate, @trainingEndDate, @trainingTotalCost);", @event));
         }
 
-        public async Task<IEnumerable<ApprenticeshipEvent>> GetByDateRange(DateTime @from, DateTime to, int pageSize, int pageNumber)
+        public async Task<IEnumerable<ApprenticeshipEvent>> GetByDateRange(DateTime fromDate, DateTime toDate, int pageSize, int pageNumber, long fromEventId)
         {
             var offset = pageSize*(pageNumber - 1);
 
-            return await WithConnection(async c =>
+            // query by ID or by date range
+            if (fromEventId > 0)
             {
-                var parameters = new DynamicParameters();
-                parameters.Add("@from", from);
-                parameters.Add("@to", to);
+                return await WithConnection(async c =>
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@fromEventId", fromEventId);
 
-                var results = await c.QueryAsync<ApprenticeshipEvent>($"SELECT * FROM [dbo].[{TableName}] WHERE CreatedOn >=  @from AND CreatedOn < @to ORDER BY CreatedOn OFFSET {offset} ROWS FETCH NEXT {pageSize} ROWS ONLY;", parameters);
+                    var results = await c.QueryAsync<ApprenticeshipEvent>($"SELECT * FROM [dbo].[{TableName}] WHERE Id >=  @fromEventId ORDER BY CreatedOn OFFSET {offset} ROWS FETCH NEXT {pageSize} ROWS ONLY;", parameters);
 
-                return results;
-            });
+                    return results;
+                });
+            }
+            else
+            {
+                return await WithConnection(async c =>
+                {
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@fromDate", fromDate);
+                    parameters.Add("@toDate", toDate);
+
+                    var results = await c.QueryAsync<ApprenticeshipEvent>($"SELECT * FROM [dbo].[{TableName}] WHERE CreatedOn >=  @fromDate AND CreatedOn < @toDate ORDER BY CreatedOn OFFSET {offset} ROWS FETCH NEXT {pageSize} ROWS ONLY;", parameters);
+
+                    return results;
+                });
+            }
         }
     }
 }

@@ -9,6 +9,6 @@ namespace SFA.DAS.Events.Api.Orchestrators
     public interface IApprenticeshipEventsOrchestrator
     {
         Task CreateEvent(CreateApprenticeshipEventRequest request);
-        Task<IEnumerable<ApprenticeshipEvent>> GetEvents(string @from, string to, int pageSize, int pageNumber);
+        Task<IEnumerable<ApprenticeshipEvent>> GetEvents(string fromDate, string toDate, int pageSize, int pageNumber, long fromEventId);
     }
 }
