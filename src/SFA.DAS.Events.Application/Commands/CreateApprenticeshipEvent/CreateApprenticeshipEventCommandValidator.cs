@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentValidation;
+using SFA.DAS.Events.Domain.Entities;
 
 namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
 {
@@ -14,7 +15,7 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
             RuleFor(model => model.ProviderId).NotEmpty();
             RuleFor(model => model.LearnerId).NotEmpty();
             RuleFor(model => model.EmployerAccountId).NotEmpty();
-            RuleFor(model => model.TrainingType).NotEmpty();
+            RuleFor(model => model.TrainingType).NotEqual(TrainingTypes.Unspecified);
             RuleFor(model => model.TrainingId).NotEmpty();
             RuleFor(model => model.TrainingStartDate).NotEmpty();
             RuleFor(model => model.TrainingEndDate).NotEmpty();
