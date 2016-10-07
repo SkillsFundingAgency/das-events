@@ -15,3 +15,7 @@
 	[TrainingEndDate]DATETIME NOT NULL, 
 	[TrainingTotalCost] DECIMAL(18,2) NOT NULL
 )
+
+GO
+
+CREATE INDEX [IX_ApprenticeshipEvents_CreatedOn] ON [dbo].[ApprenticeshipEvents] ([CreatedOn])
