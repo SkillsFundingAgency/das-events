@@ -62,4 +62,7 @@
   <ItemGroup>
     <Build Include="Tables\ApprenticeshipEvents.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Database.publish.xml" />
+  </ItemGroup>
 </Project>
