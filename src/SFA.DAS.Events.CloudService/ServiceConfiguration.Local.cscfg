@@ -8,6 +8,7 @@
       <Setting name="EventHubName" value="" />
       <Setting name="StorageConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="ConfigurationStorageConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="EnvironmentName" value="LOCAL" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>

@@ -8,6 +8,7 @@
       <Setting name="EventHubName" value="__EventHubName__" />
       <Setting name="StorageConnectionString" value="__StorageConnectionString__" />
       <Setting name="ConfigurationStorageConnectionString" value="__ConfigurationStorageConnectionString__" />
+      <Setting name="EnvironmentName" value="__EnvironmentName__" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>
