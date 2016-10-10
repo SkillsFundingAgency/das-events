@@ -59,7 +59,7 @@ Paging of response data is supported or both.
 
 To retrieve events:
 
-	GET http://host:port/api/events/apprenticeships?from=<fromDate>&to=<toDate>&pageSize=<pageSize>&pageNumber=<pageNumber>&fromEventId=<fromEventId)
+	GET http://host:port/api/events/apprenticeships?fromDate=<fromDate>&toDate=<toDate>&pageSize=<pageSize>&pageNumber=<pageNumber>&fromEventId=<fromEventId)
 
 Where:
 
@@ -75,7 +75,7 @@ Note: Querying by event ID takes precedence over date based queries - dates will
 
 Examples:
 
-	http://localhost:29638/api/events/apprenticeships?from=20160131000001&to=20171231235959&pageSize=100&pageNumber=1
+	http://localhost:29638/api/events/apprenticeships?fromDate=20160131000001&toDate=20171231235959&pageSize=100&pageNumber=1
 
 	http://localhost:29638/api/events/apprenticeships?fromEventId=1&pageSize=100&pageNumber=1
 
