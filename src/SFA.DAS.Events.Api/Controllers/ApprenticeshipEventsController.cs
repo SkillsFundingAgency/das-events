@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using SFA.DAS.Events.Api.Models;
 using SFA.DAS.Events.Api.Orchestrators;
+using SFA.DAS.Events.Api.Types;
 
 namespace SFA.DAS.Events.Api.Controllers
 {
@@ -17,15 +18,15 @@ namespace SFA.DAS.Events.Api.Controllers
         }
 
         [Route("", Name = "GetAllEvents")]
-        [AuthorizeAttribute(Roles = "ReadApprenticeshipEvent")]
+        [Authorize(Roles = "ReadApprenticeshipEvent")]
         public async Task<IHttpActionResult> Get(string fromDate = null, string toDate = null, int pageSize = 1000, int pageNumber = 1, long fromEventId = 0)
         {
             return Ok(await _orchestrator.GetEvents(fromDate, toDate, pageSize, pageNumber, fromEventId));
         }
 
         [Route("")]
-        [AuthorizeAttribute(Roles = "StoreApprenticeshipEvent")]
-        public async Task<IHttpActionResult> Post(CreateApprenticeshipEventRequest request)
+        [Authorize(Roles = "StoreApprenticeshipEvent")]
+        public async Task<IHttpActionResult> Post(ApprenticeshipEvent request)
         {
             await _orchestrator.CreateEvent(request);
 

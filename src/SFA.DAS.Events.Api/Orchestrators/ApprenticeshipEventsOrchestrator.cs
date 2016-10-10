@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using NLog;
-using SFA.DAS.Events.Api.Models;
+using SFA.DAS.Events.Api.Types;
 using SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent;
 using SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents;
-using SFA.DAS.Events.Domain.Entities;
+using ApprenticeshipEvent = SFA.DAS.Events.Api.Types.ApprenticeshipEvent;
 
 namespace SFA.DAS.Events.Api.Orchestrators
 {
@@ -23,7 +24,7 @@ namespace SFA.DAS.Events.Api.Orchestrators
             _mediator = mediator;
         }
 
-        public async Task CreateEvent(CreateApprenticeshipEventRequest request)
+        public async Task CreateEvent(ApprenticeshipEvent request)
         {
             try
             {
@@ -36,7 +37,7 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     ProviderId = request.ProviderId,
                     LearnerId = request.LearnerId,
                     EmployerAccountId = request.EmployerAccountId,
-                    TrainingType = request.TrainingType,
+                    TrainingType = (Domain.Entities.TrainingTypes)request.TrainingType,
                     TrainingId = request.TrainingId,
                     TrainingStartDate = request.TrainingStartDate,
                     TrainingEndDate = request.TrainingEndDate,
@@ -55,7 +56,7 @@ namespace SFA.DAS.Events.Api.Orchestrators
             }
         }
 
-        public async Task<IEnumerable<ApprenticeshipEvent>> GetEvents(string fromDate, string toDate, int pageSize, int pageNumber, long fromEventId)
+        public async Task<IEnumerable<ApprenticeshipEventView>> GetEvents(string fromDate, string toDate, int pageSize, int pageNumber, long fromEventId)
         {
             try
             {
@@ -73,7 +74,23 @@ namespace SFA.DAS.Events.Api.Orchestrators
 
                 var response = await _mediator.SendAsync(request);
 
-                return response.Data;
+                return response.Data.Select(x => new ApprenticeshipEventView
+                {
+                    Id = x.Id,
+                    CreatedOn = x.CreatedOn,
+                    Event = x.Event,
+                    ApprenticeshipId = x.ApprenticeshipId,
+                    PaymentStatus = x.PaymentStatus,
+                    AgreementStatus = x.AgreementStatus,
+                    ProviderId = x.ProviderId,
+                    LearnerId = x.LearnerId,
+                    EmployerAccountId = x.EmployerAccountId,
+                    TrainingType = (TrainingTypes)x.TrainingType,
+                    TrainingId = x.TrainingId,
+                    TrainingStartDate = x.TrainingStartDate,
+                    TrainingEndDate = x.TrainingEndDate,
+                    TrainingTotalCost = x.TrainingTotalCost
+                });
             }
             catch (ValidationException ex)
             {

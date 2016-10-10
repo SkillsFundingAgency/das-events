@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using SFA.DAS.Events.Api.Models;
-using SFA.DAS.Events.Domain.Entities;
+using SFA.DAS.Events.Api.Types;
 
 namespace SFA.DAS.Events.Api.Orchestrators
 {
     public interface IApprenticeshipEventsOrchestrator
     {
-        Task CreateEvent(CreateApprenticeshipEventRequest request);
-        Task<IEnumerable<ApprenticeshipEvent>> GetEvents(string fromDate, string toDate, int pageSize, int pageNumber, long fromEventId);
+        Task CreateEvent(ApprenticeshipEvent request);
+        Task<IEnumerable<ApprenticeshipEventView>> GetEvents(string fromDate, string toDate, int pageSize, int pageNumber, long fromEventId);
     }
 }
