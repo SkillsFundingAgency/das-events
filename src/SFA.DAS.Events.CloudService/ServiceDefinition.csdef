@@ -17,7 +17,7 @@
       <Setting name="EnvironmentName" />
     </ConfigurationSettings>
     <Endpoints>
-      <InputEndpoint name="Endpoint1" protocol="http" port="80" />
+      <InputEndpoint name="Endpoint1" protocol="http" port="10096" />
     </Endpoints>
   </WebRole>
 </ServiceDefinition>
