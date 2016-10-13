@@ -9,6 +9,9 @@
       <Setting name="StorageConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="ConfigurationStorageConnectionString" value="UseDevelopmentStorage=true" />
       <Setting name="EnvironmentName" value="LOCAL" />
+      <Setting name="ApiTokenSecret" value="THIS IS THE SIGNING SECRET" />
+      <Setting name="ApiIssuer" value="http://localhost:29638" />
+      <Setting name="ApiAudiences" value="http://localhost/events" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>
