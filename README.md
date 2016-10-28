@@ -1,15 +1,17 @@
 # Events API #
 
-Events API for the Digital Apprenticeship Service
+Events API for the Digital Apprenticeship Service. 
+
+The API deals with apprenticeship and provider agreement events
 
 **Build status**
 
 ![Build Status](https://sfa-gov-uk.visualstudio.com/_apis/public/build/definitions/c39e0c0b-7aff-4606-b160-3566f3bbce23/164/badge)
 
 
-## Functionality ##
+## Functionality: apprenticeships ##
 
-### Storing events ###
+### Storing events (apprenticeships) ###
 
 To store a new event:
 
@@ -48,7 +50,7 @@ Where:
 - **trainingTotalCost** is the total price for the apprenticeship training
 
 
-### Retrieving events ###
+### Retrieving events (apprenticeships) ###
 
 Apprenticeship events can be retrieved based on either:
 
@@ -82,7 +84,7 @@ Examples:
 In addition to the event item properties, the response payload also includes an **id** property. This is the unique internal identifier for a single event and can be used to query by event ID in subsequent API calls.
 
 
-## Security ##
+## Security (apprenticeships) ##
 
 The API uses JWT bearer tokens to enforce authorised access to the API methods. Callers must present a bearer token that contains appropriate permissions.
 
@@ -96,3 +98,43 @@ The token should be passed in an `authorization` header and prefixed with `beare
     Authorization:bearer <token>
 
 Note that tokens can viewed using an online tool such as the one at [http://jwt.io](http://jwt.io "online JWT viewer")
+
+
+## Functionality: provider agreements ##
+
+POST and GET operations are very similar to the apprenticeship events above - differences are briefly described below.
+
+### Storing events (agreements) ###
+
+To store a new event:
+
+POST http://host:port/api/events/agreements/
+
+    {
+        "event": "An event",
+		"providerId": "1111"
+	}
+
+Where:
+
+- **event** is an arbitrary string representation of an event (eg. "Initiated")
+- **providerId** is the unique ID for a provider (eg. UKPRN)
+
+
+### Retrieving events (agreements) ###
+
+Provider agreement retrieval functionality works in the same way as for apprenticeships (see above)
+
+Examples:
+
+	http://localhost:29638/api/events/agreements?fromDate=20160131000001&toDate=20171231235959&pageSize=100&pageNumber=1
+
+	http://localhost:29638/api/events/agreements?fromEventId=1&pageSize=100&pageNumber=1
+
+
+## Security (agreements) ##
+
+Supported permissions are:
+
+    StoreAgreementEvent
+    ReadAgreementEvent
