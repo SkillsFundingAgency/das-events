@@ -46,6 +46,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Configuration\EventConfiguration.cs" />
+    <Compile Include="Data\AgreementEventRepository.cs" />
     <Compile Include="Data\ApprenticeshipEventRepository.cs" />
     <Compile Include="Data\BaseRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

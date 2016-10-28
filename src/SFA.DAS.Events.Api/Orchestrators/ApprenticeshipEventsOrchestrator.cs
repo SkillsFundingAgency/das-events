@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
@@ -65,8 +64,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
 
                 var request = new GetApprenticeshipEventsRequest
                 {
-                    FromDateTime = ParseDateTime(fromDate),
-                    ToDateTime = ParseDateTime(toDate),
+                    FromDateTime = fromDate.ParseDateTime(),
+                    ToDateTime = toDate.ParseDateTime(),
                     PageSize = pageSize,
                     PageNumber = pageNumber,
                     FromEventId = fromEventId
@@ -101,18 +100,6 @@ namespace SFA.DAS.Events.Api.Orchestrators
             {
                 Logger.Error(ex, ex.Message);
                 throw;
-            }
-        }
-
-        private static DateTime ParseDateTime(string datetime)
-        {
-            try
-            {
-                return DateTime.ParseExact(datetime, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
-            }
-            catch (Exception)
-            {
-                throw new ValidationException("Bad date format");
             }
         }
     }

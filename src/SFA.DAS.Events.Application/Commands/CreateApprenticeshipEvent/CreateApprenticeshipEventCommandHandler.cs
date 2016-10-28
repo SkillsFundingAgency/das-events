@@ -55,7 +55,7 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
             }
         }
 
-        private void Validate(CreateApprenticeshipEventCommand command)
+        private static void Validate(CreateApprenticeshipEventCommand command)
         {
             var validator = new CreateApprenticeshipEventCommandValidator();
 

@@ -28,10 +28,10 @@ namespace SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents
 
         private static IEnumerable<ApprenticeshipEvent> MapFrom(IEnumerable<ApprenticeshipEvent> source)
         {
-            return source; //todo: do mapping to API types
+            return source;
         }
 
-        private void Validate(GetApprenticeshipEventsRequest request)
+        private static void Validate(GetApprenticeshipEventsRequest request)
         {
             var validator = new GetApprenticeshipEventsRequestValidator();
 
