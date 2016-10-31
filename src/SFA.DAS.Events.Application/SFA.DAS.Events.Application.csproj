@@ -56,10 +56,17 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Commands\CreateAgreementEvent\CreateAgreementEventCommand.cs" />
+    <Compile Include="Commands\CreateAgreementEvent\CreateAgreementEventCommandHandler.cs" />
+    <Compile Include="Commands\CreateAgreementEvent\CreateAgreementEventCommandValidator.cs" />
     <Compile Include="Commands\CreateApprenticeshipEvent\CreateApprenticeshipEventCommandValidator.cs" />
     <Compile Include="Commands\CreateApprenticeshipEvent\CreateApprenticeshipEventCommand.cs" />
     <Compile Include="Commands\CreateApprenticeshipEvent\CreateApprenticeshipEventCommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\GetAgreementEvents\GetAgreementEventsQueryHandler.cs" />
+    <Compile Include="Queries\GetAgreementEvents\GetAgreementEventsRequest.cs" />
+    <Compile Include="Queries\GetAgreementEvents\GetAgreementEventsRequestValidator.cs" />
+    <Compile Include="Queries\GetAgreementEvents\GetAgreementEventsResponse.cs" />
     <Compile Include="Queries\GetApprenticeshipEvents\GetApprenticeshipEventsQueryHandler.cs" />
     <Compile Include="Queries\GetApprenticeshipEvents\GetApprenticeshipEventsRequest.cs" />
     <Compile Include="Queries\GetApprenticeshipEvents\GetApprenticeshipEventsRequestValidator.cs" />

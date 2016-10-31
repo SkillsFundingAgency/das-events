@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using SFA.DAS.Events.Domain.Entities;
 using SFA.DAS.Events.Domain.Repositories;
 
 namespace SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents
@@ -23,15 +21,10 @@ namespace SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents
 
             var events = await _apprenticeshipEventRepository.GetByDateRange(request.FromDateTime, request.ToDateTime, request.PageSize, request.PageNumber, request.FromEventId);
 
-            return new GetApprenticeshipEventsResponse {Data = MapFrom(events)};
+            return new GetApprenticeshipEventsResponse {Data = events};
         }
 
-        private static IEnumerable<ApprenticeshipEvent> MapFrom(IEnumerable<ApprenticeshipEvent> source)
-        {
-            return source; //todo: do mapping to API types
-        }
-
-        private void Validate(GetApprenticeshipEventsRequest request)
+        private static void Validate(GetApprenticeshipEventsRequest request)
         {
             var validator = new GetApprenticeshipEventsRequestValidator();
 
