@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using SFA.DAS.Events.Domain.Entities;
 using SFA.DAS.Events.Domain.Repositories;
 
 namespace SFA.DAS.Events.Application.Queries.GetAgreementEvents
@@ -23,12 +21,7 @@ namespace SFA.DAS.Events.Application.Queries.GetAgreementEvents
 
             var events = await _agreementEventRepository.GetByDateRange(request.FromDateTime, request.ToDateTime, request.PageSize, request.PageNumber, request.FromEventId);
 
-            return new GetAgreementEventsResponse { Data = MapFrom(events)};
-        }
-
-        private static IEnumerable<AgreementEvent> MapFrom(IEnumerable<AgreementEvent> source)
-        {
-            return source;
+            return new GetAgreementEventsResponse {Data = events};
         }
 
         private static void Validate(GetAgreementEventsRequest request)
