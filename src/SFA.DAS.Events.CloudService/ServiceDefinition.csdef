@@ -20,7 +20,10 @@
       <Setting name="ApiAudiences" />
     </ConfigurationSettings>
     <Endpoints>
-      <InputEndpoint name="Endpoint1" protocol="http" port="10096" />
+      <InputEndpoint name="Endpoint1" protocol="https" port="443" certificate="WebSslCert"/>
     </Endpoints>
+   <Certificates>
+      <Certificate name="WebSslCert" storeLocation="LocalMachine" storeName="My" />
+    </Certificates>
   </WebRole>
 </ServiceDefinition>
