@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <Role name="SFA.DAS.Events.Api">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="EventHubConnectionString" value="__EventHubConnectionString__" />
+      <Setting name="EventHubName" value="__EventHubName__" />
+      <Setting name="StorageConnectionString" value="__StorageConnectionString__" />
+      <Setting name="ConfigurationStorageConnectionString" value="__ConfigurationStorageConnectionString__" />
+      <Setting name="EnvironmentName" value="__EnvironmentName__" />
+      <Setting name="ApiTokenSecret" value="__ApiTokenSecret__"/>
+      <Setting name="ApiIssuer" value="__ApiIssuer__"/>
+      <Setting name="ApiAudiences" value="__ApiAudiences__"/>
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="WebSslCert" thumbprint="0D0387F6C742EEC888DF82438A9ECD16FD0F1EA6" thumbprintAlgorithm="sha1" />
+    </Certificates>
+	<NetworkConfiguration>
+    <VirtualNetworkSite name="__vnet__" />
+    <AddressAssignments>
+      <InstanceAddress roleName="SFA.DAS.Events.Api">
+        <Subnets>
+          <Subnet name="__subnet__" />
+        </Subnets>
+      </InstanceAddress>
+      <ReservedIPs>
+        <ReservedIP name="__rip__" />
+      </ReservedIPs>
+    </AddressAssignments>
+    <LoadBalancers>
+      <LoadBalancer name="__ilbname__">
+        <FrontendIPConfiguration type="private" subnet="__subnet__" staticVirtualNetworkIPAddress="10.78.125.28" />
+      </LoadBalancer>
+    </LoadBalancers>
+  </NetworkConfiguration>
+  </Role>
+</ServiceConfiguration>
