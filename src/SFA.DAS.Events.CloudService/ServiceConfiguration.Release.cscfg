@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ServiceConfiguration serviceName="SFA.DAS.Events.CloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" schemaVersion="2015-04.2.6">
+<ServiceConfiguration serviceName="SFA.DAS.Events.CloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
   <Role name="SFA.DAS.Events.Api">
     <Instances count="1" />
     <ConfigurationSettings>
@@ -16,6 +16,7 @@
     <Certificates>
       <Certificate name="WebSslCert" thumbprint="0D0387F6C742EEC888DF82438A9ECD16FD0F1EA6" thumbprintAlgorithm="sha1" />
     </Certificates>
+  </Role>
 	<NetworkConfiguration>
     <VirtualNetworkSite name="__vnet__" />
     <AddressAssignments>
@@ -33,6 +34,5 @@
         <FrontendIPConfiguration type="private" subnet="__subnet__" staticVirtualNetworkIPAddress="10.78.125.28" />
       </LoadBalancer>
     </LoadBalancers>
-  </NetworkConfiguration>
-  </Role>
+  </NetworkConfiguration>  
 </ServiceConfiguration>
