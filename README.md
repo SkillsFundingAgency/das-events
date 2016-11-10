@@ -112,13 +112,15 @@ POST http://host:port/api/events/agreements/
 
     {
         "event": "An event",
-		"providerId": "1111"
+		"providerId": "1111",
+        "employerAccountId": "2222"
 	}
 
 Where:
 
 - **event** is an arbitrary string representation of an event (eg. "Initiated")
 - **providerId** is the unique ID for a provider (eg. UKPRN)
+- **employerAccountId** is the DAS employer account ID
 
 
 ### Retrieving events (agreements) ###
