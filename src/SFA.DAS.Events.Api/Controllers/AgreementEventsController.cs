@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
-using SFA.DAS.Events.Api.Models;
 using SFA.DAS.Events.Api.Orchestrators;
 using SFA.DAS.Events.Api.Types;
 
 namespace SFA.DAS.Events.Api.Controllers
 {
-    [RoutePrefix("api/events/agreements")]
+    [RoutePrefix("api/events/engagements")]
     public class AgreementEventsController : ApiController
     {
         private readonly IAgreementEventsOrchestrator _orchestrator;
@@ -31,7 +30,7 @@ namespace SFA.DAS.Events.Api.Controllers
             await _orchestrator.CreateEvent(request);
 
             // 201 for list of all events
-            return CreatedAtRoute("GetAllAgreementEvents", new {}, default(CreateAgreementEventRequest));
+            return CreatedAtRoute("GetAllAgreementEvents", new {}, default(AgreementEvent));
         }
     }
 }

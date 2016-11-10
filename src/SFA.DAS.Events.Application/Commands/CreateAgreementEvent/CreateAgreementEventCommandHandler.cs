@@ -31,7 +31,8 @@ namespace SFA.DAS.Events.Application.Commands.CreateAgreementEvent
                 {
                     Event = command.Event,
                     CreatedOn = DateTime.UtcNow,
-                    ProviderId = command.ProviderId
+                    ProviderId = command.ProviderId,
+                    EmployerAccountId = command.EmployerAccountId
                 };
 
                 await _agreementEventRepository.Create(newAgreementEvent);
