@@ -7,7 +7,7 @@ using SFA.DAS.Events.Api.Types;
 
 namespace SFA.DAS.Events.Api.Controllers
 {
-    [RoutePrefix("api/events/agreements")]
+    [RoutePrefix("api/events/engagements")]
     public class AgreementEventsController : ApiController
     {
         private readonly IAgreementEventsOrchestrator _orchestrator;
