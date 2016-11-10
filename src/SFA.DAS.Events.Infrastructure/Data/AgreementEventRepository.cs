@@ -16,7 +16,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
         public async Task Create(AgreementEvent @event)
         {
             await WithConnection(async c =>
-                await c.ExecuteAsync($"INSERT INTO [dbo].[{TableName}](Event, CreatedOn, ProviderId) VALUES (@event, @createdOn, @providerId);", @event));
+                await c.ExecuteAsync($"INSERT INTO [dbo].[{TableName}](Event, CreatedOn, ProviderId, EmployerAccountId) VALUES (@event, @createdOn, @providerId, @employerAccountId);", @event));
         }
 
         public async Task<IEnumerable<AgreementEvent>> GetByDateRange(DateTime fromDate, DateTime toDate, int pageSize, int pageNumber, long fromEventId)

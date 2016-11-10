@@ -7,5 +7,6 @@ namespace SFA.DAS.Events.Application.Commands.CreateAgreementEvent
     {
         public string Event { get; set; }
         public string ProviderId { get; set; }
+        public string EmployerAccountId { get; set; }
     }
 }

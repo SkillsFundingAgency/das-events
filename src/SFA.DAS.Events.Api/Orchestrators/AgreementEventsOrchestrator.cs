@@ -30,7 +30,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 await _mediator.SendAsync(new CreateAgreementEventCommand
                 {
                     Event = request.Event,
-                    ProviderId = request.ProviderId
+                    ProviderId = request.ProviderId,
+                    EmployerAccountId = request.EmployerAccountId
                 });
             }
             catch (ValidationException ex)
@@ -68,7 +69,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     Id = x.Id,
                     CreatedOn = x.CreatedOn,
                     Event = x.Event,
-                    ProviderId = x.ProviderId
+                    ProviderId = x.ProviderId,
+                    EmployerAccountId = x.EmployerAccountId
                 });
             }
             catch (ValidationException ex)
