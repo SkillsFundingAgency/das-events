@@ -209,6 +209,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AgreementEventsController.cs" />
     <Compile Include="Controllers\ApprenticeshipEventsController.cs" />
+    <Compile Include="Models\CreateAgreementEventRequest.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />

@@ -112,9 +112,9 @@ POST http://host:port/api/events/agreements/
 
     {
         "event": "An event",
-		"providerId": "1111",
+        "providerId": "1111",
         "employerAccountId": "2222"
-	}
+    }
 
 Where:
 
