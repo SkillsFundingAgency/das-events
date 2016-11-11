@@ -10,7 +10,7 @@
       <Setting name="ApiTokenSecret" value="THIS IS THE SIGNING SECRET" />
       <Setting name="ApiIssuer" value="http://localhost:29638" />
       <Setting name="ApiAudiences" value="http://localhost/events" />
-      <Setting name="LoggingRedisConnnectionString" value=""/>
+      <Setting name="LoggingRedisConnectionString" value=""/>
       <Setting name="LoggingRedisKey" value=""/>
     </ConfigurationSettings>
     <Certificates>
