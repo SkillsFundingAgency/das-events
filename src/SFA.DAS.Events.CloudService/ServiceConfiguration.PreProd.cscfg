@@ -14,7 +14,7 @@
       <Setting name="LoggingRedisKey" value="__LoggingRedisKey__"/>
     </ConfigurationSettings>
     <Certificates>
-      <Certificate name="WebSslCert" thumbprint="0D0387F6C742EEC888DF82438A9ECD16FD0F1EA6" thumbprintAlgorithm="sha1" />
+      <Certificate name="WebSslCert" thumbprint="2941A302563E499CA11865E055743ECCF2E04C68" thumbprintAlgorithm="sha1" />
     </Certificates>
   </Role>
 	<NetworkConfiguration>
