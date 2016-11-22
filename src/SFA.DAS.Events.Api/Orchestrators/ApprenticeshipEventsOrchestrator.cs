@@ -27,6 +27,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
         {
             try
             {
+                Logger.Info($"Creating Apprenticeship Event ({request.Event}) for Employer: {request.EmployerAccountId}, Provider: {request.ProviderId}");
+
                 await _mediator.SendAsync(new CreateApprenticeshipEventCommand
                 {
                     Event = request.Event,
@@ -59,6 +61,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
         {
             try
             {
+                Logger.Info($"Getting Apprenticeship Events for period: {fromDate ?? "(all)"} - {toDate ?? "(all)"}, from eventId = {(fromEventId == 0 ? "(all)" : fromEventId.ToString())}");
+
                 fromDate = fromDate ?? new DateTime(2000, 1, 1).ToString("yyyyMMddHHmmss");
                 toDate = toDate ?? DateTime.MaxValue.ToString("yyyyMMddHHmmss");
 
