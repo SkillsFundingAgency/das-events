@@ -56,8 +56,8 @@ namespace SFA.DAS.Events.Api.App_Start {
             }
             catch(Exception ex)
             {
-                ILogger Logger = LogManager.GetCurrentClassLogger();
-                Logger.Fatal(ex, "Error Configuring StructureMap");
+                ILogger logger = LogManager.GetCurrentClassLogger();
+                logger.Fatal(ex, "Error Configuring StructureMap");
             }
         }
 
