@@ -1,15 +1,18 @@
 ﻿using System;
 using MediatR;
-using SFA.DAS.Events.Domain.Entities;
 
 namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
 {
+    using SFA.DAS.Events.Api.Types;
+
+    using TrainingTypes = SFA.DAS.Events.Domain.Entities.TrainingTypes;
+
     public sealed class CreateApprenticeshipEventCommand : IAsyncRequest
     {
         public string Event { get; set; }
         public long ApprenticeshipId { get; set; }
-        public string PaymentStatus { get; set; }
-        public string AgreementStatus { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
+        public AgreementStatus AgreementStatus { get; set; }
         public string ProviderId { get; set; }
         public string LearnerId { get; set; }
         public string EmployerAccountId { get; set; }
