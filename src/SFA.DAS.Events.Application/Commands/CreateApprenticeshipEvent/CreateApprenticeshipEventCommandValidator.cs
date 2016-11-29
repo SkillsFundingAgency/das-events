@@ -8,8 +8,6 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
         {
             RuleFor(model => model.Event).NotEmpty();
             RuleFor(model => model.ApprenticeshipId).GreaterThan(0);
-            RuleFor(model => model.PaymentStatus).NotEmpty();
-            RuleFor(model => model.AgreementStatus).NotEmpty();
             RuleFor(model => model.ProviderId).NotEmpty();
             RuleFor(model => model.LearnerId).NotEmpty();
             RuleFor(model => model.EmployerAccountId).NotEmpty();
