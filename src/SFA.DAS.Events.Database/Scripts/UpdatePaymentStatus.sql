@@ -29,3 +29,10 @@ WHERE [PaymentStatus]='Deleted'
 
 ALTER TABLE [SFA.DAS.Events.Database].[dbo].[ApprenticeshipEvents] ALTER COLUMN PaymentStatus SMALLINT NOT NULL
 
+COMMIT TRANSACTION [Tran1]
+END TRY
+BEGIN CATCH
+  ROLLBACK TRANSACTION [Tran1]
+END CATCH  
+
+GO
