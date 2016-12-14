@@ -4,30 +4,35 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using NLog;
 using SFA.DAS.Events.Api.Types;
 using SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent;
 using SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents;
+using SFA.DAS.Events.Domain.Logging;
 using ApprenticeshipEvent = SFA.DAS.Events.Api.Types.ApprenticeshipEvent;
 
 namespace SFA.DAS.Events.Api.Orchestrators
 {
     public class ApprenticeshipEventsOrchestrator : IApprenticeshipEventsOrchestrator
     {
-        private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-
+        private readonly IEventsLogger _logger;
         private readonly IMediator _mediator;
 
-        public ApprenticeshipEventsOrchestrator(IMediator mediator)
+        public ApprenticeshipEventsOrchestrator(IMediator mediator, IEventsLogger logger)
         {
+            if (mediator == null)
+                throw new ArgumentNullException(nameof(mediator));
+            if (logger == null)
+                throw new ArgumentNullException(nameof(logger));
+
             _mediator = mediator;
+            _logger = logger;
         }
 
         public async Task CreateEvent(ApprenticeshipEvent request)
         {
             try
             {
-                Logger.Info($"Creating Apprenticeship Event ({request.Event}) for Employer: {request.EmployerAccountId}, Provider: {request.ProviderId}");
+                _logger.Info($"Creating Apprenticeship Event ({request.Event}) for Employer: {request.EmployerAccountId}, Provider: {request.ProviderId}", @event: request.Event, accountId: request.EmployerAccountId, providerId: request.ProviderId);
 
                 await _mediator.SendAsync(new CreateApprenticeshipEventCommand
                 {
@@ -47,12 +52,12 @@ namespace SFA.DAS.Events.Api.Orchestrators
             }
             catch (ValidationException ex)
             {
-                Logger.Warn(ex, "Invalid request");
+                _logger.Warn(ex, "Invalid request", accountId: request.EmployerAccountId, providerId: request.ProviderId, @event: request.Event);
                 throw;
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                _logger.Error(ex, ex.Message);
                 throw;
             }
         }
@@ -61,7 +66,7 @@ namespace SFA.DAS.Events.Api.Orchestrators
         {
             try
             {
-                Logger.Info($"Getting Apprenticeship Events for period: {fromDate ?? "(all)"} - {toDate ?? "(all)"}, from eventId = {(fromEventId == 0 ? "(all)" : fromEventId.ToString())}");
+                _logger.Info($"Getting Apprenticeship Events for period: {fromDate ?? "(all)"} - {toDate ?? "(all)"}, from eventId = {(fromEventId == 0 ? "(all)" : fromEventId.ToString())}");
 
                 fromDate = fromDate ?? new DateTime(2000, 1, 1).ToString("yyyyMMddHHmmss");
                 toDate = toDate ?? DateTime.MaxValue.ToString("yyyyMMddHHmmss");
@@ -97,12 +102,12 @@ namespace SFA.DAS.Events.Api.Orchestrators
             }
             catch (ValidationException ex)
             {
-                Logger.Warn(ex, "Invalid request");
+                _logger.Warn(ex, "Invalid request");
                 throw;
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, ex.Message);
+                _logger.Error(ex, ex.Message);
                 throw;
             }
         }

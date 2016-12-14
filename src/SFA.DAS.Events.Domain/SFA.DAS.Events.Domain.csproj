@@ -46,6 +46,7 @@
     <Compile Include="Entities\ApprenticeshipEvent.cs" />
     <Compile Include="Entities\BaseEvent.cs" />
     <Compile Include="Entities\TrainingTypes.cs" />
+    <Compile Include="Logging\IEventsLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IAgreementEventRepository.cs" />
     <Compile Include="Repositories\IEventRepository.cs" />
