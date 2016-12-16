@@ -27,7 +27,7 @@ namespace SFA.DAS.Events.Api.App_Start {
     using System.Web.Mvc;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-    using NLog;
+    using NLog.Logger;
     using SFA.DAS.Events.Api.DependencyResolution;
 
     using StructureMap;
@@ -56,7 +56,7 @@ namespace SFA.DAS.Events.Api.App_Start {
             }
             catch(Exception ex)
             {
-                ILogger logger = LogManager.GetCurrentClassLogger();
+                ILog logger = new NLogLogger(); ;
                 logger.Fatal(ex, "Error Configuring StructureMap");
             }
         }

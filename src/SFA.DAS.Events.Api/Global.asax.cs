@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Web.Http;
-using NLog;
+using SFA.DAS.NLog.Logger;
 
 namespace SFA.DAS.Events.Api
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
-        private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+        private static ILog Logger = new NLogLogger();
 
         protected void Application_Start()
         {
