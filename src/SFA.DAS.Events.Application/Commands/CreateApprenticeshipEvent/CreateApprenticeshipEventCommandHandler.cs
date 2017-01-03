@@ -2,26 +2,31 @@
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using NLog;
 using SFA.DAS.Events.Domain.Entities;
+using SFA.DAS.Events.Domain.Logging;
 using SFA.DAS.Events.Domain.Repositories;
 
 namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
 {
     public class CreateApprenticeshipEventCommandHandler : AsyncRequestHandler<CreateApprenticeshipEventCommand>
     {
-        private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
-
+        private readonly IEventsLogger _logger;
         private readonly IApprenticeshipEventRepository _apprenticeshipEventRepository;
 
-        public CreateApprenticeshipEventCommandHandler(IApprenticeshipEventRepository apprenticeshipEventRepository)
+        public CreateApprenticeshipEventCommandHandler(IApprenticeshipEventRepository apprenticeshipEventRepository, IEventsLogger logger)
         {
+            if (apprenticeshipEventRepository == null)
+                throw new ArgumentNullException(nameof(apprenticeshipEventRepository));
+            if (logger == null)
+                throw new ArgumentNullException(nameof(logger));
+
             _apprenticeshipEventRepository = apprenticeshipEventRepository;
+            _logger = logger;
         }
 
         protected override async Task HandleCore(CreateApprenticeshipEventCommand command)
         {
-            Logger.Info($"Received message {command.Event}");
+            _logger.Info($"Received message {command.Event}", accountId: command.EmployerAccountId, providerId: command.ProviderId, @event: command.Event);
 
             Validate(command);
 
@@ -47,11 +52,11 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
 
                 await _apprenticeshipEventRepository.Create(newApprenticeshipEvent);
 
-                Logger.Info($"Finished processing message {command.Event}");
+                _logger.Info($"Finished processing message {command.Event}", accountId: command.EmployerAccountId, providerId: command.ProviderId, @event: command.Event);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, $"Error processing message {command.Event} - {ex.Message}");
+                _logger.Error(ex, $"Error processing message {command.Event} - {ex.Message}", accountId: command.EmployerAccountId, providerId: command.ProviderId, @event: command.Event);
                 throw;
             }
         }

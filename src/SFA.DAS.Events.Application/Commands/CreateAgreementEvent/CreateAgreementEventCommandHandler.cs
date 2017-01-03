@@ -2,26 +2,32 @@
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using NLog;
 using SFA.DAS.Events.Domain.Entities;
+using SFA.DAS.Events.Domain.Logging;
 using SFA.DAS.Events.Domain.Repositories;
 
 namespace SFA.DAS.Events.Application.Commands.CreateAgreementEvent
 {
     public class CreateAgreementEventCommandHandler : AsyncRequestHandler<CreateAgreementEventCommand>
     {
-        private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+        private readonly IEventsLogger _logger;
 
         private readonly IAgreementEventRepository _agreementEventRepository;
 
-        public CreateAgreementEventCommandHandler(IAgreementEventRepository agreementEventRepository)
+        public CreateAgreementEventCommandHandler(IAgreementEventRepository agreementEventRepository, IEventsLogger logger)
         {
+            if (agreementEventRepository == null)
+                throw new ArgumentNullException(nameof(agreementEventRepository));
+            if (logger == null)
+                throw new ArgumentNullException(nameof(logger));
+
             _agreementEventRepository = agreementEventRepository;
+            _logger = logger;
         }
 
         protected override async Task HandleCore(CreateAgreementEventCommand command)
         {
-            Logger.Info($"Received message {command.Event}");
+            _logger.Info($"Received message {command.Event}", accountId: command.EmployerAccountId, providerId: command.ProviderId, @event: command.Event);
 
             Validate(command);
 
@@ -37,11 +43,11 @@ namespace SFA.DAS.Events.Application.Commands.CreateAgreementEvent
 
                 await _agreementEventRepository.Create(newAgreementEvent);
 
-                Logger.Info($"Finished processing message {command.Event}");
+                _logger.Info($"Finished processing message {command.Event}");
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, $"Error processing message {command.Event} - {ex.Message}");
+                _logger.Error(ex, $"Error processing message {command.Event} - {ex.Message}", accountId: command.EmployerAccountId, providerId: command.ProviderId, @event: command.Event);
                 throw;
             }
         }

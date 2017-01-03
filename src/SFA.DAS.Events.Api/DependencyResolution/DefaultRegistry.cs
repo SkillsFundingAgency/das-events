@@ -16,6 +16,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.ServiceModel.Channels;
+using System.Web;
 using MediatR;
 using Microsoft.Azure;
 using SFA.DAS.Configuration;
@@ -23,6 +25,7 @@ using SFA.DAS.Configuration.AzureTableStorage;
 using SFA.DAS.Events.Domain.Repositories;
 using SFA.DAS.Events.Infrastructure.Configuration;
 using SFA.DAS.Events.Infrastructure.Data;
+using SFA.DAS.NLog.Logger;
 using StructureMap.Configuration.DSL;
 using StructureMap.Graph;
 
@@ -48,6 +51,16 @@ namespace SFA.DAS.Events.Api.DependencyResolution
             For<IAgreementEventRepository>().Use<AgreementEventRepository>().Ctor<string>().Is(config.DatabaseConnectionString);
 
             RegisterMediator();
+
+            ConfigureLogging();
+        }
+
+        private void ConfigureLogging()
+        {
+            For<IRequestContext>().Use(x => new RequestContext(new HttpContextWrapper(HttpContext.Current)));
+            For<ILog>().Use(x => new NLogLogger(
+                x.ParentType,
+                x.GetInstance<IRequestContext>())).AlwaysUnique();
         }
 
         private EventConfiguration GetConfiguration()

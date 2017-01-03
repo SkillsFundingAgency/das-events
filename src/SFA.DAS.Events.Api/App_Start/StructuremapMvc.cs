@@ -23,15 +23,16 @@ using WebActivatorEx;
 [assembly: ApplicationShutdownMethod(typeof(StructuremapMvc), "End")]
 
 namespace SFA.DAS.Events.Api.App_Start {
-	using System.Web.Mvc;
+    using System;
+    using System.Web.Mvc;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-	using SFA.DAS.Events.Api.DependencyResolution;
+    using NLog.Logger;
+    using SFA.DAS.Events.Api.DependencyResolution;
 
     using StructureMap;
-    
-	public static class StructuremapMvc {
+
+    public static class StructuremapMvc {
         #region Public Properties
 
         public static StructureMapDependencyScope StructureMapDependencyScope { get; set; }
@@ -44,11 +45,20 @@ namespace SFA.DAS.Events.Api.App_Start {
             StructureMapDependencyScope.Dispose();
         }
 		
-        public static void Start() {
-            IContainer container = IoC.Initialize();
-            StructureMapDependencyScope = new StructureMapDependencyScope(container);
-            DependencyResolver.SetResolver(StructureMapDependencyScope);
-            DynamicModuleUtility.RegisterModule(typeof(StructureMapScopeModule));
+        public static void Start()
+        {
+            try
+            {
+                IContainer container = IoC.Initialize();
+                StructureMapDependencyScope = new StructureMapDependencyScope(container);
+                DependencyResolver.SetResolver(StructureMapDependencyScope);
+                DynamicModuleUtility.RegisterModule(typeof(StructureMapScopeModule));
+            }
+            catch(Exception ex)
+            {
+                ILog logger = new NLogLogger(); ;
+                logger.Fatal(ex, "Error Configuring StructureMap");
+            }
         }
 
         #endregion

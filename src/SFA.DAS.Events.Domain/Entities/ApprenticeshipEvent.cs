@@ -2,6 +2,8 @@
 
 namespace SFA.DAS.Events.Domain.Entities
 {
+    using SFA.DAS.Events.Api.Types;
+
     public class ApprenticeshipEvent : BaseEvent
     {
         public PaymentStatus PaymentStatus { get; set; }
