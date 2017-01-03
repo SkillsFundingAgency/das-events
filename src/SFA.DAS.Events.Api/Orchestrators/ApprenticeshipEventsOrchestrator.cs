@@ -31,8 +31,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 {
                     Event = request.Event,
                     ApprenticeshipId = request.ApprenticeshipId,
-                    PaymentStatus = request.PaymentStatus,
-                    AgreementStatus = request.AgreementStatus,
+                    PaymentStatus = (Domain.Entities.PaymentStatus)request.PaymentStatus,
+                    AgreementStatus = (Domain.Entities.AgreementStatus)request.AgreementStatus,
                     ProviderId = request.ProviderId,
                     LearnerId = request.LearnerId,
                     EmployerAccountId = request.EmployerAccountId,
@@ -40,7 +40,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     TrainingId = request.TrainingId,
                     TrainingStartDate = request.TrainingStartDate,
                     TrainingEndDate = request.TrainingEndDate,
-                    TrainingTotalCost = request.TrainingTotalCost
+                    TrainingTotalCost = request.TrainingTotalCost,
+                    PaymentOrder = request.PaymentOrder
                 });
             }
             catch (ValidationException ex)
@@ -79,8 +80,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     CreatedOn = x.CreatedOn,
                     Event = x.Event,
                     ApprenticeshipId = x.ApprenticeshipId,
-                    PaymentStatus = x.PaymentStatus,
-                    AgreementStatus = x.AgreementStatus,
+                    PaymentStatus = (PaymentStatus)x.PaymentStatus,
+                    AgreementStatus = (AgreementStatus)x.AgreementStatus,
                     ProviderId = x.ProviderId,
                     LearnerId = x.LearnerId,
                     EmployerAccountId = x.EmployerAccountId,
@@ -88,7 +89,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     TrainingId = x.TrainingId,
                     TrainingStartDate = x.TrainingStartDate,
                     TrainingEndDate = x.TrainingEndDate,
-                    TrainingTotalCost = x.TrainingTotalCost
+                    TrainingTotalCost = x.TrainingTotalCost,
+                    PaymentOrder = x.PaymentOrder
                 });
             }
             catch (ValidationException ex)

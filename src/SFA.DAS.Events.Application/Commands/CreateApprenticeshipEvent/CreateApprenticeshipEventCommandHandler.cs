@@ -41,7 +41,8 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
                     TrainingId = command.TrainingId,
                     TrainingStartDate = command.TrainingStartDate,
                     TrainingEndDate = command.TrainingEndDate,
-                    TrainingTotalCost = command.TrainingTotalCost
+                    TrainingTotalCost = command.TrainingTotalCost,
+                    PaymentOrder = command.PaymentOrder
                 };
 
                 await _apprenticeshipEventRepository.Create(newApprenticeshipEvent);

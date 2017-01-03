@@ -5,6 +5,7 @@
     [CreatedOn] DATETIME NOT NULL, 
 	[ApprenticeshipId] BIGINT NOT NULL,
 	[PaymentStatus] VARCHAR(50) NOT NULL, 
+	[PaymentOrder] INT NULL, 
 	[AgreementStatus] VARCHAR(50) NOT NULL, 
 	[ProviderId] VARCHAR(20) NOT NULL, 
 	[LearnerId] VARCHAR(20) NOT NULL, 
