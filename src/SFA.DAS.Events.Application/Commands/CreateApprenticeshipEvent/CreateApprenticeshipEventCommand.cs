@@ -1,12 +1,9 @@
 ﻿using System;
 using MediatR;
+using SFA.DAS.Events.Domain.Entities;
 
 namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
 {
-    using SFA.DAS.Events.Api.Types;
-
-    using TrainingTypes = SFA.DAS.Events.Domain.Entities.TrainingTypes;
-
     public sealed class CreateApprenticeshipEventCommand : IAsyncRequest
     {
         public string Event { get; set; }
