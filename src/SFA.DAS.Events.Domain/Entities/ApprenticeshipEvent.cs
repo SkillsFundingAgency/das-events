@@ -17,5 +17,6 @@ namespace SFA.DAS.Events.Domain.Entities
         public DateTime TrainingStartDate { get; set; }
         public DateTime TrainingEndDate { get; set; }
         public decimal TrainingTotalCost { get; set; }
+        public int PaymentOrder { get; set; }
     }
 }

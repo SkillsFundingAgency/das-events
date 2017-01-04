@@ -21,5 +21,6 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
         public DateTime TrainingStartDate { get; set; }
         public DateTime TrainingEndDate { get; set; }
         public decimal TrainingTotalCost { get; set; }
+        public int PaymentOrder { get; set; }
     }
 }
