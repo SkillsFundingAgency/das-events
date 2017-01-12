@@ -156,8 +156,8 @@
       <HintPath>..\packages\SFA.DAS.Configuration.AzureTableStorage.1.0.0.6634\lib\net45\SFA.DAS.Configuration.AzureTableStorage.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SFA.DAS.Events.Api.Types, Version=1.8.0.18501, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SFA.DAS.Events.Api.Types.1.8.0.18501\lib\net45\SFA.DAS.Events.Api.Types.dll</HintPath>
+    <Reference Include="SFA.DAS.Events.Api.Types, Version=1.9.0.19625, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SFA.DAS.Events.Api.Types.1.9.0.19625\lib\net45\SFA.DAS.Events.Api.Types.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SFA.DAS.NLog.Logger, Version=1.0.0.17615, Culture=neutral, processorArchitecture=MSIL">
@@ -251,6 +251,7 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\StructuremapWebApi.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountEventsController.cs" />
     <Compile Include="Controllers\AgreementEventsController.cs" />
     <Compile Include="Controllers\ApprenticeshipEventsController.cs" />
     <Compile Include="Models\CreateAgreementEventRequest.cs" />
@@ -263,9 +264,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Orchestrators\AccountEventsOrchestrator.cs" />
     <Compile Include="Orchestrators\AgreementEventsOrchestrator.cs" />
     <Compile Include="Orchestrators\ApprenticeshipEventsOrchestrator.cs" />
     <Compile Include="Orchestrators\DateTimeHelper.cs" />
+    <Compile Include="Orchestrators\IAccountEventsOrchestrator.cs" />
     <Compile Include="Orchestrators\IAgreementEventsOrchestrator.cs" />
     <Compile Include="Orchestrators\IApprenticeshipEventsOrchestrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

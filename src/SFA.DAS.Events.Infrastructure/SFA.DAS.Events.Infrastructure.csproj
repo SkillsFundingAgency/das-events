@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="Configuration\EventConfiguration.cs" />
     <Compile Include="Data\AgreementEventRepository.cs" />
+    <Compile Include="Data\AccountEventRepository.cs" />
     <Compile Include="Data\ApprenticeshipEventRepository.cs" />
     <Compile Include="Data\BaseRepository.cs" />
     <Compile Include="Logging\EventsLogger.cs" />
