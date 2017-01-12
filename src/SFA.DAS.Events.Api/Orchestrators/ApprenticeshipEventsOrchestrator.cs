@@ -8,7 +8,6 @@ using SFA.DAS.Events.Api.Types;
 using SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent;
 using SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents;
 using SFA.DAS.Events.Domain.Logging;
-using ApprenticeshipEvent = SFA.DAS.Events.Api.Types.ApprenticeshipEvent;
 
 namespace SFA.DAS.Events.Api.Orchestrators
 {

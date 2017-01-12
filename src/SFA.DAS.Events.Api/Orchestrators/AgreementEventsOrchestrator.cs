@@ -8,7 +8,6 @@ using SFA.DAS.Events.Api.Types;
 using SFA.DAS.Events.Application.Commands.CreateAgreementEvent;
 using SFA.DAS.Events.Application.Queries.GetAgreementEvents;
 using SFA.DAS.Events.Domain.Logging;
-using AgreementEvent = SFA.DAS.Events.Api.Types.AgreementEvent;
 
 namespace SFA.DAS.Events.Api.Orchestrators
 {

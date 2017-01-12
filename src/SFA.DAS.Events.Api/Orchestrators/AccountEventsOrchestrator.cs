@@ -6,11 +6,8 @@ using FluentValidation;
 using MediatR;
 using SFA.DAS.Events.Api.Types;
 using SFA.DAS.Events.Application.Commands.CreateAccountEvent;
-using SFA.DAS.Events.Application.Commands.CreateAgreementEvent;
 using SFA.DAS.Events.Application.Queries.GetAccountEvents;
-using SFA.DAS.Events.Application.Queries.GetAgreementEvents;
 using SFA.DAS.Events.Domain.Logging;
-using AccountEvent = SFA.DAS.Events.Api.Types.AccountEvent;
 
 namespace SFA.DAS.Events.Api.Orchestrators
 {
