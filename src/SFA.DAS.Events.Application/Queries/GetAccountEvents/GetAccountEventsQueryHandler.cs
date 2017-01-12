@@ -19,7 +19,7 @@ namespace SFA.DAS.Events.Application.Queries.GetAccountEvents
         {
             Validate(request);
 
-            var events = await _accountEventRepository.GetByDateRange(request.FromDateTime, request.ToDateTime, request.PageSize, request.PageNumber, request.FromEventId);
+            var events = await _accountEventRepository.GetByRange(request.FromDateTime, request.ToDateTime, request.PageSize, request.PageNumber, request.FromEventId);
 
             return new GetAccountEventsResponse {Data = events};
         }
