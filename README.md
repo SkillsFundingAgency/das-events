@@ -140,3 +140,42 @@ Supported permissions are:
 
     StoreAgreementEvent
     ReadAgreementEvent
+
+## Functionality: employer accounts ##
+
+POST and GET operations are very similar to the apprenticeship events above - differences are briefly described below.
+
+### Storing events (accounts) ###
+
+To store a new event:
+
+POST http://host:port/api/events/accounts/
+
+    {
+        "event": "An event",
+        "employerAccountId": "2222"
+    }
+
+Where:
+
+- **event** is an arbitrary string representation of an event (eg. "Initiated")
+- **employerAccountId** is the DAS employer account ID
+
+
+### Retrieving events (accounts) ###
+
+Provider agreement retrieval functionality works in the same way as for apprenticeships (see above)
+
+Examples:
+
+	http://localhost:29638/api/events/accounts?fromDate=20160131000001&toDate=20171231235959&pageSize=100&pageNumber=1
+
+	http://localhost:29638/api/events/accounts?fromEventId=1&pageSize=100&pageNumber=1
+
+
+## Security (accounts) ##
+
+Supported permissions are:
+
+    StoreAccountEvent
+    ReadAccountEvent
