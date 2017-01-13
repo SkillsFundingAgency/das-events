@@ -58,11 +58,15 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="UserDefinedTypes" />
+    <Folder Include="StoredProcedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\ApprenticeshipEvents.sql" />
     <Build Include="Tables\AgreementEvents.sql" />
     <Build Include="Tables\AccountEvents.sql" />
+    <Build Include="UserDefinedTypes\ApprenticeshipEventsTable.sql" />
+    <Build Include="StoredProcedures\BulkUploadApprenticeshipEvents.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database.publish.xml" />

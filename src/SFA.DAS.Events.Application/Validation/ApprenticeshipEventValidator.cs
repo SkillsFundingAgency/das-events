@@ -1,12 +1,13 @@
 ﻿using FluentValidation;
+using SFA.DAS.Events.Domain.Entities;
 
-namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
+namespace SFA.DAS.Events.Application.Validation
 {
-    public class CreateApprenticeshipEventCommandValidator : AbstractValidator<CreateApprenticeshipEventCommand>
+    // TODO: Should this validator sit in Domain??
+    public sealed class ApprenticeshipEventValidator : AbstractValidator<ApprenticeshipEvent>
     {
-        public CreateApprenticeshipEventCommandValidator()
+        public ApprenticeshipEventValidator()
         {
-            // TODO: Should we be creating and validating a domian entity?
             RuleFor(model => model.Event).NotEmpty();
             RuleFor(model => model.ApprenticeshipId).GreaterThan(0);
             RuleFor(model => model.ProviderId).NotEmpty();

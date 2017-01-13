@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using SFA.DAS.Events.Api.Types;
+using SFA.DAS.Events.Application.Commands.BulkUploadCreateApprenticeshipEvents;
 using SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent;
 using SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents;
 using SFA.DAS.Events.Domain.Logging;
@@ -60,6 +61,49 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 _logger.Error(ex, ex.Message);
                 throw;
             }
+        }
+
+        public async Task CreateEvents(IList<ApprenticeshipEvent> events)
+        {
+            try
+            {
+                _logger.Info($"Bulk Uploading {events.Count} Apprenticeship Event");
+
+                await _mediator.SendAsync(new BulkUploadCreateApprenticeshipEventsCommand
+                {
+                    ApprenticeshipEvents = events.Select(x => MapFrom(x)).ToList()
+                });
+            }
+            catch (ValidationException ex)
+            {
+                _logger.Warn(ex, "Invalid apprenticeship event bulk upload request");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, ex.Message);
+                throw;
+            }
+        }
+
+        private static Domain.Entities.ApprenticeshipEvent MapFrom(ApprenticeshipEvent a)
+        {
+            return new Domain.Entities.ApprenticeshipEvent
+            {
+                AgreementStatus = (Domain.Entities.AgreementStatus)a.AgreementStatus,
+                ApprenticeshipId = a.ApprenticeshipId,
+                EmployerAccountId = a.EmployerAccountId,
+                Event = a.Event,
+                LearnerId = a.LearnerId,
+                PaymentOrder = a.PaymentOrder,
+                PaymentStatus = (Domain.Entities.PaymentStatus)a.PaymentStatus,
+                ProviderId = a.ProviderId,
+                TrainingStartDate = a.TrainingStartDate,
+                TrainingEndDate = a.TrainingEndDate,
+                TrainingId = a.TrainingId,
+                TrainingType = (Domain.Entities.TrainingTypes)a.TrainingType,
+                TrainingTotalCost = a.TrainingTotalCost
+            };
         }
 
         public async Task<IEnumerable<ApprenticeshipEventView>> GetEvents(string fromDate, string toDate, int pageSize, int pageNumber, long fromEventId)
