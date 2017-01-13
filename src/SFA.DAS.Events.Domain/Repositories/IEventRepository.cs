@@ -9,6 +9,6 @@ namespace SFA.DAS.Events.Domain.Repositories
     {
         Task Create(T @event);
 
-        Task<IEnumerable<T>> GetByDateRange(DateTime fromDate, DateTime toDate, int pageSize, int pageNumber, long fromEventId);
+        Task<IEnumerable<T>> GetByRange(DateTime fromDate, DateTime toDate, int pageSize, int pageNumber, long fromEventId);
     }
 }
