@@ -6,7 +6,6 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
     {
         public CreateApprenticeshipEventCommandValidator()
         {
-            // TODO: Should we be creating and validating a domian entity?
             RuleFor(model => model.Event).NotEmpty();
             RuleFor(model => model.ApprenticeshipId).GreaterThan(0);
             RuleFor(model => model.ProviderId).NotEmpty();
