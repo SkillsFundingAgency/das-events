@@ -12,7 +12,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetAgreementEventsTests
     public class WhenIGetAgreementEvents : GetAgreementEventsTestBase
     {
         [Test]
-        public async Task ThenAccountsAreReturned()
+        public async Task ThenAgreementsAreReturned()
         {
             var request = new GetAgreementEventsRequestBuilder().Build();
 

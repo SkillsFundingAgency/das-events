@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\CreateApprenticeshipEventCommandBuilder.cs" />
+    <Compile Include="Builders\GetApprenticeshipEventsRequestBuilder.cs" />
     <Compile Include="Builders\GetAgreementEventsRequestBuilder.cs" />
     <Compile Include="Builders\GetAccountEventsRequestBuilder.cs" />
     <Compile Include="Builders\GetEventRequestBuilder.cs" />
@@ -82,6 +83,9 @@
     <Compile Include="Commands\CreateAccountEventTests\WhenICreateAnAccountEvent.cs" />
     <Compile Include="Commands\CreateAccountEventTests\WhenIValidateTheCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\GetApprenticeshipEventsTests\GetApprenticeshipEventsTestBase.cs" />
+    <Compile Include="Queries\GetApprenticeshipEventsTests\WhenIGetApprenticeshipEvents.cs" />
+    <Compile Include="Queries\GetApprenticeshipEventsTests\WhenIValidateTheRequest.cs" />
     <Compile Include="Queries\GetAgreementEventsTests\GetAgreementEventsTestBase.cs" />
     <Compile Include="Queries\GetAgreementEventsTests\WhenIGetAgreementEvents.cs" />
     <Compile Include="Queries\GetAgreementEventsTests\WhenIValidateTheRequest.cs" />
