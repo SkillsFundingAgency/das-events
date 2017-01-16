@@ -4,7 +4,7 @@ using FluentValidation;
 using NUnit.Framework;
 using SFA.DAS.Events.Application.UnitTests.Builders;
 
-namespace SFA.DAS.Events.Application.UnitTests.CreateApprenticeshipEventTests
+namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEventTests
 {
     [TestFixture]
     public class WhenIValidateTheCommand : CreateApprenticeshipEventTestBase

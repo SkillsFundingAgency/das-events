@@ -4,7 +4,7 @@ using SFA.DAS.Events.Application.Commands.CreateAccountEvent;
 using SFA.DAS.Events.Domain.Logging;
 using SFA.DAS.Events.Domain.Repositories;
 
-namespace SFA.DAS.Events.Application.UnitTests.CreateAccountEventTests
+namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAccountEventTests
 {
     public abstract class CreateAccountEventTestBase
     {

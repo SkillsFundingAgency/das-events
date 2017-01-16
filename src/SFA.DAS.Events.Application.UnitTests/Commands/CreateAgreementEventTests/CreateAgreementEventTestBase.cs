@@ -4,7 +4,7 @@ using SFA.DAS.Events.Application.Commands.CreateAgreementEvent;
 using SFA.DAS.Events.Domain.Logging;
 using SFA.DAS.Events.Domain.Repositories;
 
-namespace SFA.DAS.Events.Application.UnitTests.CreateAgreementEventTests
+namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAgreementEventTests
 {
     public abstract class CreateAgreementEventTestBase
     {

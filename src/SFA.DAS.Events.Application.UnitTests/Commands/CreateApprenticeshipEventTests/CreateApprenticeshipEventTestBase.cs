@@ -4,7 +4,7 @@ using SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent;
 using SFA.DAS.Events.Domain.Logging;
 using SFA.DAS.Events.Domain.Repositories;
 
-namespace SFA.DAS.Events.Application.UnitTests.CreateApprenticeshipEventTests
+namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEventTests
 {
     public abstract class CreateApprenticeshipEventTestBase
     {

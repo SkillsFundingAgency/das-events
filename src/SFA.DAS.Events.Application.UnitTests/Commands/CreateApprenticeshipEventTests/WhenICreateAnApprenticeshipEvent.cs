@@ -6,7 +6,7 @@ using SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent;
 using SFA.DAS.Events.Application.UnitTests.Builders;
 using SFA.DAS.Events.Domain.Entities;
 
-namespace SFA.DAS.Events.Application.UnitTests.CreateApprenticeshipEventTests
+namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEventTests
 {
     [TestFixture]
     public class WhenICreateAnApprenticeshipEvent : CreateApprenticeshipEventTestBase

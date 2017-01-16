@@ -3,7 +3,7 @@ using FluentValidation;
 using NUnit.Framework;
 using SFA.DAS.Events.Application.Commands.CreateAccountEvent;
 
-namespace SFA.DAS.Events.Application.UnitTests.CreateAccountEventTests
+namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAccountEventTests
 {
     [TestFixture]
     public class WhenIValidateTheCommand : CreateAccountEventTestBase

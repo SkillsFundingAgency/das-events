@@ -5,7 +5,7 @@ using NUnit.Framework;
 using SFA.DAS.Events.Application.Commands.CreateAccountEvent;
 using SFA.DAS.Events.Domain.Entities;
 
-namespace SFA.DAS.Events.Application.UnitTests.CreateAccountEventTests
+namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAccountEventTests
 {
     [TestFixture]
     public class WhenICreateAnAccountEvent : CreateAccountEventTestBase

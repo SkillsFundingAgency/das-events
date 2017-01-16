@@ -5,7 +5,7 @@ using NUnit.Framework;
 using SFA.DAS.Events.Application.Commands.CreateAgreementEvent;
 using SFA.DAS.Events.Domain.Entities;
 
-namespace SFA.DAS.Events.Application.UnitTests.CreateAgreementEventTests
+namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAgreementEventTests
 {
     [TestFixture]
     public class WhenICreateAnAgreementEvent : CreateAgreementEventTestBase
