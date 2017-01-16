@@ -71,7 +71,7 @@ namespace SFA.DAS.Events.Api.Orchestrators
 
                 await _mediator.SendAsync(new BulkUploadCreateApprenticeshipEventsCommand
                 {
-                    ApprenticeshipEvents = events.Select(x => MapFrom(x)).ToList()
+                    ApprenticeshipEvents = events.Select(MapFrom).ToList()
                 });
             }
             catch (ValidationException ex)
@@ -84,26 +84,6 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 _logger.Error(ex, ex.Message);
                 throw;
             }
-        }
-
-        private static Domain.Entities.ApprenticeshipEvent MapFrom(ApprenticeshipEvent a)
-        {
-            return new Domain.Entities.ApprenticeshipEvent
-            {
-                AgreementStatus = (Domain.Entities.AgreementStatus)a.AgreementStatus,
-                ApprenticeshipId = a.ApprenticeshipId,
-                EmployerAccountId = a.EmployerAccountId,
-                Event = a.Event,
-                LearnerId = a.LearnerId,
-                PaymentOrder = a.PaymentOrder,
-                PaymentStatus = (Domain.Entities.PaymentStatus)a.PaymentStatus,
-                ProviderId = a.ProviderId,
-                TrainingStartDate = a.TrainingStartDate,
-                TrainingEndDate = a.TrainingEndDate,
-                TrainingId = a.TrainingId,
-                TrainingType = (Domain.Entities.TrainingTypes)a.TrainingType,
-                TrainingTotalCost = a.TrainingTotalCost
-            };
         }
 
         public async Task<IEnumerable<ApprenticeshipEventView>> GetEvents(string fromDate, string toDate, int pageSize, int pageNumber, long fromEventId)
@@ -155,6 +135,26 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 _logger.Error(ex, ex.Message);
                 throw;
             }
+        }
+
+        private static Domain.Entities.ApprenticeshipEvent MapFrom(ApprenticeshipEvent a)
+        {
+            return new Domain.Entities.ApprenticeshipEvent
+            {
+                AgreementStatus = (Domain.Entities.AgreementStatus)a.AgreementStatus,
+                ApprenticeshipId = a.ApprenticeshipId,
+                EmployerAccountId = a.EmployerAccountId,
+                Event = a.Event,
+                LearnerId = a.LearnerId,
+                PaymentOrder = a.PaymentOrder,
+                PaymentStatus = (Domain.Entities.PaymentStatus)a.PaymentStatus,
+                ProviderId = a.ProviderId,
+                TrainingStartDate = a.TrainingStartDate,
+                TrainingEndDate = a.TrainingEndDate,
+                TrainingId = a.TrainingId,
+                TrainingType = (Domain.Entities.TrainingTypes)a.TrainingType,
+                TrainingTotalCost = a.TrainingTotalCost
+            };
         }
     }
 }

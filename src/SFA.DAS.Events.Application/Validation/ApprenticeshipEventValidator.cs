@@ -3,7 +3,6 @@ using SFA.DAS.Events.Domain.Entities;
 
 namespace SFA.DAS.Events.Application.Validation
 {
-    // TODO: Should this validator sit in Domain??
     public sealed class ApprenticeshipEventValidator : AbstractValidator<ApprenticeshipEvent>
     {
         public ApprenticeshipEventValidator()

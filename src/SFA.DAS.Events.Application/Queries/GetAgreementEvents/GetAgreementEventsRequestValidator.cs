@@ -1,4 +1,3 @@
-using System;
 using FluentValidation;
 
 namespace SFA.DAS.Events.Application.Queries.GetAgreementEvents

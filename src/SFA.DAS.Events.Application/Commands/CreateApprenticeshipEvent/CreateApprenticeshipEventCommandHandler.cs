@@ -8,19 +8,23 @@ using SFA.DAS.Events.Domain.Repositories;
 
 namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
 {
-    public class CreateApprenticeshipEventCommandHandler : AsyncRequestHandler<CreateApprenticeshipEventCommand>
+    public sealed class CreateApprenticeshipEventCommandHandler : AsyncRequestHandler<CreateApprenticeshipEventCommand>
     {
         private readonly IEventsLogger _logger;
         private readonly IApprenticeshipEventRepository _apprenticeshipEventRepository;
+        private readonly AbstractValidator<CreateApprenticeshipEventCommand> _validator;
 
-        public CreateApprenticeshipEventCommandHandler(IApprenticeshipEventRepository apprenticeshipEventRepository, IEventsLogger logger)
+        public CreateApprenticeshipEventCommandHandler(IApprenticeshipEventRepository apprenticeshipEventRepository, AbstractValidator<CreateApprenticeshipEventCommand> validator, IEventsLogger logger)
         {
             if (apprenticeshipEventRepository == null)
                 throw new ArgumentNullException(nameof(apprenticeshipEventRepository));
+            if (validator == null)
+                throw new ArgumentNullException(nameof(validator));
             if (logger == null)
                 throw new ArgumentNullException(nameof(logger));
 
             _apprenticeshipEventRepository = apprenticeshipEventRepository;
+            _validator = validator;
             _logger = logger;
         }
 
@@ -61,14 +65,9 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
             }
         }
 
-        private static void Validate(CreateApprenticeshipEventCommand command)
+        private void Validate(CreateApprenticeshipEventCommand command)
         {
-            var validator = new CreateApprenticeshipEventCommandValidator();
-
-            var validationResult = validator.Validate(command);
-
-            if (!validationResult.IsValid)
-                throw new ValidationException(validationResult.Errors);
+            _validator.ValidateAndThrow(command);
         }
     }
 }
