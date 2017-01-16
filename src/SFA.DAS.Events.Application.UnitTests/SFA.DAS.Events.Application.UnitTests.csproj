@@ -68,6 +68,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateAgreementEventTests\CreateAgreementEventTestBase.cs" />
+    <Compile Include="CreateAgreementEventTests\WhenICreateAnAgreementEvent.cs" />
+    <Compile Include="CreateAgreementEventTests\WhenIValidateTheCommand.cs" />
     <Compile Include="CreateAccountEventTests\CreateAccountEventTestBase.cs" />
     <Compile Include="CreateAccountEventTests\WhenICreateAnAccountEvent.cs" />
     <Compile Include="CreateAccountEventTests\WhenIValidateTheCommand.cs" />
@@ -85,6 +88,9 @@
       <Project>{B52B57EA-A3B8-4F62-89DE-5293B5C7E19D}</Project>
       <Name>SFA.DAS.Events.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
