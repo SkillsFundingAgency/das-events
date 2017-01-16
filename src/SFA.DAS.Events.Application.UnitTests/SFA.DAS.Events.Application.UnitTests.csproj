@@ -68,6 +68,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\CreateApprenticeshipEventCommandBuilder.cs" />
+    <Compile Include="CreateApprenticeshipEventTests\CreateApprenticeshipEventTestBase.cs" />
+    <Compile Include="CreateApprenticeshipEventTests\WhenICreateAnApprenticeshipEvent.cs" />
+    <Compile Include="CreateApprenticeshipEventTests\WhenIValidateTheCommand.cs" />
     <Compile Include="CreateAgreementEventTests\CreateAgreementEventTestBase.cs" />
     <Compile Include="CreateAgreementEventTests\WhenICreateAnAgreementEvent.cs" />
     <Compile Include="CreateAgreementEventTests\WhenIValidateTheCommand.cs" />
