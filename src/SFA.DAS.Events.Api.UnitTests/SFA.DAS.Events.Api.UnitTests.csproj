@@ -72,6 +72,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Orchestrators\AgreementEventsOrchestratorTests\AgreementEventsOrchestratorTestBase.cs" />
+    <Compile Include="Orchestrators\AgreementEventsOrchestratorTests\WhenICreateAnEvent.cs" />
+    <Compile Include="Orchestrators\AgreementEventsOrchestratorTests\WhenIGetEvents.cs" />
     <Compile Include="Orchestrators\AccountEventsOrchestratorTests\AccountEventsOrchestratorTestBase.cs" />
     <Compile Include="Orchestrators\AccountEventsOrchestratorTests\WhenIGetEvents.cs" />
     <Compile Include="Orchestrators\AccountEventsOrchestratorTests\WhenICreateAnEvent.cs" />

@@ -14,7 +14,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AccountEventsOrchestratorTe
         [Test]
         public async Task ThenTheEventIsCreated()
         {
-            var request = new AccountEvent();
+            var request = new AccountEvent { EmployerAccountId = "ABC123", Event = "Test" };
             await Orchestrator.CreateEvent(request);
 
             EventsLogger.Verify(x => x.Info($"Creating Account Event ({request.Event})", request.EmployerAccountId, null, request.Event));
