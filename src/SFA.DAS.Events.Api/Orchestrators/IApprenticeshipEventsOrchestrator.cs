@@ -9,5 +9,6 @@ namespace SFA.DAS.Events.Api.Orchestrators
     {
         Task CreateEvent(ApprenticeshipEvent request);
         Task<IEnumerable<ApprenticeshipEventView>> GetEvents(string fromDate, string toDate, int pageSize, int pageNumber, long fromEventId);
+        Task CreateEvents(IList<ApprenticeshipEvent> events);
     }
 }

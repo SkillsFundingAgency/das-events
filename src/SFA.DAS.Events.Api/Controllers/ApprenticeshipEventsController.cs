@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using SFA.DAS.Events.Api.Orchestrators;
@@ -31,6 +32,16 @@ namespace SFA.DAS.Events.Api.Controllers
 
             // 201 for list of all events
             return CreatedAtRoute("GetAllEvents", new {}, default(ApprenticeshipEvent));
+        }
+
+        [Route("bulk")]
+        [Authorize(Roles = "StoreApprenticeshipEvent")]
+        public async Task<IHttpActionResult> PostBulkUpload(IList<ApprenticeshipEvent> events)
+        {
+            await _orchestrator.CreateEvents(events);
+
+            // 201 for list of all events
+            return CreatedAtRoute("GetAllEvents", new { }, default(ApprenticeshipEvent));
         }
     }
 }

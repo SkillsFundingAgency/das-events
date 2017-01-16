@@ -18,6 +18,7 @@
 using System;
 using System.ServiceModel.Channels;
 using System.Web;
+using FluentValidation;
 using MediatR;
 using Microsoft.Azure;
 using SFA.DAS.Configuration;
@@ -46,6 +47,7 @@ namespace SFA.DAS.Events.Api.DependencyResolution
                 {
                     scan.AssembliesFromApplicationBaseDirectory(a => a.GetName().Name.StartsWith(ServiceName));
                     scan.RegisterConcreteTypesAgainstTheFirstInterface();
+                    scan.ConnectImplementationsToTypesClosing(typeof(AbstractValidator<>));
                 });
 
             var config = GetConfiguration();

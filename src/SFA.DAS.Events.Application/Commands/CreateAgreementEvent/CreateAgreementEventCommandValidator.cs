@@ -1,6 +1,4 @@
-﻿using System;
-using FluentValidation;
-using SFA.DAS.Events.Domain.Entities;
+﻿using FluentValidation;
 
 namespace SFA.DAS.Events.Application.Commands.CreateAgreementEvent
 {
