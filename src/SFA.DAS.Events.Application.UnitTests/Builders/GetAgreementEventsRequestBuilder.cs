@@ -1,12 +1,12 @@
-﻿using SFA.DAS.Events.Application.Queries.GetAccountEvents;
+using SFA.DAS.Events.Application.Queries.GetAgreementEvents;
 
 namespace SFA.DAS.Events.Application.UnitTests.Builders
 {
-    public class GetAccountEventsRequestBuilder : GetEventRequestBuilder<GetAccountEventsRequest>
+    public class GetAgreementEventsRequestBuilder : GetEventRequestBuilder<GetAgreementEventsRequest>
     {
-       public override GetAccountEventsRequest Build()
+        public override GetAgreementEventsRequest Build()
         {
-            return new GetAccountEventsRequest
+            return new GetAgreementEventsRequest
             {
                 FromDateTime = FromDateTime,
                 FromEventId = FromEventId,
