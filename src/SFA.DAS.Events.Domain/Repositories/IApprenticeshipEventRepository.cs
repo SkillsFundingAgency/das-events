@@ -6,6 +6,6 @@ namespace SFA.DAS.Events.Domain.Repositories
 {
     public interface IApprenticeshipEventRepository : IEventRepository<ApprenticeshipEvent>
     {
-        Task BulkUploadApprenticeshipEvents(IEnumerable<ApprenticeshipEvent> apprenticeshipEvents);
+        Task BulkUploadApprenticeshipEvents(IList<ApprenticeshipEvent> apprenticeshipEvents);
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using SFA.DAS.Events.Domain.Entities;
@@ -10,7 +9,7 @@ using SFA.DAS.Events.Domain.Repositories;
 
 namespace SFA.DAS.Events.Infrastructure.Data
 {
-    public class ApprenticeshipEventRepository : BaseRepository, IApprenticeshipEventRepository
+    public sealed class ApprenticeshipEventRepository : BaseRepository, IApprenticeshipEventRepository
     {
         protected override string TableName => "ApprenticeshipEvents";
         private readonly IEventsLogger _logger;
@@ -30,9 +29,9 @@ namespace SFA.DAS.Events.Infrastructure.Data
                                      $"VALUES (@event, @createdOn, @apprenticeshipId, @paymentStatus, @agreementStatus, @providerId, @learnerId, @employerAccountId, @trainingType, @trainingId, @trainingStartDate, @trainingEndDate, @trainingTotalCost, @paymentOrder);", @event));
         }
 
-        public async Task BulkUploadApprenticeshipEvents(IEnumerable<ApprenticeshipEvent> apprenticeshipEvents)
+        public async Task BulkUploadApprenticeshipEvents(IList<ApprenticeshipEvent> apprenticeshipEvents)
         {
-            _logger.Debug($"Bulk uploading {apprenticeshipEvents.Count()} apprenticeship events");
+            _logger.Debug($"Bulk uploading {apprenticeshipEvents.Count} apprenticeship events");
 
             var table = BuildApprenticeshipEventsDataTable(apprenticeshipEvents);
 

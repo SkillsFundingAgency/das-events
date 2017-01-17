@@ -8,20 +8,24 @@ using SFA.DAS.Events.Domain.Repositories;
 
 namespace SFA.DAS.Events.Application.Commands.CreateAgreementEvent
 {
-    public class CreateAgreementEventCommandHandler : AsyncRequestHandler<CreateAgreementEventCommand>
+    public sealed class CreateAgreementEventCommandHandler : AsyncRequestHandler<CreateAgreementEventCommand>
     {
         private readonly IEventsLogger _logger;
 
         private readonly IAgreementEventRepository _agreementEventRepository;
+        private readonly AbstractValidator<CreateAgreementEventCommand> _validator;
 
-        public CreateAgreementEventCommandHandler(IAgreementEventRepository agreementEventRepository, IEventsLogger logger)
+        public CreateAgreementEventCommandHandler(IAgreementEventRepository agreementEventRepository, AbstractValidator<CreateAgreementEventCommand> validator, IEventsLogger logger)
         {
             if (agreementEventRepository == null)
                 throw new ArgumentNullException(nameof(agreementEventRepository));
+            if (validator == null)
+                throw new ArgumentNullException(nameof(validator));
             if (logger == null)
                 throw new ArgumentNullException(nameof(logger));
 
             _agreementEventRepository = agreementEventRepository;
+            _validator = validator;
             _logger = logger;
         }
 
@@ -52,14 +56,9 @@ namespace SFA.DAS.Events.Application.Commands.CreateAgreementEvent
             }
         }
 
-        private static void Validate(CreateAgreementEventCommand command)
+        private void Validate(CreateAgreementEventCommand command)
         {
-            var validator = new CreateAgreementEventCommandValidator();
-
-            var validationResult = validator.Validate(command);
-
-            if (!validationResult.IsValid)
-                throw new ValidationException(validationResult.Errors);
+            _validator.ValidateAndThrow(command);
         }
     }
 }

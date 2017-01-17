@@ -9,10 +9,17 @@ namespace SFA.DAS.Events.Application.Queries.GetAgreementEvents
     public sealed class GetAgreementEventsQueryHandler : IAsyncRequestHandler<GetAgreementEventsRequest, GetAgreementEventsResponse>
     {
         private readonly IAgreementEventRepository _agreementEventRepository;
+        private readonly AbstractValidator<GetAgreementEventsRequest> _validator;
 
-        public GetAgreementEventsQueryHandler(IAgreementEventRepository agreementEventRepository)
+        public GetAgreementEventsQueryHandler(IAgreementEventRepository agreementEventRepository, AbstractValidator<GetAgreementEventsRequest> validator)
         {
+            if (agreementEventRepository == null)
+                throw new ArgumentNullException(nameof(agreementEventRepository));
+            if (validator == null)
+                throw new ArgumentNullException(nameof(validator));
+
             _agreementEventRepository = agreementEventRepository;
+            _validator = validator;
         }
 
         public async Task<GetAgreementEventsResponse> Handle(GetAgreementEventsRequest request)
@@ -24,14 +31,9 @@ namespace SFA.DAS.Events.Application.Queries.GetAgreementEvents
             return new GetAgreementEventsResponse {Data = events};
         }
 
-        private static void Validate(GetAgreementEventsRequest request)
+        private void Validate(GetAgreementEventsRequest request)
         {
-            var validator = new GetAgreementEventsRequestValidator();
-
-            var validationResult = validator.Validate(request);
-
-            if (!validationResult.IsValid)
-                throw new ValidationException(validationResult.Errors);
+            _validator.ValidateAndThrow(request);
         }
     }
 }
