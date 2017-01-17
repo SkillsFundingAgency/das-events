@@ -1,11 +1,10 @@
-using SFA.DAS.Events.Application.Queries.GetAgreementEvents;
 using SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents;
 
 namespace SFA.DAS.Events.Application.UnitTests.Builders
 {
-    public class GetApprenticeshipEventsRequestBuilder : GetEventRequestBuilder<GetApprenticeshipEventsRequest>
+    internal class GetApprenticeshipEventsRequestBuilder : GetEventRequestBuilder<GetApprenticeshipEventsRequest>
     {
-        public override GetApprenticeshipEventsRequest Build()
+        internal override GetApprenticeshipEventsRequest Build()
         {
             return new GetApprenticeshipEventsRequest
             {

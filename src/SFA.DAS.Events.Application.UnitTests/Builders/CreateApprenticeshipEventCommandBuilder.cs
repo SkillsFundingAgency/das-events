@@ -4,7 +4,7 @@ using SFA.DAS.Events.Domain.Entities;
 
 namespace SFA.DAS.Events.Application.UnitTests.Builders
 {
-    public class CreateApprenticeshipEventCommandBuilder
+    internal class CreateApprenticeshipEventCommandBuilder
     {
         private AgreementStatus _agreementStatus = AgreementStatus.BothAgreed;
         private int _apprenticeshipId = 32489;
@@ -20,7 +20,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
         private decimal _trainingTotalCost = 12345.67m;
         private TrainingTypes _trainingTypes = TrainingTypes.Framework;
 
-        public CreateApprenticeshipEventCommand Build()
+        internal CreateApprenticeshipEventCommand Build()
         {
             return new CreateApprenticeshipEventCommand
             {
@@ -40,55 +40,55 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
             };
         }
 
-        public CreateApprenticeshipEventCommandBuilder WithEvent(string @event)
+        internal CreateApprenticeshipEventCommandBuilder WithEvent(string @event)
         {
             _event = @event;
             return this;
         }
 
-        public CreateApprenticeshipEventCommandBuilder WithApprenticeshipId(int apprenticeshipId)
+        internal CreateApprenticeshipEventCommandBuilder WithApprenticeshipId(int apprenticeshipId)
         {
             _apprenticeshipId = apprenticeshipId;
             return this;
         }
 
-        public CreateApprenticeshipEventCommandBuilder WithProviderId(string providerId)
+        internal CreateApprenticeshipEventCommandBuilder WithProviderId(string providerId)
         {
             _providerId = providerId;
             return this;
         }
 
-        public CreateApprenticeshipEventCommandBuilder WithLearnerId(string learnerId)
+        internal CreateApprenticeshipEventCommandBuilder WithLearnerId(string learnerId)
         {
             _learnerId = learnerId;
             return this;
         }
 
-        public CreateApprenticeshipEventCommandBuilder WithEmployerAccountId(string employerAccountId)
+        internal CreateApprenticeshipEventCommandBuilder WithEmployerAccountId(string employerAccountId)
         {
             _employerAccountId = employerAccountId;
             return this;
         }
 
-        public CreateApprenticeshipEventCommandBuilder WithTrainingId(string trainingId)
+        internal CreateApprenticeshipEventCommandBuilder WithTrainingId(string trainingId)
         {
             _trainingId = trainingId;
             return this;
         }
 
-        public CreateApprenticeshipEventCommandBuilder WithTrainingStartDate(DateTime trainingStartDate)
+        internal CreateApprenticeshipEventCommandBuilder WithTrainingStartDate(DateTime trainingStartDate)
         {
             _trainingStartDate = trainingStartDate;
             return this;
         }
 
-        public CreateApprenticeshipEventCommandBuilder WithTrainingEndDate(DateTime trainingEndDate)
+        internal CreateApprenticeshipEventCommandBuilder WithTrainingEndDate(DateTime trainingEndDate)
         {
             _trainingEndDate = trainingEndDate;
             return this;
         }
 
-        public CreateApprenticeshipEventCommandBuilder WithTrainingTotalCost(decimal trainingTotalCost)
+        internal CreateApprenticeshipEventCommandBuilder WithTrainingTotalCost(decimal trainingTotalCost)
         {
             _trainingTotalCost = trainingTotalCost;
             return this;

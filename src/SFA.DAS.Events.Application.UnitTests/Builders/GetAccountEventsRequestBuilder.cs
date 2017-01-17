@@ -2,9 +2,9 @@
 
 namespace SFA.DAS.Events.Application.UnitTests.Builders
 {
-    public class GetAccountEventsRequestBuilder : GetEventRequestBuilder<GetAccountEventsRequest>
+    internal class GetAccountEventsRequestBuilder : GetEventRequestBuilder<GetAccountEventsRequest>
     {
-       public override GetAccountEventsRequest Build()
+        internal override GetAccountEventsRequest Build()
         {
             return new GetAccountEventsRequest
             {

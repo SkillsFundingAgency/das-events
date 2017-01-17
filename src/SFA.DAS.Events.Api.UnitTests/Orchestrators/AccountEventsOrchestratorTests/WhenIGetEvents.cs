@@ -14,7 +14,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AccountEventsOrchestratorTe
     public class WhenIGetEvents : AccountEventsOrchestratorTestBase
     {
         [Test]
-        public async Task ThenTheEventIsCreated()
+        public async Task ThenTheEventsAreReturned()
         {
             var expectedEvents = new List<AccountEvent>
             {
