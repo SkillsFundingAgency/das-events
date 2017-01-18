@@ -20,6 +20,12 @@ Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "SFA.DAS.Events.CloudService
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Events.Infrastructure", "SFA.DAS.Events.Infrastructure\SFA.DAS.Events.Infrastructure.csproj", "{383F9BC2-B631-4BE8-97E0-56362FC24D67}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B7696D0E-4CA4-4F6C-9F8E-831B00AB9A8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Events.Application.UnitTests", "SFA.DAS.Events.Application.UnitTests\SFA.DAS.Events.Application.UnitTests.csproj", "{A50C6A06-FD5F-49C6-9712-77FCB4BCB3B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Events.Api.UnitTests", "SFA.DAS.Events.Api.UnitTests\SFA.DAS.Events.Api.UnitTests.csproj", "{836D7A40-246D-4C14-952B-F82BF30AF510}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,8 +56,20 @@ Global
 		{383F9BC2-B631-4BE8-97E0-56362FC24D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{383F9BC2-B631-4BE8-97E0-56362FC24D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{383F9BC2-B631-4BE8-97E0-56362FC24D67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A50C6A06-FD5F-49C6-9712-77FCB4BCB3B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A50C6A06-FD5F-49C6-9712-77FCB4BCB3B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A50C6A06-FD5F-49C6-9712-77FCB4BCB3B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A50C6A06-FD5F-49C6-9712-77FCB4BCB3B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{836D7A40-246D-4C14-952B-F82BF30AF510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{836D7A40-246D-4C14-952B-F82BF30AF510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{836D7A40-246D-4C14-952B-F82BF30AF510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{836D7A40-246D-4C14-952B-F82BF30AF510}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A50C6A06-FD5F-49C6-9712-77FCB4BCB3B4} = {B7696D0E-4CA4-4F6C-9F8E-831B00AB9A8F}
+		{836D7A40-246D-4C14-952B-F82BF30AF510} = {B7696D0E-4CA4-4F6C-9F8E-831B00AB9A8F}
 	EndGlobalSection
 EndGlobal
