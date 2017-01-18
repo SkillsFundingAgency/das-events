@@ -9,7 +9,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAccountEventTests
     public class WhenIValidateTheCommand : CreateAccountEventTestBase
     {
         [Test]
-        public async Task AndEventIsNotProvided()
+        public async Task AndEventIsNotProvidedThenValidationFails()
         {
             var command = new CreateAccountEventCommand { EmployerAccountId = "ABC" };
 
@@ -17,7 +17,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAccountEventTests
         }
 
         [Test]
-        public async Task AndEmployerAccountIdIsNotProvided()
+        public async Task AndEmployerAccountIdIsNotProvidedThenValidationFails()
         {
 
             var command = new CreateAccountEventCommand { Event = "ABC" };

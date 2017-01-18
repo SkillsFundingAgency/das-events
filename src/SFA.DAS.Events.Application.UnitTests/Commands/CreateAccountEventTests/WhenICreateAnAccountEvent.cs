@@ -23,7 +23,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAccountEventTests
         }
 
         [Test]
-        public async Task AndTheEventCreationFails()
+        public async Task AndTheEventCreationFailsThenTheExceptionIsLogged()
         {
             var command = new CreateAccountEventCommand { EmployerAccountId = "ABC123", Event = "Some Event" };
             var expectedException = new Exception("Test");

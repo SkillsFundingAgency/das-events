@@ -36,15 +36,6 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AccountEventsOrchestratorTe
             response.ShouldAllBeEquivalentTo(expectedEvents);
         }
 
-        private static bool RequestMatchesParameters(GetAccountEventsRequest x, DateTime toDateTime, DateTime fromDateTime, int fromEventId, int pageNumber, int pageSize)
-        {
-            return x.ToDateTime.ToString("yyyyMMddHHmmss") == toDateTime.ToString("yyyyMMddHHmmss") &&
-                x.FromDateTime.ToString("yyyyMMddHHmmss") == fromDateTime.ToString("yyyyMMddHHmmss") &&
-                x.FromEventId == fromEventId &&
-                x.PageNumber == pageNumber && 
-                x.PageSize == pageSize;
-        }
-
         [Test]
         public async Task AndValidationFails()
         {
@@ -57,7 +48,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AccountEventsOrchestratorTe
         }
 
         [Test]
-        public async Task AndAnExceptionOccurs()
+        public async Task AndAnExceptionOccursThenTheErrorIsLogged()
         {
             var exception = new Exception("Exception");
             Mediator.Setup(m => m.SendAsync(It.IsAny<GetAccountEventsRequest>())).ThrowsAsync(exception);
@@ -65,6 +56,15 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AccountEventsOrchestratorTe
             Assert.ThrowsAsync<Exception>(() => Orchestrator.GetEvents(DateTime.Now.AddDays(-30).ToString("yyyyMMddHHmmss"), DateTime.Now.ToString("yyyyMMddHHmmss"), 100, 1, 123));
 
             EventsLogger.Verify(x => x.Error(exception, exception.Message, null, null, null));
+        }
+
+        private static bool RequestMatchesParameters(GetAccountEventsRequest x, DateTime toDateTime, DateTime fromDateTime, int fromEventId, int pageNumber, int pageSize)
+        {
+            return x.ToDateTime.ToString("yyyyMMddHHmmss") == toDateTime.ToString("yyyyMMddHHmmss") &&
+                   x.FromDateTime.ToString("yyyyMMddHHmmss") == fromDateTime.ToString("yyyyMMddHHmmss") &&
+                   x.FromEventId == fromEventId &&
+                   x.PageNumber == pageNumber && 
+                   x.PageSize == pageSize;
         }
     }
 }

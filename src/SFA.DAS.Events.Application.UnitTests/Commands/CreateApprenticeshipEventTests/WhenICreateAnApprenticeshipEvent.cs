@@ -24,7 +24,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         }
 
         [Test]
-        public async Task AndTheEventCreationFails()
+        public async Task AndTheEventCreationFailsThenTheExceptionIsLogged()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().Build();
             var expectedException = new Exception("Test");

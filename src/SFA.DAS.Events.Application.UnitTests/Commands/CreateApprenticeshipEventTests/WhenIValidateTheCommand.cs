@@ -10,7 +10,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
     public class WhenIValidateTheCommand : CreateApprenticeshipEventTestBase
     {
         [Test]
-        public async Task AndEventIsNotProvided()
+        public async Task AndEventIsNotProvidedThenValidationFails()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().WithEvent(null).Build();
 
@@ -18,7 +18,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         }
 
         [Test]
-        public async Task AndApprenticeshipIdIsNotProvided()
+        public async Task AndApprenticeshipIdIsNotProvidedThenValidationFails()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().WithApprenticeshipId(0).Build();
 
@@ -26,7 +26,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         }
 
         [Test]
-        public async Task AndProviderIdIsNotProvided()
+        public async Task AndProviderIdIsNotProvidedThenValidationFails()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().WithProviderId(null).Build();
 
@@ -34,7 +34,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         }
 
         [Test]
-        public async Task AndLearnerIdIsNotProvided()
+        public async Task AndLearnerIdIsNotProvidedThenValidationFails()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().WithLearnerId(null).Build();
 
@@ -42,7 +42,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         }
 
         [Test]
-        public async Task AndEmployerAccountIdIsNotProvided()
+        public async Task AndEmployerAccountIdIsNotProvidedThenValidationFails()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().WithEmployerAccountId(null).Build();
 
@@ -50,7 +50,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         }
 
         [Test]
-        public async Task AndTrainingIdIsNotProvided()
+        public async Task AndTrainingIdIsNotProvidedThenValidationFails()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().WithTrainingId(null).Build();
 
@@ -58,7 +58,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         }
 
         [Test]
-        public async Task AndTrainingStartDateIsAfterTheEndDate()
+        public async Task AndTrainingStartDateIsAfterTheEndDateThenValidationFails()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().WithTrainingStartDate(DateTime.Now.AddDays(-1)).WithTrainingEndDate(DateTime.Now.AddDays(-2)).Build();
 
@@ -66,7 +66,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         }
 
         [Test]
-        public async Task AndTrainingTotalCostIsNotProvided()
+        public async Task AndTrainingTotalCostIsNotProvidedThenValidationFails()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().WithTrainingTotalCost(-1).Build();
 

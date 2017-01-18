@@ -48,7 +48,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AgreementEventsOrchestrator
         }
 
         [Test]
-        public async Task AndAnExceptionOccurs()
+        public async Task AndAnExceptionOccursThenTheErrorIsLogged()
         {
             var exception = new Exception("Exception");
             Mediator.Setup(m => m.SendAsync(It.IsAny<GetAgreementEventsRequest>())).ThrowsAsync(exception);

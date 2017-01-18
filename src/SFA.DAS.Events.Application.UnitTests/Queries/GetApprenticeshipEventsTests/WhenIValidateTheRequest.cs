@@ -10,7 +10,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetApprenticeshipEventsTe
     public class WhenIValidateTheRequest : GetApprenticeshipEventsTestBase
     {
         [Test]
-        public async Task AndTheFromDateIsAfterTheToDate()
+        public async Task AndTheFromDateIsAfterTheToDateThenValidationFails()
         {
             var request = new GetApprenticeshipEventsRequestBuilder().WithFromDate(DateTime.Now.AddDays(-1)).WithToDate(DateTime.Now.AddDays(-2)).Build();
 
@@ -18,7 +18,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetApprenticeshipEventsTe
         }
 
         [Test]
-        public async Task AndThePageNumberIsLessThanOne()
+        public async Task AndThePageNumberIsLessThanOneThenValidationFails()
         {
             var request = new GetApprenticeshipEventsRequestBuilder().WithPageNumber(0).Build();
 
@@ -26,7 +26,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetApprenticeshipEventsTe
         }
 
         [Test]
-        public async Task AndThePageSizeIsLessThanOne()
+        public async Task AndThePageSizeIsLessThanOneThenValidationFails()
         {
             var request = new GetApprenticeshipEventsRequestBuilder().WithPageSize(0).Build();
 
@@ -34,7 +34,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetApprenticeshipEventsTe
         }
 
         [Test]
-        public async Task AndThePageNumberIsGreaterThanTenThousand()
+        public async Task AndThePageNumberIsGreaterThanTenThousandThenValidationFails()
         {
             var request = new GetApprenticeshipEventsRequestBuilder().WithPageSize(10001).Build();
 
@@ -42,7 +42,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetApprenticeshipEventsTe
         }
 
         [Test]
-        public async Task AndTheEventIdIsLessThanZero()
+        public async Task AndTheEventIdIsLessThanZeroThenValidationFails()
         {
             var request = new GetApprenticeshipEventsRequestBuilder().WithEventId(-1).Build();
 

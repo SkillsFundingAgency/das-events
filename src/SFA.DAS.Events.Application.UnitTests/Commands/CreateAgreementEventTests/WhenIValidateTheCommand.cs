@@ -9,7 +9,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAgreementEventTest
     public class WhenIValidateTheCommand : CreateAgreementEventTestBase
     {
         [Test]
-        public async Task AndEventIsNotProvided()
+        public async Task AndEventIsNotProvidedThenValidationFails()
         {
             var command = new CreateAgreementEventCommand { EmployerAccountId = "ABC", ProviderId = "ZZZ999" };
 
@@ -17,7 +17,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAgreementEventTest
         }
 
         [Test]
-        public async Task AndProviderIdIsNotProvided()
+        public async Task AndProviderIdIsNotProvidedThenValidationFails()
         {
 
             var command = new CreateAgreementEventCommand { EmployerAccountId = "ABC", Event = "ABC" };
