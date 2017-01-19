@@ -9,10 +9,17 @@ namespace SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents
     public sealed class GetApprenticeshipEventsQueryHandler : IAsyncRequestHandler<GetApprenticeshipEventsRequest, GetApprenticeshipEventsResponse>
     {
         private readonly IApprenticeshipEventRepository _apprenticeshipEventRepository;
+        private readonly AbstractValidator<GetApprenticeshipEventsRequest> _validator;
 
-        public GetApprenticeshipEventsQueryHandler(IApprenticeshipEventRepository apprenticeshipEventRepository)
+        public GetApprenticeshipEventsQueryHandler(IApprenticeshipEventRepository apprenticeshipEventRepository, AbstractValidator<GetApprenticeshipEventsRequest> validator)
         {
+            if (apprenticeshipEventRepository == null)
+                throw new ArgumentNullException(nameof(apprenticeshipEventRepository));
+            if (validator == null)
+                throw new ArgumentNullException(nameof(validator));
+
             _apprenticeshipEventRepository = apprenticeshipEventRepository;
+            _validator = validator;
         }
 
         public async Task<GetApprenticeshipEventsResponse> Handle(GetApprenticeshipEventsRequest request)
@@ -24,14 +31,9 @@ namespace SFA.DAS.Events.Application.Queries.GetApprenticeshipEvents
             return new GetApprenticeshipEventsResponse {Data = events};
         }
 
-        private static void Validate(GetApprenticeshipEventsRequest request)
+        private void Validate(GetApprenticeshipEventsRequest request)
         {
-            var validator = new GetApprenticeshipEventsRequestValidator();
-
-            var validationResult = validator.Validate(request);
-
-            if (!validationResult.IsValid)
-                throw new ValidationException(validationResult.Errors);
+            _validator.ValidateAndThrow(request);
         }
     }
 }

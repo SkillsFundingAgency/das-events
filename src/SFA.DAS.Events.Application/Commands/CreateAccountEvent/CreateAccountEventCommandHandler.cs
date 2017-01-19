@@ -8,20 +8,24 @@ using SFA.DAS.Events.Domain.Repositories;
 
 namespace SFA.DAS.Events.Application.Commands.CreateAccountEvent
 {
-    public class CreateAccountEventCommandHandler : AsyncRequestHandler<CreateAccountEventCommand>
+    public sealed class CreateAccountEventCommandHandler : AsyncRequestHandler<CreateAccountEventCommand>
     {
         private readonly IEventsLogger _logger;
 
         private readonly IAccountEventRepository _accountEventRepository;
+        private readonly AbstractValidator<CreateAccountEventCommand> _validator;
 
-        public CreateAccountEventCommandHandler(IAccountEventRepository accountEventRepository, IEventsLogger logger)
+        public CreateAccountEventCommandHandler(IAccountEventRepository accountEventRepository, AbstractValidator<CreateAccountEventCommand> validator, IEventsLogger logger)
         {
             if (accountEventRepository == null)
                 throw new ArgumentNullException(nameof(accountEventRepository));
+            if (validator == null)
+                throw new ArgumentNullException(nameof(validator));
             if (logger == null)
                 throw new ArgumentNullException(nameof(logger));
 
             _accountEventRepository = accountEventRepository;
+            _validator = validator;
             _logger = logger;
         }
 
@@ -51,14 +55,9 @@ namespace SFA.DAS.Events.Application.Commands.CreateAccountEvent
             }
         }
 
-        private static void Validate(CreateAccountEventCommand command)
+        private void Validate(CreateAccountEventCommand command)
         {
-            var validator = new CreateAccountEventCommandValidator();
-
-            var validationResult = validator.Validate(command);
-
-            if (!validationResult.IsValid)
-                throw new ValidationException(validationResult.Errors);
+            _validator.ValidateAndThrow(command);
         }
     }
 }
