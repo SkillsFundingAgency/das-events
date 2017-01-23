@@ -7,7 +7,7 @@ namespace SFA.DAS.Events.Domain.Entities
         PendingApproval = 0,
         Active = 1,
         Paused = 2,
-        Cancelled = 3,
+        Withdrawn = 3,
         Completed = 4,
         Deleted = 5
     }
