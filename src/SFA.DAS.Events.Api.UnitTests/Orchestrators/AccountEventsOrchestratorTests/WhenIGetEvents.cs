@@ -18,8 +18,8 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AccountEventsOrchestratorTe
         {
             var expectedEvents = new List<AccountEvent>
             {
-                new AccountEvent { CreatedOn = DateTime.Now.AddDays(-2), EmployerAccountId = "ABC123", Event = "Event 1", Id = 23 },
-                new AccountEvent { CreatedOn = DateTime.Now.AddDays(-1), EmployerAccountId = "ABC987", Event = "Event 2", Id = 24 },
+                new AccountEvent { CreatedOn = DateTime.Now.AddDays(-2), ResourceUri = "/api/accounts/ABC123", Event = "Event 1", Id = 23 },
+                new AccountEvent { CreatedOn = DateTime.Now.AddDays(-1), ResourceUri = "/api/accounts/ABC987", Event = "Event 2", Id = 24 },
             };
 
             var toDateTime = DateTime.Now;

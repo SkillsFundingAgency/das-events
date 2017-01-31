@@ -60,6 +60,8 @@
     <Folder Include="Tables" />
     <Folder Include="UserDefinedTypes" />
     <Folder Include="StoredProcedures" />
+    <Folder Include="PreDeployment" />
+    <Folder Include="PostDeployment" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\ApprenticeshipEvents.sql" />
@@ -70,5 +72,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Database.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="PreDeployment\Script.MigrateAccountEventsPre.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeployment\Script.MigrateAccountEventsPost.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SFA.DAS.Events.Database.refactorlog" />
   </ItemGroup>
 </Project>
