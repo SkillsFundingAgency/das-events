@@ -7,7 +7,7 @@ namespace SFA.DAS.Events.Application.Commands.CreateAccountEvent
         public CreateAccountEventCommandValidator()
         {
             RuleFor(model => model.Event).NotEmpty();
-            RuleFor(model => model.EmployerAccountId).NotEmpty();
+            RuleFor(model => model.ResourceUri).NotEmpty();
         }
     }
 }

@@ -11,13 +11,13 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAccountEventTests
         [Test]
         public async Task AndEventIsNotProvidedThenValidationFails()
         {
-            var command = new CreateAccountEventCommand { EmployerAccountId = "ABC" };
+            var command = new CreateAccountEventCommand { ResourceUri = "/api/accounts/ABC" };
 
             Assert.ThrowsAsync<ValidationException>(() => Handler.Handle(command));
         }
 
         [Test]
-        public async Task AndEmployerAccountIdIsNotProvidedThenValidationFails()
+        public async Task AndResourceUriIsNotProvidedThenValidationFails()
         {
 
             var command = new CreateAccountEventCommand { Event = "ABC" };

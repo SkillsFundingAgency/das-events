@@ -153,13 +153,13 @@ POST http://host:port/api/events/accounts/
 
     {
         "event": "An event",
-        "employerAccountId": "2222"
+        "resourceUri": "/api/accounts/abc"
     }
 
 Where:
 
 - **event** is an arbitrary string representation of an event (eg. "Initiated")
-- **employerAccountId** is the DAS employer account ID
+- **resourceUri** is the Accounts API URI of the resource the event relates to
 
 
 ### Retrieving events (accounts) ###

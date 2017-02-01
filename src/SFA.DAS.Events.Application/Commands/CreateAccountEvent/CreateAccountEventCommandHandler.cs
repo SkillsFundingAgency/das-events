@@ -31,7 +31,7 @@ namespace SFA.DAS.Events.Application.Commands.CreateAccountEvent
 
         protected override async Task HandleCore(CreateAccountEventCommand command)
         {
-            _logger.Info($"Received message {command.Event}", accountId: command.EmployerAccountId, @event: command.Event);
+            _logger.Info($"Received message {command.Event}", accountId: command.ResourceUri, @event: command.Event);
 
             Validate(command);
 
@@ -41,7 +41,7 @@ namespace SFA.DAS.Events.Application.Commands.CreateAccountEvent
                 {
                     Event = command.Event,
                     CreatedOn = DateTime.UtcNow,
-                    EmployerAccountId = command.EmployerAccountId
+                    ResourceUri = command.ResourceUri
                 };
 
                 await _accountEventRepository.Create(newAccountEvent);
@@ -50,7 +50,7 @@ namespace SFA.DAS.Events.Application.Commands.CreateAccountEvent
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, $"Error processing message {command.Event} - {ex.Message}", accountId: command.EmployerAccountId, @event: command.Event);
+                _logger.Error(ex, $"Error processing message {command.Event} - {ex.Message}", accountId: command.ResourceUri, @event: command.Event);
                 throw;
             }
         }

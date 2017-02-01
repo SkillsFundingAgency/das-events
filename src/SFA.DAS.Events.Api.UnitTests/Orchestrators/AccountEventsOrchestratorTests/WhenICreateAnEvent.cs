@@ -14,11 +14,11 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AccountEventsOrchestratorTe
         [Test]
         public async Task ThenTheEventIsCreated()
         {
-            var request = new AccountEvent { EmployerAccountId = "ABC123", Event = "Test" };
+            var request = new AccountEvent { ResourceUri = "/api/accounts/ABC123", Event = "Test" };
             await Orchestrator.CreateEvent(request);
 
-            EventsLogger.Verify(x => x.Info($"Creating Account Event ({request.Event})", request.EmployerAccountId, null, request.Event));
-            Mediator.Verify(m => m.SendAsync(It.Is<CreateAccountEventCommand>(x => x.EmployerAccountId == request.EmployerAccountId && x.Event == request.Event)));
+            EventsLogger.Verify(x => x.Info($"Creating Account Event ({request.Event})", request.ResourceUri, null, request.Event));
+            Mediator.Verify(m => m.SendAsync(It.Is<CreateAccountEventCommand>(x => x.ResourceUri == request.ResourceUri && x.Event == request.Event)));
         }
 
         [Test]
@@ -26,11 +26,11 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AccountEventsOrchestratorTe
         {
             var request = new AccountEvent();
             var validationException = new ValidationException("Exception");
-            Mediator.Setup(m => m.SendAsync(It.Is<CreateAccountEventCommand>(x => x.EmployerAccountId == request.EmployerAccountId && x.Event == request.Event))).ThrowsAsync(validationException);
+            Mediator.Setup(m => m.SendAsync(It.Is<CreateAccountEventCommand>(x => x.ResourceUri == request.ResourceUri && x.Event == request.Event))).ThrowsAsync(validationException);
 
             Assert.ThrowsAsync<ValidationException>(() => Orchestrator.CreateEvent(request));
 
-            EventsLogger.Verify(x => x.Warn(validationException, "Invalid request", request.EmployerAccountId, null, request.Event));
+            EventsLogger.Verify(x => x.Warn(validationException, "Invalid request", request.ResourceUri, null, request.Event));
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AccountEventsOrchestratorTe
         {
             var request = new AccountEvent();
             var exception = new Exception("Exception");
-            Mediator.Setup(m => m.SendAsync(It.Is<CreateAccountEventCommand>(x => x.EmployerAccountId == request.EmployerAccountId && x.Event == request.Event))).ThrowsAsync(exception);
+            Mediator.Setup(m => m.SendAsync(It.Is<CreateAccountEventCommand>(x => x.ResourceUri == request.ResourceUri && x.Event == request.Event))).ThrowsAsync(exception);
 
             Assert.ThrowsAsync<Exception>(() => Orchestrator.CreateEvent(request));
 

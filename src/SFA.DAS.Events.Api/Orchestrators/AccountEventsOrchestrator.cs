@@ -31,17 +31,17 @@ namespace SFA.DAS.Events.Api.Orchestrators
         {
             try
             {
-                _logger.Info($"Creating Account Event ({request.Event})", accountId: request.EmployerAccountId, @event: request.Event);
+                _logger.Info($"Creating Account Event ({request.Event})", accountId: request.ResourceUri, @event: request.Event);
 
                 await _mediator.SendAsync(new CreateAccountEventCommand
                 {
                     Event = request.Event,
-                    EmployerAccountId = request.EmployerAccountId
+                    ResourceUri = request.ResourceUri
                 });
             }
             catch (ValidationException ex)
             {
-                _logger.Warn(ex, "Invalid request", accountId: request.EmployerAccountId, @event: request.Event);
+                _logger.Warn(ex, "Invalid request", accountId: request.ResourceUri, @event: request.Event);
                 throw;
             }
             catch (Exception ex)
@@ -76,7 +76,7 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     Id = x.Id,
                     CreatedOn = x.CreatedOn,
                     Event = x.Event,
-                    EmployerAccountId = x.EmployerAccountId
+                    ResourceUri = x.ResourceUri
                 });
             }
             catch (ValidationException ex)
