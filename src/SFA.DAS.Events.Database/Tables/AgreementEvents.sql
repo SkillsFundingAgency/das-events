@@ -4,7 +4,7 @@
     [Event] VARCHAR(50) NOT NULL, 
     [CreatedOn] DATETIME NOT NULL, 
     [ProviderId] VARCHAR(20) NOT NULL, 
-    [EmployerAccountId] VARCHAR(20) NOT NULL
+    [ContractType] VARCHAR(50) NOT NULL
 )
 
 GO

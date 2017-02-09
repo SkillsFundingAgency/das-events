@@ -31,18 +31,18 @@ namespace SFA.DAS.Events.Api.Orchestrators
         {
             try
             {
-                _logger.Info($"Creating Agreement Event ({request.Event}) for Employer: {request.EmployerAccountId}, Provider: {request.ProviderId}", accountId: request.EmployerAccountId, providerId: request.ProviderId, @event: request.Event);
+                _logger.Info($"Creating Agreement Event ({request.Event}), Contract: {request.ContractType}, Provider: {request.ProviderId}", providerId: request.ProviderId, @event: request.Event);
 
                 await _mediator.SendAsync(new CreateAgreementEventCommand
                 {
                     Event = request.Event,
                     ProviderId = request.ProviderId,
-                    EmployerAccountId = request.EmployerAccountId
+                    ContractType = request.ContractType
                 });
             }
             catch (ValidationException ex)
             {
-                _logger.Warn(ex, "Invalid request", accountId: request.EmployerAccountId, providerId: request.ProviderId, @event: request.Event);
+                _logger.Warn(ex, "Invalid request", providerId: request.ProviderId, @event: request.Event);
                 throw;
             }
             catch (Exception ex)
@@ -78,7 +78,7 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     CreatedOn = x.CreatedOn,
                     Event = x.Event,
                     ProviderId = x.ProviderId,
-                    EmployerAccountId = x.EmployerAccountId
+                    ContractType = x.ContractType
                 });
             }
             catch (ValidationException ex)

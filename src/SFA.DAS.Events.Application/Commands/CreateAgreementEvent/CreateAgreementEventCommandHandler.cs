@@ -31,7 +31,7 @@ namespace SFA.DAS.Events.Application.Commands.CreateAgreementEvent
 
         protected override async Task HandleCore(CreateAgreementEventCommand command)
         {
-            _logger.Info($"Received message {command.Event}", accountId: command.EmployerAccountId, providerId: command.ProviderId, @event: command.Event);
+            _logger.Info($"Received message {command.Event}", providerId: command.ProviderId, @event: command.Event);
 
             Validate(command);
 
@@ -42,7 +42,7 @@ namespace SFA.DAS.Events.Application.Commands.CreateAgreementEvent
                     Event = command.Event,
                     CreatedOn = DateTime.UtcNow,
                     ProviderId = command.ProviderId,
-                    EmployerAccountId = command.EmployerAccountId
+                    ContractType = command.ContractType
                 };
 
                 await _agreementEventRepository.Create(newAgreementEvent);
@@ -51,7 +51,7 @@ namespace SFA.DAS.Events.Application.Commands.CreateAgreementEvent
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, $"Error processing message {command.Event} - {ex.Message}", accountId: command.EmployerAccountId, providerId: command.ProviderId, @event: command.Event);
+                _logger.Error(ex, $"Error processing message {command.Event} - {ex.Message}", providerId: command.ProviderId, @event: command.Event);
                 throw;
             }
         }

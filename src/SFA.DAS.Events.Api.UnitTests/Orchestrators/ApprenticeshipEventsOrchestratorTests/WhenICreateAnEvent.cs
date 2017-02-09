@@ -23,7 +23,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.ApprenticeshipEventsOrchest
         }
 
         [Test]
-        public async Task AndValidationFailsThenTheFailureIsLogged()
+        public void AndValidationFailsThenTheFailureIsLogged()
         {
             var request = new ApprenticeshipEvent();
             var validationException = new ValidationException("Exception");
@@ -35,7 +35,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.ApprenticeshipEventsOrchest
         }
 
         [Test]
-        public async Task AndAnExceptionOccursThenTheErrorIsLogged()
+        public void AndAnExceptionOccursThenTheErrorIsLogged()
         {
             var request = new ApprenticeshipEvent();
             var exception = new Exception("Exception");

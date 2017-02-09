@@ -14,15 +14,15 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AgreementEventsOrchestrator
         [Test]
         public async Task ThenTheEventIsCreated()
         {
-            var request = new AgreementEvent { EmployerAccountId = "ABC123", Event = "Test", ProviderId = "ZZZ999" };
+            var request = new AgreementEvent { ContractType = "MainProvider", Event = "Test", ProviderId = "ZZZ999" };
             await Orchestrator.CreateEvent(request);
 
-            EventsLogger.Verify(x => x.Info($"Creating Agreement Event ({request.Event}) for Employer: {request.EmployerAccountId}, Provider: {request.ProviderId}", request.EmployerAccountId, request.ProviderId, request.Event));
-            Mediator.Verify(m => m.SendAsync(It.Is<CreateAgreementEventCommand>(x => x.EmployerAccountId == request.EmployerAccountId && x.Event == request.Event && x.ProviderId == request.ProviderId)));
+            EventsLogger.Verify(x => x.Info($"Creating Agreement Event ({request.Event}), Contract: {request.ContractType}, Provider: {request.ProviderId}", null, request.ProviderId, request.Event));
+            Mediator.Verify(m => m.SendAsync(It.Is<CreateAgreementEventCommand>(x => x.ContractType == request.ContractType && x.Event == request.Event && x.ProviderId == request.ProviderId)));
         }
 
         [Test]
-        public async Task AndValidationFailsThenTheFailureIsLogged()
+        public void AndValidationFailsThenTheFailureIsLogged()
         {
             var request = new AgreementEvent();
             var validationException = new ValidationException("Exception");
@@ -30,11 +30,11 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AgreementEventsOrchestrator
 
             Assert.ThrowsAsync<ValidationException>(() => Orchestrator.CreateEvent(request));
 
-            EventsLogger.Verify(x => x.Warn(validationException, "Invalid request", request.EmployerAccountId, request.ProviderId, request.Event));
+            EventsLogger.Verify(x => x.Warn(validationException, "Invalid request", request.ContractType, request.ProviderId, request.Event));
         }
 
         [Test]
-        public async Task AndAnExceptionOccursThenTheErrorIsLogged()
+        public void AndAnExceptionOccursThenTheErrorIsLogged()
         {
             var request = new AgreementEvent();
             var exception = new Exception("Exception");

@@ -11,7 +11,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAgreementEventTest
         [Test]
         public async Task AndEventIsNotProvidedThenValidationFails()
         {
-            var command = new CreateAgreementEventCommand { EmployerAccountId = "ABC", ProviderId = "ZZZ999" };
+            var command = new CreateAgreementEventCommand { ContractType = "MainProvider", ProviderId = "ZZZ999" };
 
             Assert.ThrowsAsync<ValidationException>(() => Handler.Handle(command));
         }
@@ -20,7 +20,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAgreementEventTest
         public async Task AndProviderIdIsNotProvidedThenValidationFails()
         {
 
-            var command = new CreateAgreementEventCommand { EmployerAccountId = "ABC", Event = "ABC" };
+            var command = new CreateAgreementEventCommand { ContractType = "MainProvider", Event = "ABC" };
 
             Assert.ThrowsAsync<ValidationException>(() => Handler.Handle(command));
         }

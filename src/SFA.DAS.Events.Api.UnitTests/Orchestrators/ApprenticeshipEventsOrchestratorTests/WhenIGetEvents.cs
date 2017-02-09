@@ -38,7 +38,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.ApprenticeshipEventsOrchest
         }
 
         [Test]
-        public async Task AndValidationFailsThenTheFailureIsLogged()
+        public void AndValidationFailsThenTheFailureIsLogged()
         {
             var validationException = new ValidationException("Exception");
             Mediator.Setup(m => m.SendAsync(It.IsAny<GetApprenticeshipEventsRequest>())).ThrowsAsync(validationException);
@@ -49,7 +49,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.ApprenticeshipEventsOrchest
         }
 
         [Test]
-        public async Task AndAnExceptionOccursThenTheErrorIsLogged()
+        public void AndAnExceptionOccursThenTheErrorIsLogged()
         {
             var exception = new Exception("Exception");
             Mediator.Setup(m => m.SendAsync(It.IsAny<GetApprenticeshipEventsRequest>())).ThrowsAsync(exception);
