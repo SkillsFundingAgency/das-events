@@ -22,7 +22,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AgreementEventsOrchestrator
         }
 
         [Test]
-        public async Task AndValidationFailsThenTheFailureIsLogged()
+        public void AndValidationFailsThenTheFailureIsLogged()
         {
             var request = new AgreementEvent();
             var validationException = new ValidationException("Exception");
@@ -34,7 +34,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AgreementEventsOrchestrator
         }
 
         [Test]
-        public async Task AndAnExceptionOccursThenTheErrorIsLogged()
+        public void AndAnExceptionOccursThenTheErrorIsLogged()
         {
             var request = new AgreementEvent();
             var exception = new Exception("Exception");
