@@ -69,17 +69,13 @@
     <Build Include="Tables\AccountEvents.sql" />
     <Build Include="UserDefinedTypes\ApprenticeshipEventsTable.sql" />
     <Build Include="StoredProcedures\BulkUploadApprenticeshipEvents.sql" />
-    <None Include="PreDeployment\Script.MigrateAgreementEventsPre.sql" />
-    <None Include="PostDeployment\Script.MigrateAgreementEventsPost.sql" />
+    <PreDeploy Include="PreDeployment\Script.MigrateEventsPre.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database.publish.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PreDeploy Include="PreDeployment\Script.MigrateAccountEventsPre.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <PostDeploy Include="PostDeployment\Script.MigrateAccountEventsPost.sql" />
+    <PostDeploy Include="PostDeployment\Script.MigrateEventsPost.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SFA.DAS.Events.Database.refactorlog" />
