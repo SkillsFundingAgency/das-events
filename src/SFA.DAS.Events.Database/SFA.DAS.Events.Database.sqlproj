@@ -69,6 +69,8 @@
     <Build Include="Tables\AccountEvents.sql" />
     <Build Include="UserDefinedTypes\ApprenticeshipEventsTable.sql" />
     <Build Include="StoredProcedures\BulkUploadApprenticeshipEvents.sql" />
+    <None Include="PreDeployment\Script.MigrateAgreementEventsPre.sql" />
+    <None Include="PostDeployment\Script.MigrateAgreemenEventsPost.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database.publish.xml" />

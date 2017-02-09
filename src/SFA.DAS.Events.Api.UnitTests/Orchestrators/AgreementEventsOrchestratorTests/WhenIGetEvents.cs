@@ -18,8 +18,8 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AgreementEventsOrchestrator
         {
             var expectedEvents = new List<AgreementEvent>
             {
-                new AgreementEvent { CreatedOn = DateTime.Now.AddDays(-2), EmployerAccountId = "ABC123", Event = "Event 1", Id = 23, ProviderId = "ZZZ123" },
-                new AgreementEvent { CreatedOn = DateTime.Now.AddDays(-1), EmployerAccountId = "ABC987", Event = "Event 2", Id = 24, ProviderId = "ZZZ999" },
+                new AgreementEvent { CreatedOn = DateTime.Now.AddDays(-2), ContractType = "ABC123", Event = "Event 1", Id = 23, ProviderId = "ZZZ123" },
+                new AgreementEvent { CreatedOn = DateTime.Now.AddDays(-1), ContractType = "ABC987", Event = "Event 2", Id = 24, ProviderId = "ZZZ999" },
             };
 
             var toDateTime = DateTime.Now;
