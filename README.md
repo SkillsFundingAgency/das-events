@@ -108,7 +108,7 @@ POST and GET operations are very similar to the apprenticeship events above - di
 
 To store a new event:
 
-POST http://host:port/api/events/agreements/
+POST http://host:port/api/events/engagements/
 
     {
         "event": "An event",
@@ -129,9 +129,9 @@ Provider agreement retrieval functionality works in the same way as for apprenti
 
 Examples:
 
-	http://localhost:29638/api/events/agreements?fromDate=20160131000001&toDate=20171231235959&pageSize=100&pageNumber=1
+	http://localhost:29638/api/events/engagements?fromDate=20160131000001&toDate=20171231235959&pageSize=100&pageNumber=1
 
-	http://localhost:29638/api/events/agreements?fromEventId=1&pageSize=100&pageNumber=1
+	http://localhost:29638/api/events/engagements?fromEventId=1&pageSize=100&pageNumber=1
 
 
 ## Security (agreements) ##
