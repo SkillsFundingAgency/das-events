@@ -267,7 +267,7 @@
     <Compile Include="Orchestrators\AccountEventsOrchestrator.cs" />
     <Compile Include="Orchestrators\AgreementEventsOrchestrator.cs" />
     <Compile Include="Orchestrators\ApprenticeshipEventsOrchestrator.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Orchestrators\GenericEventOrchestrator.cs" />
     <Compile Include="Orchestrators\IAccountEventsOrchestrator.cs" />
     <Compile Include="Orchestrators\IAgreementEventsOrchestrator.cs" />
