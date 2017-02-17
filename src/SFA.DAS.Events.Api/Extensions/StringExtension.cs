@@ -2,9 +2,9 @@
 using System.Globalization;
 using FluentValidation;
 
-namespace SFA.DAS.Events.Api.Orchestrators
+namespace SFA.DAS.Events.Api.Extensions
 {
-    public static class DateTimeHelper
+    public static class StringExtension
     {
         public static DateTime ParseDateTime(this string datetime)
         {

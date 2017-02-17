@@ -43,6 +43,7 @@
     <Compile Include="Entities\ApprenticeshipEvent.cs" />
     <Compile Include="Entities\BaseEvent.cs" />
     <Compile Include="Entities\AgreementStatus.cs" />
+    <Compile Include="Entities\GenericEvent.cs" />
     <Compile Include="Entities\PaymentStatus.cs" />
     <Compile Include="Entities\TrainingTypes.cs" />
     <Compile Include="Logging\IEventsLogger.cs" />
