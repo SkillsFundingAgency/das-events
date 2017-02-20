@@ -58,6 +58,7 @@
     <Compile Include="Data\AccountEventRepository.cs" />
     <Compile Include="Data\ApprenticeshipEventRepository.cs" />
     <Compile Include="Data\BaseRepository.cs" />
+    <Compile Include="Data\EventTypeTableParam.cs" />
     <Compile Include="Data\GenericEventRepository.cs" />
     <Compile Include="Logging\EventsLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -62,6 +62,7 @@
     <Folder Include="StoredProcedures" />
     <Folder Include="PreDeployment" />
     <Folder Include="PostDeployment" />
+    <Folder Include="Types" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\ApprenticeshipEvents.sql" />
@@ -70,6 +71,10 @@
     <Build Include="UserDefinedTypes\ApprenticeshipEventsTable.sql" />
     <Build Include="StoredProcedures\BulkUploadApprenticeshipEvents.sql" />
     <PreDeploy Include="PreDeployment\Script.MigrateEventsPre.sql" />
+    <Build Include="Tables\GenericEvents.sql" />
+    <Build Include="Types\EventType.sql" />
+    <Build Include="StoredProcedures\GetGenericEventsSinceEvent_.sql" />
+    <Build Include="StoredProcedures\GetGenericEventsByDateRange.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database.publish.xml" />
