@@ -1,9 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[GetGenericEventsByDateRange]
 	@eventTypes [dbo].[eventType] Readonly,	
-	@fromDate Datetime NOT NULL,
-	@toDate Datetime NOT NULL,
-	@offset int NOT NULL,
-	@pageSize int NOT NULL
+	@fromDate Datetime,
+	@toDate Datetime,
+	@offset int,
+	@pageSize int
 AS
 	SELECT * FROM GenericEvents ge
 	INNER JOIN  @eventTypes et ON ge.[Type] = et.Name

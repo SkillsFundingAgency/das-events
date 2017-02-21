@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
-using SFA.DAS.Events.Application.Queries.GetGenericEvents;
+using SFA.DAS.Events.Application.Queries.GetGenericEventsByDateRange;
+using SFA.DAS.Events.Application.Queries.GetGenericEventsSinceEvent;
 using SFA.DAS.Events.Domain.Entities;
 
 namespace SFA.DAS.Events.Api.Orchestrators
@@ -17,23 +18,28 @@ namespace SFA.DAS.Events.Api.Orchestrators
             _mediator = mediator;
         }
 
-        public async Task<ICollection<GenericEvent>> GetEvents(
-            string eventType, DateTime fromDate, DateTime toDate, int pageSize, int pageNumber, long fromEventId)
+        public async Task<ICollection<GenericEvent>> GetEventsByDateRange(IEnumerable<string> eventTypes, DateTime fromDate, DateTime toDate, int pageSize, int pageNumber)
         {
-            return await GetEvents(new[] {eventType}, fromDate, toDate, pageSize, pageNumber, fromEventId);
-        }
-
-        public async Task<ICollection<GenericEvent>> GetEvents(
-            IEnumerable<string> eventTypes, DateTime fromDate, DateTime toDate, int pageSize, int pageNumber, long fromEventId)
-        {
-            var response = await _mediator.SendAsync(new GetGenericEventsRequest
+            var response = await _mediator.SendAsync(new GetGenericEventsByDateRangeRequest
             {
-                EventTypes = eventTypes.ToList(),
+                EventTypes = eventTypes,
                 FromDateTime = fromDate,
                 ToDateTime = toDate,
                 PageNumber = pageNumber,
-                PageSize = pageSize,
-                FromEventId = fromEventId
+                PageSize = pageSize
+            });
+
+            return response?.Data.ToList();
+        }
+
+        public async Task<ICollection<GenericEvent>> GetEventsSinceEvent(IEnumerable<string> eventTypes, long fromEventId, int pageSize, int pageNumber)
+        {
+            var response = await _mediator.SendAsync(new GetGenericEventsSinceEventRequest
+            {
+                EventTypes = eventTypes,
+                FromEventId = fromEventId,
+                PageNumber = pageNumber,
+                PageSize = pageSize
             });
 
             return response?.Data.ToList();

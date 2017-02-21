@@ -7,10 +7,10 @@ namespace SFA.DAS.Events.Api.Orchestrators
 {
     public interface IGenericEventOrchestrator
     {
-        Task<ICollection<GenericEvent>> GetEvents(
-          string eventType, DateTime fromDate, DateTime toDate, int pageSize, int pageNumber, long fromEventId);
+        Task<ICollection<GenericEvent>> GetEventsByDateRange(
+            IEnumerable<string> eventTypes, DateTime fromDate, DateTime toDate, int pageSize, int pageNumber);
 
-        Task<ICollection<GenericEvent>> GetEvents(
-            IEnumerable<string> eventTypes, DateTime fromDate, DateTime toDate, int pageSize, int pageNumber, long fromEventId);
+        Task<ICollection<GenericEvent>> GetEventsSinceEvent(
+            IEnumerable<string> eventTypes, long fromEventId, int pageSize, int pageNumber);
     }
 }

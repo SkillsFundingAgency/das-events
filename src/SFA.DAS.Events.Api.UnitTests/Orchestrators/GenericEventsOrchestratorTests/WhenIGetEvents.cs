@@ -6,7 +6,7 @@ using MediatR;
 using Moq;
 using NUnit.Framework;
 using SFA.DAS.Events.Api.Orchestrators;
-using SFA.DAS.Events.Application.Queries.GetGenericEvents;
+using SFA.DAS.Events.Application.Queries.GetGenericEventsSinceEvent;
 using SFA.DAS.Events.Domain.Entities;
 using SFA.DAS.Events.Domain.Logging;
 
@@ -28,8 +28,8 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.GenericEventsOrchestratorTe
 
             _events = new List<GenericEvent>();
 
-            _mediator.Setup(x => x.SendAsync(It.IsAny<GetGenericEventsRequest>()))
-                .ReturnsAsync(() => new GetGenericEventsResponse
+            _mediator.Setup(x => x.SendAsync(It.IsAny<GetGenericEventsSinceEventRequest>()))
+                .ReturnsAsync(() => new GetGenericEventsSinceEventResponse
                 {
                     Data = _events
                 });
@@ -42,7 +42,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.GenericEventsOrchestratorTe
             await _orchestrator.GetEvents("Test", DateTime.MinValue, DateTime.MaxValue, 100, 1, 1);
 
             //Assert
-            _mediator.Verify(x => x.SendAsync(It.IsAny<GetGenericEventsRequest>()), Times.Once);
+            _mediator.Verify(x => x.SendAsync(It.IsAny<GetGenericEventsSinceEventRequest>()), Times.Once);
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.GenericEventsOrchestratorTe
             await _orchestrator.GetEvents(eventTypes, DateTime.MinValue, DateTime.MaxValue, 100, 1, 1);
 
             //Assert
-            _mediator.Verify(x => x.SendAsync(It.Is<GetGenericEventsRequest>(
+            _mediator.Verify(x => x.SendAsync(It.Is<GetGenericEventsSinceEventRequest>(
                 y => y.EventTypes.SequenceEqual(eventTypes))), Times.Once);
         }
     }

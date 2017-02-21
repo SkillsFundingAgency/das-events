@@ -18,16 +18,34 @@ namespace SFA.DAS.Events.Api.Controllers
 
         //[Route("", Name = "GetAllAccountEvents")]
         //[Authorize(Roles = "ReadAccountEvent")]
-        public async Task<IHttpActionResult> Get(IEnumerable<string> eventTypes, string fromDate = null, string toDate = null, int pageSize = 1000, int pageNumber = 1, long fromEventId = 0)
+        public async Task<IHttpActionResult> GetByDateRange(IEnumerable<string> eventTypes, string fromDate = null, string toDate = null, int pageSize = 1000, int pageNumber = 1)
         {
-            return Ok(await _orchestrator.GetEvents(eventTypes, fromDate.ParseDateTime(), toDate.ParseDateTime(), pageSize, pageNumber, fromEventId));
+            return Ok(await _orchestrator.GetEventsByDateRange(eventTypes, fromDate.ParseDateTime(), toDate.ParseDateTime(), pageSize, pageNumber));
         }
 
         //[Route("", Name = "GetAllAccountEvents")]
         //[Authorize(Roles = "ReadAccountEvent")]
-        public async Task<IHttpActionResult> Get(string eventType, string fromDate = null, string toDate = null, int pageSize = 1000, int pageNumber = 1, long fromEventId = 0)
+        public async Task<IHttpActionResult> GetByDateRange(string eventType, string fromDate = null, string toDate = null, int pageSize = 1000, int pageNumber = 1)
         {
-            return Ok(await _orchestrator.GetEvents(eventType, fromDate.ParseDateTime(), toDate.ParseDateTime(), pageSize, pageNumber, fromEventId));
+            var types = new[] {eventType};
+
+            return Ok(await _orchestrator.GetEventsByDateRange(types, fromDate.ParseDateTime(), toDate.ParseDateTime(), pageSize, pageNumber));
+        }
+
+        //[Route("", Name = "GetAllAccountEvents")]
+        //[Authorize(Roles = "ReadAccountEvent")]
+        public async Task<IHttpActionResult> GetSinceEvent(IEnumerable<string> eventTypes, int pageSize = 1000, int pageNumber = 1, long fromEventId = 0)
+        {
+            return Ok(await _orchestrator.GetEventsSinceEvent(eventTypes, fromEventId, pageSize, pageNumber));
+        }
+
+        //[Route("", Name = "GetAllAccountEvents")]
+        //[Authorize(Roles = "ReadAccountEvent")]
+        public async Task<IHttpActionResult> GetSinceEvent(string eventType, int pageSize = 1000, int pageNumber = 1, long fromEventId = 0)
+        {
+            var types = new[] { eventType };
+
+            return Ok(await _orchestrator.GetEventsSinceEvent(types, fromEventId, pageSize, pageNumber));
         }
     }
 }
