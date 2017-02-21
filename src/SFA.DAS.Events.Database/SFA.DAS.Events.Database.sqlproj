@@ -73,7 +73,7 @@
     <PreDeploy Include="PreDeployment\Script.MigrateEventsPre.sql" />
     <Build Include="Tables\GenericEvents.sql" />
     <Build Include="Types\EventType.sql" />
-    <Build Include="StoredProcedures\GetGenericEventsSinceEvent_.sql" />
+    <Build Include="StoredProcedures\GetGenericEventsSinceEvent.sql" />
     <Build Include="StoredProcedures\GetGenericEventsByDateRange.sql" />
   </ItemGroup>
   <ItemGroup>

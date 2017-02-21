@@ -51,13 +51,13 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
             var parameters = new EventTypeTableParam(eventTypes);
 
-            parameters.Add("@@fromEventId", DbType.Int64, fromEventId);
+            parameters.Add("@fromEventId", DbType.Int64, fromEventId);
             parameters.Add("@pageSize", DbType.Int32, pageSize);
             parameters.Add("@offset", DbType.Int32, offset);
 
             var result = await WithConnection(async c =>
                 await c.QueryAsync<GenericEvent>(
-                    sql: "[dbo].[[GetGenericEventsSinceEvent]",
+                    sql: "[dbo].[GetGenericEventsSinceEvent]",
                     param: parameters,
                     commandType: CommandType.StoredProcedure));
 

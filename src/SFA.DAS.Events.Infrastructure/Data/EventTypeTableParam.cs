@@ -25,7 +25,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
             Microsoft.SqlServer.Server.SqlMetaData[] tvpDefinition =
             {
-                new Microsoft.SqlServer.Server.SqlMetaData("Name", SqlDbType.VarChar)
+                new Microsoft.SqlServer.Server.SqlMetaData("Name", SqlDbType.VarChar, 255)
             };
 
             foreach (var eventType in _eventTypes)
@@ -38,7 +38,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
             var p = sqlCommand.Parameters.Add("@eventTypes", SqlDbType.Structured);
             p.Direction = ParameterDirection.Input;
-            p.TypeName = "[dbo].[eventTypes]";
+            p.TypeName = "[dbo].[eventType]";
             p.Value = eventTypesList;
           
             sqlCommand.Parameters.AddRange(_parameters.ToArray());

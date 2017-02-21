@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[GetGenericEventsSinceEvent]
 	@eventTypes [dbo].[eventType] Readonly,	
-	@fromEventId int,
+	@fromEventId bigint,
 	@offset int,
 	@pageSize int
 AS
