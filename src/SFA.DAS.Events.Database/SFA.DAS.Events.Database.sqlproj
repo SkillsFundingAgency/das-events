@@ -75,6 +75,7 @@
     <Build Include="Types\EventType.sql" />
     <Build Include="StoredProcedures\GetGenericEventsSinceEvent.sql" />
     <Build Include="StoredProcedures\GetGenericEventsByDateRange.sql" />
+    <Build Include="StoredProcedures\CreateGenericEvent.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database.publish.xml" />

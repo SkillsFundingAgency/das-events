@@ -18,9 +18,18 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
         public async Task Create(GenericEvent @event)
         {
+            var parameters = new DynamicParameters();
+
+            parameters.Add("@event", @event.Event);
+            parameters.Add("@eventType", @event.Type);
+            parameters.Add("@eventPayload", @event.Payload);
+
+
             await WithConnection(async c =>
-                await c.ExecuteAsync($"INSERT INTO [dbo].[{TableName}](Event, Type, Payload, CreatedOn) " +
-                                     $"VALUES (@event, @type, @payload, @createdOn);", @event));
+                await c.ExecuteAsync(
+                    sql: "[dbo].[CreateGenericEvent]",
+                    param: parameters,
+                    commandType: CommandType.StoredProcedure));
         }
 
         public async Task<IEnumerable<GenericEvent>> GetByDateRange(IEnumerable<string> eventTypes, DateTime fromDate, DateTime toDate, int pageSize, int pageNumber)
@@ -42,8 +51,6 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
             return result;
         }
-
-       
 
         public async Task<IEnumerable<GenericEvent>> GetSinceEvent(IEnumerable<string> eventTypes, long fromEventId, int pageSize, int pageNumber)
         {

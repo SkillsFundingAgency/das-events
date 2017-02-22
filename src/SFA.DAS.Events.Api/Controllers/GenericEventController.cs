@@ -16,6 +16,14 @@ namespace SFA.DAS.Events.Api.Controllers
             _orchestrator = orchestrator;
         }
 
+        [Route("create")]
+        public async Task<IHttpActionResult> CreateGenericEvent(string @event, string type, string payload)
+        {
+            await _orchestrator.CreateEvent(@event, type, payload);
+
+            return Ok();
+        }
+
         [Route("GetByDateRange")]
         [Authorize(Roles = "ReadGenericEvent")]
         public async Task<IHttpActionResult> GetByDateRange(IEnumerable<string> eventTypes, string fromDate = null, string toDate = null, int pageSize = 1000, int pageNumber = 1)

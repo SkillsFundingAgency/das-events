@@ -7,6 +7,7 @@ namespace SFA.DAS.Events.Api.Orchestrators
 {
     public interface IGenericEventOrchestrator
     {
+        Task CreateEvent(string @event, string eventType, string eventPayload);
         Task<ICollection<GenericEvent>> GetEventsByDateRange(
             IEnumerable<string> eventTypes, DateTime fromDate, DateTime toDate, int pageSize, int pageNumber);
 

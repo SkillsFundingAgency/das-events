@@ -7,6 +7,8 @@ namespace SFA.DAS.Events.Domain.Repositories
 {
     public interface IGenericEventRepository
     {
+        Task Create(GenericEvent @event);
+
         Task<IEnumerable<GenericEvent>> GetByDateRange(
             IEnumerable<string> eventTypes, 
             DateTime fromDate, 
