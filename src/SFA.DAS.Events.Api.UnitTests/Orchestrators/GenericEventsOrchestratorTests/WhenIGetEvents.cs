@@ -39,7 +39,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.GenericEventsOrchestratorTe
         public async Task ThenIShouldGetAllEvents()
         {
             //Act
-            await _orchestrator.GetEvents("Test", DateTime.MinValue, DateTime.MaxValue, 100, 1, 1);
+            await _orchestrator.GetEventsSinceEvent(new [] {"Test"}, 0, 100, 1);
 
             //Assert
             _mediator.Verify(x => x.SendAsync(It.IsAny<GetGenericEventsSinceEventRequest>()), Times.Once);
@@ -52,7 +52,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.GenericEventsOrchestratorTe
             var eventTypes = new[] {"EventOne", "EventTwo"};
 
             //Act
-            await _orchestrator.GetEvents(eventTypes, DateTime.MinValue, DateTime.MaxValue, 100, 1, 1);
+            await _orchestrator.GetEventsSinceEvent(eventTypes, 0, 100, 1);
 
             //Assert
             _mediator.Verify(x => x.SendAsync(It.Is<GetGenericEventsSinceEventRequest>(

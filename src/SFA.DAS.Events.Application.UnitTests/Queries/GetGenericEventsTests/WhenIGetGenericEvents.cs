@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using Moq;
 using NUnit.Framework;
-using SFA.DAS.Events.Application.Queries.GetGenericEventsSinceEvent;
+using SFA.DAS.Events.Application.Queries.GetGenericEventsByDateRange;
 using SFA.DAS.Events.Domain.Entities;
 using SFA.DAS.Events.Domain.Repositories;
 
@@ -13,23 +13,23 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetGenericEventsTests
     class WhenIGetGenericEvents
     {
         private Mock<IGenericEventRepository> _repository;
-        private GetGenericEventsSinceEventQueryHandler _handler;
-        private IValidator<GetGenericEventsSinceEventRequest> _validator;
+        private GetGenericEventsByDateRangeQueryHandler _handler;
+        private IValidator<GetGenericEventsByDateRangeRequest> _validator;
         private ICollection<GenericEvent> _events;
-        private GetGenericEventsSinceEventRequest _sinceEventRequest;
+        private GetGenericEventsByDateRangeRequest _request;
 
         [SetUp]
         public void Arrange()
         {
             _repository = new Mock<IGenericEventRepository>();
-            _validator = new GetGenericEventsSinceEventRequestValidator();
+            _validator = new GetGenericEventsByDateRangeRequestValidator();
 
             _events = new List<GenericEvent>
             {
                 new GenericEvent()
             };
 
-            _sinceEventRequest = new GetGenericEventsSinceEventRequest
+            _request = new GetGenericEventsByDateRangeRequest()
             {
                 EventTypes = new[] {"test", "test2"},
                 FromDateTime = DateTime.Now,
@@ -39,7 +39,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetGenericEventsTests
                 FromEventId = 0
             };
 
-            _handler = new GetGenericEventsSinceEventQueryHandler(_repository.Object, _validator);
+            _handler = new GetGenericEventsByDateRangeQueryHandler(_repository.Object, _validator);
 
             _repository.Setup(x => x.GetByDateRange(
                     It.IsAny<IEnumerable<string>>(),
@@ -54,15 +54,15 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetGenericEventsTests
         public async Task ThenTheRepositoryShouldBeCalled()
         {
             //Act
-            var response = await _handler.Handle(_sinceEventRequest);
+            var response = await _handler.Handle(_request);
 
             //Assert
             _repository.Verify(x => x.GetByDateRange(
-                _sinceEventRequest.EventTypes, 
-                _sinceEventRequest.FromDateTime, 
-                _sinceEventRequest.ToDateTime, 
-                _sinceEventRequest.PageSize, 
-                _sinceEventRequest.PageNumber), Times.Once);
+                _request.EventTypes,
+                _request.FromDateTime,
+                _request.ToDateTime,
+                _request.PageSize,
+                _request.PageNumber), Times.Once);
 
             Assert.AreEqual(_events, response.Data);
         }
@@ -71,10 +71,10 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetGenericEventsTests
         public void ThenAnExceptionShouldBeThrowIfTheRequestIsInvalid()
         {
             //Arrange
-            _sinceEventRequest.EventTypes = new string[1];
+            _request.EventTypes = new string[1];
 
             ////Act & Assert
-            Assert.ThrowsAsync<ValidationException>(async () => { await _handler.Handle(_sinceEventRequest); });
+            Assert.ThrowsAsync<ValidationException>(async () => { await _handler.Handle(_request); });
         }
     }
 }
