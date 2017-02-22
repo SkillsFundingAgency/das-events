@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using SFA.DAS.Events.Api.Extensions;
 using SFA.DAS.Events.Api.Orchestrators;
+using SFA.DAS.Events.Domain.Entities;
 
 namespace SFA.DAS.Events.Api.Controllers
 {
@@ -17,11 +18,13 @@ namespace SFA.DAS.Events.Api.Controllers
         }
 
         [Route("create")]
+        [Authorize(Roles = "WriteGenericEvent")]
         public async Task<IHttpActionResult> CreateGenericEvent(string @event, string type, string payload)
         {
             await _orchestrator.CreateEvent(@event, type, payload);
 
-            return Ok();
+            // 201 for list of all events
+            return CreatedAtRoute("GetSinceEvent", new {eventType = type }, default(GenericEvent));
         }
 
         [Route("GetByDateRange")]
