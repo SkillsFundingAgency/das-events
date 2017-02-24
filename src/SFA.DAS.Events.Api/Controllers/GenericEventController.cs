@@ -27,14 +27,14 @@ namespace SFA.DAS.Events.Api.Controllers
             return CreatedAtRoute("GetSinceEvent", new {eventType = type }, default(GenericEvent));
         }
 
-        [Route("GetByDateRange")]
+        [Route("getByDateRange")]
         [Authorize(Roles = "ReadGenericEvent")]
         public async Task<IHttpActionResult> GetByDateRange(IEnumerable<string> eventTypes, string fromDate = null, string toDate = null, int pageSize = 1000, int pageNumber = 1)
         {
             return Ok(await _orchestrator.GetEventsByDateRange(eventTypes, fromDate.ParseDateTime(), toDate.ParseDateTime(), pageSize, pageNumber));
         }
 
-        [Route("GetByDateRange")]
+        [Route("getByDateRange")]
         [Authorize(Roles = "ReadGenericEvent")]
         public async Task<IHttpActionResult> GetByDateRange(string eventType, string fromDate = null, string toDate = null, int pageSize = 1000, int pageNumber = 1)
         {
@@ -43,14 +43,14 @@ namespace SFA.DAS.Events.Api.Controllers
             return Ok(await _orchestrator.GetEventsByDateRange(types, fromDate.ParseDateTime(), toDate.ParseDateTime(), pageSize, pageNumber));
         }
 
-        [Route("GetSinceEvent")]
+        [Route("getSinceEvent")]
         [Authorize(Roles = "ReadGenericEvent")]
         public async Task<IHttpActionResult> GetSinceEvent(IEnumerable<string> eventTypes, int pageSize = 1000, int pageNumber = 1, long fromEventId = 0)
         {
             return Ok(await _orchestrator.GetEventsSinceEvent(eventTypes, fromEventId, pageSize, pageNumber));
         }
 
-        [Route("GetSinceEvent")]
+        [Route("getSinceEvent")]
         [Authorize(Roles = "ReadGenericEvent")]
         public async Task<IHttpActionResult> GetSinceEvent(string eventType, int pageSize = 1000, int pageNumber = 1, long fromEventId = 0)
         {
