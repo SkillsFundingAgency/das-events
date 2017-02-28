@@ -19,13 +19,13 @@ namespace SFA.DAS.Events.Api.Orchestrators
             _mediator = mediator;
         }
 
-        public async Task CreateEvent(string @event, string eventType, string eventPayload)
+        public async Task CreateEvent(GenericEvent @event)
         {
             await _mediator.SendAsync(new CreateGenericEventCommand
             {
-                Event = @event,
-                Type = eventType,
-                Payload = eventPayload
+                Event = @event.Event,
+                Type = @event.Type,
+                Payload = @event.Payload
             });
         }
 
