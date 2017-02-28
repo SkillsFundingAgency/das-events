@@ -4,4 +4,4 @@
 	@eventPayload text
 AS
 	INSERT INTO [dbo].[GenericEvents] (Event, Type, Payload, CreatedOn) 
-	VALUES (@event, @eventType, @eventPayload, GETDATE())
+	VALUES (@event, @eventType, @eventPayload, GETUTCDATE())
