@@ -43,6 +43,7 @@
     <Compile Include="Entities\ApprenticeshipEvent.cs" />
     <Compile Include="Entities\BaseEvent.cs" />
     <Compile Include="Entities\AgreementStatus.cs" />
+    <Compile Include="Entities\GenericEvent.cs" />
     <Compile Include="Entities\PaymentStatus.cs" />
     <Compile Include="Entities\TrainingTypes.cs" />
     <Compile Include="Logging\IEventsLogger.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Repositories\IAgreementEventRepository.cs" />
     <Compile Include="Repositories\IEventRepository.cs" />
     <Compile Include="Repositories\IApprenticeshipEventRepository.cs" />
+    <Compile Include="Repositories\IGenericEventRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

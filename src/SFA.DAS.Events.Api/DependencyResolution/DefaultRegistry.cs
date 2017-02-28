@@ -55,6 +55,8 @@ namespace SFA.DAS.Events.Api.DependencyResolution
             For<IApprenticeshipEventRepository>().Use<ApprenticeshipEventRepository>().Ctor<string>().Is(config.DatabaseConnectionString);
             For<IAgreementEventRepository>().Use<AgreementEventRepository>().Ctor<string>().Is(config.DatabaseConnectionString);
             For<IAccountEventRepository>().Use<AccountEventRepository>().Ctor<string>().Is(config.DatabaseConnectionString);
+            For<IGenericEventRepository>().Use<GenericEventRepository>().Ctor<string>().Is(config.DatabaseConnectionString);
+
 
             RegisterMediator();
 

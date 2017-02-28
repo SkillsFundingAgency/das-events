@@ -83,6 +83,7 @@
     <Compile Include="Orchestrators\AccountEventsOrchestratorTests\AccountEventsOrchestratorTestBase.cs" />
     <Compile Include="Orchestrators\AccountEventsOrchestratorTests\WhenIGetEvents.cs" />
     <Compile Include="Orchestrators\AccountEventsOrchestratorTests\WhenICreateAnEvent.cs" />
+    <Compile Include="Orchestrators\GenericEventsOrchestratorTests\WhenIGetEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +102,10 @@
     <ProjectReference Include="..\SFA.DAS.Events.Domain\SFA.DAS.Events.Domain.csproj">
       <Project>{B52B57EA-A3B8-4F62-89DE-5293B5C7E19D}</Project>
       <Name>SFA.DAS.Events.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFA.DAS.Events.Infrastructure\SFA.DAS.Events.Infrastructure.csproj">
+      <Project>{383F9BC2-B631-4BE8-97E0-56362FC24D67}</Project>
+      <Name>SFA.DAS.Events.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

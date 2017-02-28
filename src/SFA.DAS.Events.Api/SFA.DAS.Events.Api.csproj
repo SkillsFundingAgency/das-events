@@ -254,6 +254,7 @@
     <Compile Include="Controllers\AccountEventsController.cs" />
     <Compile Include="Controllers\AgreementEventsController.cs" />
     <Compile Include="Controllers\ApprenticeshipEventsController.cs" />
+    <Compile Include="Controllers\GenericEventController.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
@@ -266,10 +267,12 @@
     <Compile Include="Orchestrators\AccountEventsOrchestrator.cs" />
     <Compile Include="Orchestrators\AgreementEventsOrchestrator.cs" />
     <Compile Include="Orchestrators\ApprenticeshipEventsOrchestrator.cs" />
-    <Compile Include="Orchestrators\DateTimeHelper.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Orchestrators\GenericEventOrchestrator.cs" />
     <Compile Include="Orchestrators\IAccountEventsOrchestrator.cs" />
     <Compile Include="Orchestrators\IAgreementEventsOrchestrator.cs" />
     <Compile Include="Orchestrators\IApprenticeshipEventsOrchestrator.cs" />
+    <Compile Include="Orchestrators\IGenericEventOrchestrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestContext.cs" />
   </ItemGroup>
@@ -292,6 +295,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\GenericEvent\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SFA.DAS.Events.Application\SFA.DAS.Events.Application.csproj">

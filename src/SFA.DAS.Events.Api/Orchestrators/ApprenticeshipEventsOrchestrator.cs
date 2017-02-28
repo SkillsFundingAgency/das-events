@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
+using SFA.DAS.Events.Api.Extensions;
 using SFA.DAS.Events.Api.Types;
 using SFA.DAS.Events.Application.Commands.BulkUploadCreateApprenticeshipEvents;
 using SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent;
