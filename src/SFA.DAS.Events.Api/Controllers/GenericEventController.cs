@@ -19,12 +19,12 @@ namespace SFA.DAS.Events.Api.Controllers
 
         [Route("create")]
         [Authorize(Roles = "WriteGenericEvent")]
-        public async Task<IHttpActionResult> CreateGenericEvent(string @event, string type, string payload)
+        public async Task<IHttpActionResult> CreateGenericEvent(GenericEvent @event)
         {
-            await _orchestrator.CreateEvent(@event, type, payload);
+            await _orchestrator.CreateEvent(@event);
 
             // 201 for list of all events
-            return CreatedAtRoute("GetSinceEvent", new {eventType = type }, default(GenericEvent));
+            return CreatedAtRoute("GetSinceEvent", new {eventType = @event.Type }, default(GenericEvent));
         }
 
         [Route("getByDateRange")]
