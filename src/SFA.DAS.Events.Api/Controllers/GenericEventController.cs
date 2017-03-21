@@ -5,6 +5,7 @@ using SFA.DAS.Events.Api.Extensions;
 using SFA.DAS.Events.Api.Orchestrators;
 using SFA.DAS.Events.Domain.Entities;
 
+
 namespace SFA.DAS.Events.Api.Controllers
 {
     [RoutePrefix("api/events")]
@@ -22,9 +23,9 @@ namespace SFA.DAS.Events.Api.Controllers
         public async Task<IHttpActionResult> CreateGenericEvent(GenericEvent @event)
         {
             await _orchestrator.CreateEvent(@event);
-
+            
             // 201 for list of all events
-            return CreatedAtRoute("GetSinceEvent", new {eventType = @event.Type }, default(GenericEvent));
+            return Created("GetSinceEvent", @event);
         }
 
         [Route("getByDateRange")]
