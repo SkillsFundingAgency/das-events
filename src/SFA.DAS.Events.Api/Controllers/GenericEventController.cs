@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Results;
 using SFA.DAS.Events.Api.Extensions;
 using SFA.DAS.Events.Api.Orchestrators;
-using SFA.DAS.Events.Api.Types;
+using SFA.DAS.Events.Domain.Entities;
 
 
 namespace SFA.DAS.Events.Api.Controllers
