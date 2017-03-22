@@ -19,6 +19,9 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
         private DateTime _trainingStartDate = DateTime.Now.AddDays(-30);
         private decimal _trainingTotalCost = 12345.67m;
         private TrainingTypes _trainingTypes = TrainingTypes.Framework;
+        private string _legalEntityId = "LEID";
+        private string _legalEntityName = "legal entity name";
+        private string _legalEntityOrganisationType = "le type";
 
         internal CreateApprenticeshipEventCommand Build()
         {
@@ -36,7 +39,10 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
                 TrainingId = _trainingId,
                 TrainingStartDate = _trainingStartDate,
                 TrainingTotalCost = _trainingTotalCost,
-                TrainingType = _trainingTypes
+                TrainingType = _trainingTypes,
+                LegalEntityId = _legalEntityId,
+                LegalEntityName = _legalEntityName,
+                LegalEntityOrganisationType = _legalEntityOrganisationType
             };
         }
 
@@ -91,6 +97,24 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
         internal CreateApprenticeshipEventCommandBuilder WithTrainingTotalCost(decimal trainingTotalCost)
         {
             _trainingTotalCost = trainingTotalCost;
+            return this;
+        }
+
+        internal CreateApprenticeshipEventCommandBuilder WithLegalEntityId(string legalEntityId)
+        {
+            _legalEntityId = legalEntityId;
+            return this;
+        }
+
+        internal CreateApprenticeshipEventCommandBuilder WithLegalEntityName(string legalEntityName)
+        {
+            _legalEntityName = legalEntityName;
+            return this;
+        }
+
+        internal CreateApprenticeshipEventCommandBuilder WithLegalEntityOrganisationType(string legalEntityOrganisationType)
+        {
+            _legalEntityOrganisationType = legalEntityOrganisationType;
             return this;
         }
     }

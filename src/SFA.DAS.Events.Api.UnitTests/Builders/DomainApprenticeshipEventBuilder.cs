@@ -20,6 +20,9 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
         private DateTime _trainingStartDate = DateTime.Now.AddYears(-1);
         private PaymentStatus _paymentStatus = PaymentStatus.Active;
         private int _apprenticeshipId = 12345;
+        private string _legalEntityId = "LEID";
+        private string _legalEntityName = "legal entity name";
+        private string _legalEntityOrganisationType = "le type";
 
         internal ApprenticeshipEvent Build()
         {
@@ -39,7 +42,10 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
                 TrainingId = _trainingId,
                 TrainingStartDate = _trainingStartDate,
                 PaymentStatus = _paymentStatus,
-                ApprenticeshipId = _apprenticeshipId
+                ApprenticeshipId = _apprenticeshipId,
+                LegalEntityId = _legalEntityId,
+                LegalEntityName = _legalEntityName,
+                LegalEntityOrganisationType = _legalEntityOrganisationType
             };
         }
 

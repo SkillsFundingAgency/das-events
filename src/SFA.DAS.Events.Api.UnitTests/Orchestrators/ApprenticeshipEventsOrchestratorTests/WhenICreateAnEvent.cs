@@ -60,7 +60,10 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.ApprenticeshipEventsOrchest
                    command.TrainingId == request.TrainingId &&
                    command.TrainingStartDate == request.TrainingStartDate &&
                    command.TrainingTotalCost == request.TrainingTotalCost &&
-                   command.TrainingType.ToString() == request.TrainingType.ToString();
+                   command.TrainingType.ToString() == request.TrainingType.ToString() &&
+                   command.LegalEntityId == request.LegalEntityId &&
+                   command.LegalEntityName == request.LegalEntityName &&
+                   command.LegalEntityOrganisationType == request.LegalEntityOrganisationType;
         }
     }
 }
