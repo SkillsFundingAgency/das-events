@@ -46,7 +46,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
         {
             var offset = pageSize*(pageNumber - 1);
 
-            // query by ID or by date range
+            // query by ID or by date range, order appropriately
             if (fromEventId > 0)
             {
                 return await WithConnection(async c =>
@@ -54,7 +54,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
                     var parameters = new DynamicParameters();
                     parameters.Add("@fromEventId", fromEventId);
 
-                    var results = await c.QueryAsync<T>($"SELECT * FROM [dbo].[{TableName}] WHERE Id >=  @fromEventId ORDER BY CreatedOn OFFSET {offset} ROWS FETCH NEXT {pageSize} ROWS ONLY;", parameters);
+                    var results = await c.QueryAsync<T>($"SELECT * FROM [dbo].[{TableName}] WHERE Id >=  @fromEventId ORDER BY Id OFFSET {offset} ROWS FETCH NEXT {pageSize} ROWS ONLY;", parameters);
 
                     return results;
                 });
