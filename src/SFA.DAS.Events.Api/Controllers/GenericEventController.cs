@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using SFA.DAS.Events.Api.Extensions;
 using SFA.DAS.Events.Api.Orchestrators;
-using SFA.DAS.Events.Domain.Entities;
+using SFA.DAS.Events.Api.Types;
 
 
 namespace SFA.DAS.Events.Api.Controllers

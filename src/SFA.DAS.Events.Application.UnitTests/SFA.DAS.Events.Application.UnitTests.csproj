@@ -73,6 +73,9 @@
     <Compile Include="Builders\GetAgreementEventsRequestBuilder.cs" />
     <Compile Include="Builders\GetAccountEventsRequestBuilder.cs" />
     <Compile Include="Builders\GetEventRequestBuilder.cs" />
+    <Compile Include="Commands\CreateGenericEventTests\CreateGenericEventTestBase.cs" />
+    <Compile Include="Commands\CreateGenericEventTests\WhenICreateAGenericEvent.cs" />
+    <Compile Include="Commands\CreateGenericEventTests\WhenIValidateTheCommand.cs" />
     <Compile Include="Commands\CreateApprenticeshipEventTests\CreateApprenticeshipEventTestBase.cs" />
     <Compile Include="Commands\CreateApprenticeshipEventTests\WhenICreateAnApprenticeshipEvent.cs" />
     <Compile Include="Commands\CreateApprenticeshipEventTests\WhenIValidateTheCommand.cs" />
