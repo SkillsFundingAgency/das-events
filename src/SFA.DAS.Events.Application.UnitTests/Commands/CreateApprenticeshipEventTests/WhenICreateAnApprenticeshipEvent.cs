@@ -50,7 +50,10 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
                    e.TrainingId == command.TrainingId &&
                    e.TrainingStartDate == command.TrainingStartDate &&
                    e.TrainingTotalCost == command.TrainingTotalCost &&
-                   e.TrainingType == command.TrainingType;
+                   e.TrainingType == command.TrainingType &&
+                   e.LegalEntityId == command.LegalEntityId &&
+                   e.LegalEntityName == command.LegalEntityName &&
+                   e.LegalEntityOrganisationType == command.LegalEntityOrganisationType;
         }
     }
 }

@@ -14,7 +14,10 @@
 	[TrainingId] VARCHAR(20) NOT NULL, 
 	[TrainingStartDate] DATETIME NOT NULL, 
 	[TrainingEndDate]DATETIME NOT NULL, 
-	[TrainingTotalCost] DECIMAL(18,2) NOT NULL
+	[TrainingTotalCost] DECIMAL(18,2) NOT NULL, 
+    [LegalEntityId] NVARCHAR(50) NOT NULL DEFAULT '', 
+    [LegalEntityName] NVARCHAR(100) NOT NULL DEFAULT '', 
+    [LegalEntityOrganisationType] NVARCHAR(20) NOT NULL DEFAULT ''
 )
 
 GO

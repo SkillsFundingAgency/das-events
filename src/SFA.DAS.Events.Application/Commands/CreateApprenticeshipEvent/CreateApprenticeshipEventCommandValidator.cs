@@ -17,6 +17,9 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
             RuleFor(model => model.TrainingEndDate).NotEmpty();
             RuleFor(start => start.TrainingStartDate).LessThanOrEqualTo(end => end.TrainingEndDate);
             RuleFor(model => model.TrainingTotalCost).GreaterThanOrEqualTo(0);
+            RuleFor(model => model.LegalEntityId).NotEmpty();
+            RuleFor(model => model.LegalEntityName).NotEmpty();
+            RuleFor(model => model.LegalEntityOrganisationType).NotEmpty();
         }
     }
 }

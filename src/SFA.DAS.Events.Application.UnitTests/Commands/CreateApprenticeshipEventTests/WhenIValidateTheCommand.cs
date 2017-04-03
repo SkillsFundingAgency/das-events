@@ -72,5 +72,29 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
 
             Assert.ThrowsAsync<ValidationException>(() => Handler.Handle(command));
         }
+
+        [Test]
+        public async Task AndLegalEntityIdIsNotProvidedThenValidationFails()
+        {
+            var command = new CreateApprenticeshipEventCommandBuilder().WithLegalEntityId(null).Build();
+
+            Assert.ThrowsAsync<ValidationException>(() => Handler.Handle(command));
+        }
+
+        [Test]
+        public async Task AndLegalEntityNameIsNotProvidedThenValidationFails()
+        {
+            var command = new CreateApprenticeshipEventCommandBuilder().WithLegalEntityName(null).Build();
+
+            Assert.ThrowsAsync<ValidationException>(() => Handler.Handle(command));
+        }
+
+        [Test]
+        public async Task AndLegalEntityOrganisationTypeIsNotProvidedThenValidationFails()
+        {
+            var command = new CreateApprenticeshipEventCommandBuilder().WithLegalEntityOrganisationType(null).Build();
+
+            Assert.ThrowsAsync<ValidationException>(() => Handler.Handle(command));
+        }
     }
 }
