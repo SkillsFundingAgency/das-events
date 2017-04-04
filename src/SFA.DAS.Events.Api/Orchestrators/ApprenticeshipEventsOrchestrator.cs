@@ -49,7 +49,10 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     TrainingStartDate = request.TrainingStartDate,
                     TrainingEndDate = request.TrainingEndDate,
                     TrainingTotalCost = request.TrainingTotalCost,
-                    PaymentOrder = request.PaymentOrder
+                    PaymentOrder = request.PaymentOrder,
+                    LegalEntityId = request.LegalEntityId,
+                    LegalEntityName = request.LegalEntityName,
+                    LegalEntityOrganisationType = request.LegalEntityOrganisationType
                 });
             }
             catch (ValidationException ex)
@@ -123,7 +126,10 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     TrainingStartDate = x.TrainingStartDate,
                     TrainingEndDate = x.TrainingEndDate,
                     TrainingTotalCost = x.TrainingTotalCost,
-                    PaymentOrder = x.PaymentOrder
+                    PaymentOrder = x.PaymentOrder,
+                    LegalEntityId = x.LegalEntityId,
+                    LegalEntityName = x.LegalEntityName,
+                    LegalEntityOrganisationType = x.LegalEntityOrganisationType
                 });
             }
             catch (ValidationException ex)
@@ -154,7 +160,10 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 TrainingEndDate = a.TrainingEndDate,
                 TrainingId = a.TrainingId,
                 TrainingType = (Domain.Entities.TrainingTypes)a.TrainingType,
-                TrainingTotalCost = a.TrainingTotalCost
+                TrainingTotalCost = a.TrainingTotalCost,
+                LegalEntityId = a.LegalEntityId,
+                LegalEntityName = a.LegalEntityName,
+                LegalEntityOrganisationType = a.LegalEntityOrganisationType
             };
         }
     }

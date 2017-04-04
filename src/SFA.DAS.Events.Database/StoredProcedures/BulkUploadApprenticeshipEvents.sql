@@ -22,7 +22,10 @@ AS
 				TrainingId, 
 				TrainingStartDate, 
 				TrainingEndDate, 
-				TrainingTotalCost)
+				TrainingTotalCost,
+				LegalEntityId, 
+				LegalEntityName, 
+				LegalEntityOrganisationType)
 			SELECT a.*
 			FROM @apprenticeshipEvents a
 			
