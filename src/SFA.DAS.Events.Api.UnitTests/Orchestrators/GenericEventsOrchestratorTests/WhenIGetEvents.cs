@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentAssertions;
 using MediatR;
 using Moq;
 using NUnit.Framework;
@@ -26,7 +27,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.GenericEventsOrchestratorTe
             _eventsLogger = new Mock<IEventsLogger>();
             _orchestrator = new GenericEventOrchestrator(_mediator.Object);
 
-            _events = new List<GenericEvent>();
+            _events = new List<GenericEvent> { new GenericEvent { CreatedOn = DateTime.Now.AddDays(-1), Id = 123, Type = "EventType", Payload = "ld;kjfdlkjfnfdjgfdvg" } };
 
             _mediator.Setup(x => x.SendAsync(It.IsAny<GetGenericEventsSinceEventRequest>()))
                 .ReturnsAsync(() => new GetGenericEventsSinceEventResponse
@@ -39,10 +40,12 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.GenericEventsOrchestratorTe
         public async Task ThenIShouldGetAllEvents()
         {
             //Act
-            await _orchestrator.GetEventsSinceEvent(new [] {"Test"}, 0, 100, 1);
+            var response = await _orchestrator.GetEventsSinceEvent(new [] {"Test"}, 0, 100, 1);
 
             //Assert
             _mediator.Verify(x => x.SendAsync(It.IsAny<GetGenericEventsSinceEventRequest>()), Times.Once);
+
+            response.ShouldAllBeEquivalentTo(_events);
         }
 
         [Test]
@@ -52,11 +55,12 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.GenericEventsOrchestratorTe
             var eventTypes = new[] {"EventOne", "EventTwo"};
 
             //Act
-            await _orchestrator.GetEventsSinceEvent(eventTypes, 0, 100, 1);
+            var response = await _orchestrator.GetEventsSinceEvent(eventTypes, 0, 100, 1);
 
             //Assert
-            _mediator.Verify(x => x.SendAsync(It.Is<GetGenericEventsSinceEventRequest>(
-                y => y.EventTypes.SequenceEqual(eventTypes))), Times.Once);
+            _mediator.Verify(x => x.SendAsync(It.Is<GetGenericEventsSinceEventRequest>(y => y.EventTypes.SequenceEqual(eventTypes))), Times.Once);
+
+            response.ShouldAllBeEquivalentTo(_events);
         }
     }
 }

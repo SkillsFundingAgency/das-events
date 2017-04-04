@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using SFA.DAS.Events.Api.Types;
 using SFA.DAS.Events.Application.Commands.CreateGenericEvent;
 using SFA.DAS.Events.Application.Queries.GetGenericEventsByDateRange;
 using SFA.DAS.Events.Application.Queries.GetGenericEventsSinceEvent;
-using SFA.DAS.Events.Domain.Entities;
 
 namespace SFA.DAS.Events.Api.Orchestrators
 {
@@ -23,7 +23,6 @@ namespace SFA.DAS.Events.Api.Orchestrators
         {
             await _mediator.SendAsync(new CreateGenericEventCommand
             {
-                Event = @event.Event,
                 Type = @event.Type,
                 Payload = @event.Payload
             });
@@ -40,7 +39,7 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 PageSize = pageSize
             });
 
-            return response?.Data.ToList();
+            return response?.Data.Select(MapFrom).ToList();
         }
 
         public async Task<ICollection<GenericEvent>> GetEventsSinceEvent(IEnumerable<string> eventTypes, long fromEventId, int pageSize, int pageNumber)
@@ -53,7 +52,18 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 PageSize = pageSize
             });
 
-            return response?.Data.ToList();
+            return response?.Data.Select(MapFrom).ToList();
+        }
+
+        private GenericEvent MapFrom(Domain.Entities.GenericEvent @event)
+        {
+            return new GenericEvent
+            {
+                Id = @event.Id,
+                CreatedOn = @event.CreatedOn,
+                Payload = @event.Payload,
+                Type = @event.Type
+            };
         }
     }
 }

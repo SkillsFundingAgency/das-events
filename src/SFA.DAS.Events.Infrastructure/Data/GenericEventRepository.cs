@@ -20,7 +20,6 @@ namespace SFA.DAS.Events.Infrastructure.Data
         {
             var parameters = new DynamicParameters();
 
-            parameters.Add("@event", @event.Event);
             parameters.Add("@eventType", @event.Type);
             parameters.Add("@eventPayload", @event.Payload);
 
