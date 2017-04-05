@@ -24,3 +24,9 @@ BEGIN
 
 	DELETE FROM dbo.AccountEvents
 END
+
+IF EXISTS(select 1 from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'GenericEvents' and COLUMN_NAME = 'Event')
+BEGIN 
+	alter table dbo.GenericEvents drop column [Event]
+END
+GO

@@ -33,7 +33,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AccountEventsOrchestratorTe
 
             var response = await Orchestrator.GetEvents(fromDateTime.ToString("yyyyMMddHHmmss"), toDateTime.ToString("yyyyMMddHHmmss"), pageSize, pageNumber, fromEventId);
 
-            response.ShouldAllBeEquivalentTo(expectedEvents);
+            response.ShouldAllBeEquivalentTo(expectedEvents, opts => opts.ExcludingMissingMembers());
         }
 
         [Test]

@@ -1,7 +1,6 @@
 ﻿CREATE TABLE [dbo].[GenericEvents]
 (
 	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY, 
-	[Event] VARCHAR(50) NOT NULL, 
 	[Type] VARCHAR(255) NOT NULL,
 	[Payload] TEXT NOT NULL,
     [CreatedOn] DATETIME NOT NULL, 

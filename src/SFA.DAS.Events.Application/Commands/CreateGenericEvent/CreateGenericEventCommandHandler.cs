@@ -25,13 +25,12 @@ namespace SFA.DAS.Events.Application.Commands.CreateGenericEvent
 
         protected override async Task HandleCore(CreateGenericEventCommand command)
         {
-            _logger.Info($"Creating Generic Event of type {command.Type} and event {command.Event}");
+            _logger.Info($"Creating Generic Event of type {command.Type}");
 
             _validator.ValidateAndThrow(command);
 
             var genericEvent = new GenericEvent
             {
-                Event = command.Event,
                 Type = command.Type,
                 Payload = command.Payload
             };
