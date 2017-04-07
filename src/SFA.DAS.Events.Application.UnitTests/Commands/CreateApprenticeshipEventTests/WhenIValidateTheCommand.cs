@@ -26,14 +26,6 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         }
 
         [Test]
-        public async Task AndProviderIdIsNotProvidedThenValidationFails()
-        {
-            var command = new CreateApprenticeshipEventCommandBuilder().WithProviderId(null).Build();
-
-            Assert.ThrowsAsync<ValidationException>(() => Handler.Handle(command));
-        }
-
-        [Test]
         public async Task AndLearnerIdIsNotProvidedThenValidationFails()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().WithLearnerId(null).Build();
@@ -50,25 +42,9 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         }
 
         [Test]
-        public async Task AndTrainingIdIsNotProvidedThenValidationFails()
-        {
-            var command = new CreateApprenticeshipEventCommandBuilder().WithTrainingId(null).Build();
-
-            Assert.ThrowsAsync<ValidationException>(() => Handler.Handle(command));
-        }
-
-        [Test]
         public async Task AndTrainingStartDateIsAfterTheEndDateThenValidationFails()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().WithTrainingStartDate(DateTime.Now.AddDays(-1)).WithTrainingEndDate(DateTime.Now.AddDays(-2)).Build();
-
-            Assert.ThrowsAsync<ValidationException>(() => Handler.Handle(command));
-        }
-
-        [Test]
-        public async Task AndTrainingTotalCostIsNotProvidedThenValidationFails()
-        {
-            var command = new CreateApprenticeshipEventCommandBuilder().WithTrainingTotalCost(-1).Build();
 
             Assert.ThrowsAsync<ValidationException>(() => Handler.Handle(command));
         }
