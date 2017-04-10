@@ -25,7 +25,9 @@ AS
 				TrainingTotalCost,
 				LegalEntityId, 
 				LegalEntityName, 
-				LegalEntityOrganisationType)
+				LegalEntityOrganisationType,
+				EffectiveFrom,
+				EffectiveTo)
 			SELECT a.*
 			FROM @apprenticeshipEvents a
 			
