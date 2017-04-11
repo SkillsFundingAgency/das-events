@@ -52,7 +52,9 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     PaymentOrder = request.PaymentOrder,
                     LegalEntityId = request.LegalEntityId,
                     LegalEntityName = request.LegalEntityName,
-                    LegalEntityOrganisationType = request.LegalEntityOrganisationType
+                    LegalEntityOrganisationType = request.LegalEntityOrganisationType,
+                    EffectiveFrom = request.EffectiveFrom,
+                    EffectiveTo = request.EffectiveTo
                 });
             }
             catch (ValidationException ex)
@@ -129,7 +131,9 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     PaymentOrder = x.PaymentOrder,
                     LegalEntityId = x.LegalEntityId,
                     LegalEntityName = x.LegalEntityName,
-                    LegalEntityOrganisationType = x.LegalEntityOrganisationType
+                    LegalEntityOrganisationType = x.LegalEntityOrganisationType,
+                    EffectiveFrom = x.EffectiveFrom,
+                    EffectiveTo = x.EffectiveTo
                 });
             }
             catch (ValidationException ex)
@@ -163,7 +167,9 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 TrainingTotalCost = a.TrainingTotalCost,
                 LegalEntityId = a.LegalEntityId,
                 LegalEntityName = a.LegalEntityName,
-                LegalEntityOrganisationType = a.LegalEntityOrganisationType
+                LegalEntityOrganisationType = a.LegalEntityOrganisationType,
+                EffectiveFrom = a.EffectiveFrom,
+                EffectiveTo = a.EffectiveTo
             };
         }
     }

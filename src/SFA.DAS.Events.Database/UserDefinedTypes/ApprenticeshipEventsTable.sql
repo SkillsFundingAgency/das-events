@@ -16,5 +16,7 @@
 	[TrainingTotalCost] DECIMAL(18,2) NOT NULL,
 	[LegalEntityId] NVARCHAR(50) NOT NULL, 
     [LegalEntityName] NVARCHAR(100) NOT NULL, 
-    [LegalEntityOrganisationType] NVARCHAR(20) NOT NULL
+    [LegalEntityOrganisationType] NVARCHAR(20) NOT NULL,
+	[EffectiveFrom] DATETIME NULL,
+	[EffectiveTo] DATETIME NULL
 )

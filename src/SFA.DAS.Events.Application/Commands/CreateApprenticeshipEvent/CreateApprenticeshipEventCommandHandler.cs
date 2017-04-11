@@ -54,7 +54,9 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
                     PaymentOrder = command.PaymentOrder,
                     LegalEntityId = command.LegalEntityId,
                     LegalEntityOrganisationType = command.LegalEntityOrganisationType,
-                    LegalEntityName = command.LegalEntityName
+                    LegalEntityName = command.LegalEntityName,
+                    EffectiveFrom = command.EffectiveFrom,
+                    EffectiveTo = command.EffectiveTo
                 };
 
                 await _apprenticeshipEventRepository.Create(newApprenticeshipEvent);

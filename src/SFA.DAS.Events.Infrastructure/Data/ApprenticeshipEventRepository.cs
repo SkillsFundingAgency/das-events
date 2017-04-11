@@ -25,8 +25,8 @@ namespace SFA.DAS.Events.Infrastructure.Data
         public async Task Create(ApprenticeshipEvent @event)
         {
             await WithConnection(async c =>
-                await c.ExecuteAsync($"INSERT INTO [dbo].[{TableName}](Event, CreatedOn, ApprenticeshipId, PaymentStatus, AgreementStatus, ProviderId, LearnerId, EmployerAccountId, TrainingType, TrainingId, TrainingStartDate, TrainingEndDate, TrainingTotalCost, PaymentOrder, LegalEntityId, LegalEntityName, LegalEntityOrganisationType) " +
-                                     $"VALUES (@event, @createdOn, @apprenticeshipId, @paymentStatus, @agreementStatus, @providerId, @learnerId, @employerAccountId, @trainingType, @trainingId, @trainingStartDate, @trainingEndDate, @trainingTotalCost, @paymentOrder, @legalEntityId, @legalEntityName, @legalEntityOrganisationType);", @event));
+                await c.ExecuteAsync($"INSERT INTO [dbo].[{TableName}](Event, CreatedOn, ApprenticeshipId, PaymentStatus, AgreementStatus, ProviderId, LearnerId, EmployerAccountId, TrainingType, TrainingId, TrainingStartDate, TrainingEndDate, TrainingTotalCost, PaymentOrder, LegalEntityId, LegalEntityName, LegalEntityOrganisationType, EffectiveFrom, EffectiveTo) " +
+                                     $"VALUES (@event, @createdOn, @apprenticeshipId, @paymentStatus, @agreementStatus, @providerId, @learnerId, @employerAccountId, @trainingType, @trainingId, @trainingStartDate, @trainingEndDate, @trainingTotalCost, @paymentOrder, @legalEntityId, @legalEntityName, @legalEntityOrganisationType, @effectiveFrom, @effectiveTo);", @event));
         }
 
         public async Task BulkUploadApprenticeshipEvents(IList<ApprenticeshipEvent> apprenticeshipEvents)
@@ -82,6 +82,8 @@ namespace SFA.DAS.Events.Infrastructure.Data
             apprenticeshipEventsTable.Columns.Add("LegalEntityId", typeof(string));
             apprenticeshipEventsTable.Columns.Add("LegalEntityName", typeof(string));
             apprenticeshipEventsTable.Columns.Add("LegalEntityOrganisationType", typeof(string));
+            apprenticeshipEventsTable.Columns.Add("EffectiveFrom", typeof(DateTime));
+            apprenticeshipEventsTable.Columns.Add("EffectiveTo", typeof(DateTime));
             return apprenticeshipEventsTable;
         }
 
@@ -91,7 +93,8 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
             return apprenticeshipEventsTable.Rows.Add(a.Event, a.CreatedOn, a.ApprenticeshipId, a.PaymentOrder, a.PaymentStatus,
                 a.AgreementStatus, a.ProviderId, a.LearnerId, a.EmployerAccountId, a.TrainingType, a.TrainingId, a.TrainingStartDate,
-                a.TrainingEndDate, a.TrainingTotalCost, a.LegalEntityId, a.LegalEntityName, a.LegalEntityOrganisationType);
+                a.TrainingEndDate, a.TrainingTotalCost, a.LegalEntityId, a.LegalEntityName, a.LegalEntityOrganisationType,
+                a.EffectiveFrom, a.EffectiveTo);
         }
     }
 }
