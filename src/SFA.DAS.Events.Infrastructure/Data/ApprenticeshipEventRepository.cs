@@ -91,7 +91,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
             return apprenticeshipEventsTable.Rows.Add(a.Event, a.CreatedOn, a.ApprenticeshipId, a.PaymentOrder, a.PaymentStatus,
                 a.AgreementStatus, a.ProviderId, a.LearnerId, a.EmployerAccountId, a.TrainingType, a.TrainingId, a.TrainingStartDate,
-                a.TrainingEndDate, a.TrainingTotalCost, a.LegalEntityId, a.LegalEntityName, a.LegalEntityOrganisationType);
+                a.TrainingEndDate, a.TrainingTotalCost, string.Empty, string.Empty, string.Empty);
         }
     }
 }
