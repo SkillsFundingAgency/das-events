@@ -50,7 +50,6 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         }
 
         [Test]
-        [Ignore("Validation removed to allow events to be deployed independantly of commitments")]
         public async Task AndLegalEntityIdIsNotProvidedThenValidationFails()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().WithLegalEntityId(null).Build();
@@ -59,7 +58,6 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         }
 
         [Test]
-        [Ignore("Validation removed to allow events to be deployed independantly of commitments")]
         public async Task AndLegalEntityNameIsNotProvidedThenValidationFails()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().WithLegalEntityName(null).Build();
@@ -68,7 +66,6 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         }
 
         [Test]
-        [Ignore("Validation removed to allow events to be deployed independantly of commitments")]
         public async Task AndLegalEntityOrganisationTypeIsNotProvidedThenValidationFails()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().WithLegalEntityOrganisationType(null).Build();
