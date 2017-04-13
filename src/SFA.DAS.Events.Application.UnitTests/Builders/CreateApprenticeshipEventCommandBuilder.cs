@@ -22,6 +22,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
         private string _legalEntityId = "LEID";
         private string _legalEntityName = "legal entity name";
         private string _legalEntityOrganisationType = "le type";
+        private DateTime? _dateOfBirth = DateTime.Now.AddYears(-18);
 
         internal CreateApprenticeshipEventCommand Build()
         {
@@ -42,7 +43,8 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
                 TrainingType = _trainingTypes,
                 LegalEntityId = _legalEntityId,
                 LegalEntityName = _legalEntityName,
-                LegalEntityOrganisationType = _legalEntityOrganisationType
+                LegalEntityOrganisationType = _legalEntityOrganisationType,
+                DateOfBirth = _dateOfBirth
             };
         }
 

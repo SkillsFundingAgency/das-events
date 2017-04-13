@@ -27,7 +27,8 @@ AS
 				LegalEntityName, 
 				LegalEntityOrganisationType,
 				EffectiveFrom,
-				EffectiveTo)
+				EffectiveTo,
+				DateOfBirth)
 			SELECT a.*
 			FROM @apprenticeshipEvents a
 			
