@@ -54,7 +54,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     LegalEntityName = request.LegalEntityName,
                     LegalEntityOrganisationType = request.LegalEntityOrganisationType,
                     EffectiveFrom = request.EffectiveFrom,
-                    EffectiveTo = request.EffectiveTo
+                    EffectiveTo = request.EffectiveTo,
+                    DateOfBirth = request.DateOfBirth
                 });
             }
             catch (ValidationException ex)
@@ -133,7 +134,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     LegalEntityName = x.LegalEntityName,
                     LegalEntityOrganisationType = x.LegalEntityOrganisationType,
                     EffectiveFrom = x.EffectiveFrom,
-                    EffectiveTo = x.EffectiveTo
+                    EffectiveTo = x.EffectiveTo,
+                    DateOfBirth = x.DateOfBirth
                 });
             }
             catch (ValidationException ex)
@@ -169,7 +171,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 LegalEntityName = a.LegalEntityName,
                 LegalEntityOrganisationType = a.LegalEntityOrganisationType,
                 EffectiveFrom = a.EffectiveFrom,
-                EffectiveTo = a.EffectiveTo
+                EffectiveTo = a.EffectiveTo,
+                DateOfBirth = a.DateOfBirth
             };
         }
     }

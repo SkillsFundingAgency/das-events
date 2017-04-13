@@ -13,14 +13,15 @@ namespace SFA.DAS.Events.Domain.Entities
         public string EmployerAccountId { get; set; }
         public TrainingTypes TrainingType { get; set; }
         public string TrainingId { get; set; }
-        public DateTime TrainingStartDate { get; set; }
-        public DateTime TrainingEndDate { get; set; }
-        public decimal TrainingTotalCost { get; set; }
+        public DateTime? TrainingStartDate { get; set; }
+        public DateTime? TrainingEndDate { get; set; }
+        public decimal? TrainingTotalCost { get; set; }
         public int PaymentOrder { get; set; }
         public string LegalEntityId { get; set; }
         public string LegalEntityName { get; set; }
         public string LegalEntityOrganisationType { get; set; }
         public DateTime? EffectiveFrom { get; set; }
         public DateTime? EffectiveTo { get; set; }
+        public DateTime? DateOfBirth { get; set; }
     }
 }
