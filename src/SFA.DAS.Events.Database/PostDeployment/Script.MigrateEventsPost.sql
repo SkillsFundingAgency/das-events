@@ -33,3 +33,7 @@ BEGIN
 
 	DROP TABLE dbo.AgreementEvents_Temp
 END
+
+UPDATE dbo.ApprenticeshipEvents
+	SET EffectiveFrom = DATEFROMPARTS(DATEPART(year, TrainingStartDate), DATEPART(month, TrainingStartDate), 1)
+WHERE EffectiveFrom IS NULL AND [Event] = 'APPRENTICESHIP-AGREEMENT-UPDATED' AND AgreementStatus = 3
