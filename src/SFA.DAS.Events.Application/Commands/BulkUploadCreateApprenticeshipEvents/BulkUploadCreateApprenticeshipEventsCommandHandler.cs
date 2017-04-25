@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
@@ -31,9 +32,13 @@ namespace SFA.DAS.Events.Application.Commands.BulkUploadCreateApprenticeshipEven
 
         protected override async Task HandleCore(BulkUploadCreateApprenticeshipEventsCommand command)
         {
+            var sw = Stopwatch.StartNew();
             Validate(command);
+            _logger.Trace($"Validating events took {sw.ElapsedMilliseconds}");
 
+            sw = Stopwatch.StartNew();
             SetCreatedDate(command.ApprenticeshipEvents);
+            _logger.Trace($"Setting created date took {sw.ElapsedMilliseconds}");
 
             await _apprenticeshipEventRepository.BulkUploadApprenticeshipEvents(command.ApprenticeshipEvents);
         }

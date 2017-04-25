@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Dapper;
 using SFA.DAS.Events.Domain.Entities;
@@ -33,8 +34,11 @@ namespace SFA.DAS.Events.Infrastructure.Data
         {
             _logger.Debug($"Bulk uploading {apprenticeshipEvents.Count} apprenticeship events");
 
+            var sw = Stopwatch.StartNew();
             var table = BuildApprenticeshipEventsDataTable(apprenticeshipEvents);
+            _logger.Trace($"Building events data table took {sw.ElapsedMilliseconds}");
 
+            sw = Stopwatch.StartNew();
             var insertedApprenticeships = await WithConnection(x =>
             {
                 return x.ExecuteAsync(
@@ -42,6 +46,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
                     sql: "[dbo].[BulkUploadApprenticeshipEvents]",
                     param: new { @apprenticeshipEvents = table.AsTableValuedParameter("dbo.ApprenticeshipEventsTable") });
             });
+            _logger.Trace($"Inserting events in to database took {sw.ElapsedMilliseconds}");
         }
 
         public async Task<IEnumerable<ApprenticeshipEvent>> GetByRange(DateTime fromDate, DateTime toDate, int pageSize, int pageNumber, long fromEventId)
