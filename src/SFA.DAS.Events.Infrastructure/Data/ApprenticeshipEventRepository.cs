@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Dapper;
@@ -39,12 +40,34 @@ namespace SFA.DAS.Events.Infrastructure.Data
             _logger.Trace($"Building events data table took {sw.ElapsedMilliseconds}");
 
             sw = Stopwatch.StartNew();
-            var insertedApprenticeships = await WithConnection(x =>
+            await WithConnection(async x =>
             {
-                return x.ExecuteAsync(
-                    commandType: CommandType.StoredProcedure,
-                    sql: "[dbo].[BulkUploadApprenticeshipEvents]",
-                    param: new { @apprenticeshipEvents = table.AsTableValuedParameter("dbo.ApprenticeshipEventsTable") });
+                using (var bulkCopy = new SqlBulkCopy(x))
+                {
+                    bulkCopy.DestinationTableName = "[dbo].[ApprenticeshipEvents]";
+                    bulkCopy.ColumnMappings.Add("Event", "Event");
+                    bulkCopy.ColumnMappings.Add("CreatedOn", "CreatedOn");
+                    bulkCopy.ColumnMappings.Add("ApprenticeshipId", "ApprenticeshipId");
+                    bulkCopy.ColumnMappings.Add("PaymentOrder", "PaymentOrder");
+                    bulkCopy.ColumnMappings.Add("PaymentStatus", "PaymentStatus");
+                    bulkCopy.ColumnMappings.Add("AgreementStatus", "AgreementStatus");
+                    bulkCopy.ColumnMappings.Add("ProviderId", "ProviderId");
+                    bulkCopy.ColumnMappings.Add("LearnerId", "LearnerId");
+                    bulkCopy.ColumnMappings.Add("EmployerAccountId", "EmployerAccountId");
+                    bulkCopy.ColumnMappings.Add("TrainingType", "TrainingType");
+                    bulkCopy.ColumnMappings.Add("TrainingId", "TrainingId");
+                    bulkCopy.ColumnMappings.Add("TrainingStartDate", "TrainingStartDate");
+                    bulkCopy.ColumnMappings.Add("TrainingEndDate", "TrainingEndDate");
+                    bulkCopy.ColumnMappings.Add("TrainingTotalCost", "TrainingTotalCost");
+                    bulkCopy.ColumnMappings.Add("LegalEntityId", "LegalEntityId");
+                    bulkCopy.ColumnMappings.Add("LegalEntityName", "LegalEntityName");
+                    bulkCopy.ColumnMappings.Add("LegalEntityOrganisationType", "LegalEntityOrganisationType");
+                    bulkCopy.ColumnMappings.Add("EffectiveFrom", "EffectiveFrom");
+                    bulkCopy.ColumnMappings.Add("EffectiveTo", "EffectiveTo");
+                    bulkCopy.ColumnMappings.Add("DateOfBirth", "DateOfBirth");
+                    await bulkCopy.WriteToServerAsync(table);
+                    return 0;
+                }
             });
             _logger.Trace($"Inserting events in to database took {sw.ElapsedMilliseconds}");
         }

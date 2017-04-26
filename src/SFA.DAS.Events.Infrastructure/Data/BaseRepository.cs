@@ -18,7 +18,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
             _connectionString = databaseConnectionString;
         }
 
-        protected async Task<T> WithConnection<T>(Func<IDbConnection, Task<T>> getData)
+        protected async Task<T> WithConnection<T>(Func<SqlConnection, Task<T>> getData)
         {
             try
             {
