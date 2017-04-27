@@ -11,17 +11,15 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         protected CreateApprenticeshipEventCommandHandler Handler;
         protected Mock<IApprenticeshipEventRepository> Repository;
 
-        protected CreateApprenticeshipEventCommandValidator Validator;
         protected Mock<IEventsLogger> EventsLogger;
 
         [SetUp]
         public void Arrange()
         {
             Repository = new Mock<IApprenticeshipEventRepository>();
-            Validator = new CreateApprenticeshipEventCommandValidator();
             EventsLogger = new Mock<IEventsLogger>();
 
-            Handler = new CreateApprenticeshipEventCommandHandler(Repository.Object, Validator, EventsLogger.Object);
+            Handler = new CreateApprenticeshipEventCommandHandler(Repository.Object, EventsLogger.Object);
         }
     }
 }

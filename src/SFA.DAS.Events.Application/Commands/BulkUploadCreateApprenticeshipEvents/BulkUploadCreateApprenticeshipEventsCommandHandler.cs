@@ -14,29 +14,21 @@ namespace SFA.DAS.Events.Application.Commands.BulkUploadCreateApprenticeshipEven
     {
         private readonly IApprenticeshipEventRepository _apprenticeshipEventRepository;
         private readonly IEventsLogger _logger;
-        private readonly AbstractValidator<BulkUploadCreateApprenticeshipEventsCommand> _validator;
-
-        public BulkUploadCreateApprenticeshipEventsCommandHandler(IApprenticeshipEventRepository apprenticeshipEventRepository, IEventsLogger logger, AbstractValidator<BulkUploadCreateApprenticeshipEventsCommand> validator)
+        
+        public BulkUploadCreateApprenticeshipEventsCommandHandler(IApprenticeshipEventRepository apprenticeshipEventRepository, IEventsLogger logger)
         {
             if (apprenticeshipEventRepository == null)
                 throw new ArgumentNullException(nameof(apprenticeshipEventRepository));
             if (logger == null)
                 throw new ArgumentNullException(nameof(logger));
-            if (validator == null)
-                throw new ArgumentNullException(nameof(validator));
-
+            
             _apprenticeshipEventRepository = apprenticeshipEventRepository;
             _logger = logger;
-            _validator = validator;
         }
 
         protected override async Task HandleCore(BulkUploadCreateApprenticeshipEventsCommand command)
         {
             var sw = Stopwatch.StartNew();
-            Validate(command);
-            _logger.Trace($"Validating events took {sw.ElapsedMilliseconds}");
-
-            sw = Stopwatch.StartNew();
             SetCreatedDate(command.ApprenticeshipEvents);
             _logger.Trace($"Setting created date took {sw.ElapsedMilliseconds}");
 
@@ -49,11 +41,6 @@ namespace SFA.DAS.Events.Application.Commands.BulkUploadCreateApprenticeshipEven
             {
                 @event.CreatedOn = DateTime.UtcNow;
             }
-        }
-
-        private void Validate(BulkUploadCreateApprenticeshipEventsCommand command)
-        {
-            _validator.ValidateAndThrow(command);
         }
     }
 }
