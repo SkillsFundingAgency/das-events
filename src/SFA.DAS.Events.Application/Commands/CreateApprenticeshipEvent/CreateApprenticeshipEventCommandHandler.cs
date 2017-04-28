@@ -12,27 +12,21 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
     {
         private readonly IEventsLogger _logger;
         private readonly IApprenticeshipEventRepository _apprenticeshipEventRepository;
-        private readonly AbstractValidator<CreateApprenticeshipEventCommand> _validator;
-
-        public CreateApprenticeshipEventCommandHandler(IApprenticeshipEventRepository apprenticeshipEventRepository, AbstractValidator<CreateApprenticeshipEventCommand> validator, IEventsLogger logger)
+        
+        public CreateApprenticeshipEventCommandHandler(IApprenticeshipEventRepository apprenticeshipEventRepository, IEventsLogger logger)
         {
             if (apprenticeshipEventRepository == null)
                 throw new ArgumentNullException(nameof(apprenticeshipEventRepository));
-            if (validator == null)
-                throw new ArgumentNullException(nameof(validator));
             if (logger == null)
                 throw new ArgumentNullException(nameof(logger));
 
             _apprenticeshipEventRepository = apprenticeshipEventRepository;
-            _validator = validator;
             _logger = logger;
         }
 
         protected override async Task HandleCore(CreateApprenticeshipEventCommand command)
         {
             _logger.Info($"Received message {command.Event}", accountId: command.EmployerAccountId, providerId: command.ProviderId, @event: command.Event);
-
-            Validate(command);
 
             try
             {
@@ -69,11 +63,6 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
                 _logger.Error(ex, $"Error processing message {command.Event} - {ex.Message}", accountId: command.EmployerAccountId, providerId: command.ProviderId, @event: command.Event);
                 throw;
             }
-        }
-
-        private void Validate(CreateApprenticeshipEventCommand command)
-        {
-            _validator.ValidateAndThrow(command);
         }
     }
 }

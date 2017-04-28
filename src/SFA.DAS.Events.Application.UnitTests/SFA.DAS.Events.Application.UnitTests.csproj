@@ -78,7 +78,6 @@
     <Compile Include="Commands\CreateGenericEventTests\WhenIValidateTheCommand.cs" />
     <Compile Include="Commands\CreateApprenticeshipEventTests\CreateApprenticeshipEventTestBase.cs" />
     <Compile Include="Commands\CreateApprenticeshipEventTests\WhenICreateAnApprenticeshipEvent.cs" />
-    <Compile Include="Commands\CreateApprenticeshipEventTests\WhenIValidateTheCommand.cs" />
     <Compile Include="Commands\CreateAgreementEventTests\CreateAgreementEventTestBase.cs" />
     <Compile Include="Commands\CreateAgreementEventTests\WhenICreateAnAgreementEvent.cs" />
     <Compile Include="Commands\CreateAgreementEventTests\WhenIValidateTheCommand.cs" />

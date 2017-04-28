@@ -65,11 +65,9 @@
     <Compile Include="Commands\CreateAccountEvent\CreateAccountEventCommandValidator.cs" />
     <Compile Include="Commands\BulkUploadCreateApprenticeshipEvents\BulkUploadCreateApprenticeshipEventsCommand.cs" />
     <Compile Include="Commands\BulkUploadCreateApprenticeshipEvents\BulkUploadCreateApprenticeshipEventsCommandHandler.cs" />
-    <Compile Include="Commands\BulkUploadCreateApprenticeshipEvents\BulkUploadCreateApprenticeshipEventsCommandValidator.cs" />
     <Compile Include="Commands\CreateAgreementEvent\CreateAgreementEventCommand.cs" />
     <Compile Include="Commands\CreateAgreementEvent\CreateAgreementEventCommandHandler.cs" />
     <Compile Include="Commands\CreateAgreementEvent\CreateAgreementEventCommandValidator.cs" />
-    <Compile Include="Commands\CreateApprenticeshipEvent\CreateApprenticeshipEventCommandValidator.cs" />
     <Compile Include="Commands\CreateApprenticeshipEvent\CreateApprenticeshipEventCommand.cs" />
     <Compile Include="Commands\CreateApprenticeshipEvent\CreateApprenticeshipEventCommandHandler.cs" />
     <Compile Include="Commands\CreateGenericEvent\CreateGenericEventCommandHandler.cs" />
@@ -98,9 +96,10 @@
     <Compile Include="Queries\GetApprenticeshipEvents\GetApprenticeshipEventsRequestValidator.cs" />
     <Compile Include="Queries\GetApprenticeshipEvents\GetApprenticeshipEventsResponse.cs" />
     <Compile Include="Queries\QueryResponse.cs" />
-    <Compile Include="Validation\ApprenticeshipEventValidator.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Validation\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

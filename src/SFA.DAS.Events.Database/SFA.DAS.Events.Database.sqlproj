@@ -69,8 +69,6 @@
     <Build Include="Tables\ApprenticeshipEvents.sql" />
     <Build Include="Tables\AgreementEvents.sql" />
     <Build Include="Tables\AccountEvents.sql" />
-    <Build Include="UserDefinedTypes\ApprenticeshipEventsTable.sql" />
-    <Build Include="StoredProcedures\BulkUploadApprenticeshipEvents.sql" />
     <PreDeploy Include="PreDeployment\Script.MigrateEventsPre.sql" />
     <Build Include="Tables\GenericEvents.sql" />
     <Build Include="Types\EventType.sql" />
