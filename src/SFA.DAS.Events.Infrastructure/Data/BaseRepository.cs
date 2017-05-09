@@ -37,7 +37,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
                 if (ex.Number == -2) // SQL Server error number for connection timeout
                     throw new Exception($"{GetType().FullName}.WithConnection() experienced a SQL timeout", ex);
 
-                throw new Exception($"{GetType().FullName}.WithConnection() experienced a SQL exception (not a timeout)", ex);
+                throw new Exception($"{GetType().FullName}.WithConnection() experienced a SQL exception (error code {ex.Number})", ex);
             }
             catch (Exception ex)
             {
