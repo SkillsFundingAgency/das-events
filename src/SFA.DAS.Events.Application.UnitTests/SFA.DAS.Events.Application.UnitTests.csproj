@@ -94,6 +94,7 @@
     <Compile Include="Queries\GetAccountEventsTests\GetAccountEventsTestBase.cs" />
     <Compile Include="Queries\GetAccountEventsTests\WhenIGetAccountEvents.cs" />
     <Compile Include="Queries\GetAccountEventsTests\WhenIValidateTheRequest.cs" />
+    <Compile Include="Queries\GetGenericEventsTests\WhenIGetGenericEventsByResourceUri.cs" />
     <Compile Include="Queries\GetGenericEventsTests\WhenIGetGenericEventsByResourceId.cs" />
     <Compile Include="Queries\GetGenericEventsTests\WhenIGetGenericEventsByDateRange.cs" />
   </ItemGroup>
