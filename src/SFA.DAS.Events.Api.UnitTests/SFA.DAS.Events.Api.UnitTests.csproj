@@ -83,6 +83,7 @@
     <Compile Include="Orchestrators\AccountEventsOrchestratorTests\AccountEventsOrchestratorTestBase.cs" />
     <Compile Include="Orchestrators\AccountEventsOrchestratorTests\WhenIGetEvents.cs" />
     <Compile Include="Orchestrators\AccountEventsOrchestratorTests\WhenICreateAnEvent.cs" />
+    <Compile Include="Orchestrators\GenericEventsOrchestratorTests\WhenIGetEventsByResourceUri.cs" />
     <Compile Include="Orchestrators\GenericEventsOrchestratorTests\WhenIGetEventsByResourceId.cs" />
     <Compile Include="Orchestrators\GenericEventsOrchestratorTests\WhenIGetEventsFromAnId.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

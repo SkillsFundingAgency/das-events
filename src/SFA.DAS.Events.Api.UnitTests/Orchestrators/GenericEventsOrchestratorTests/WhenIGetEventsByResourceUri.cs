@@ -7,11 +7,12 @@ using Moq;
 using NUnit.Framework;
 using SFA.DAS.Events.Api.Orchestrators;
 using SFA.DAS.Events.Application.Queries.GetGenericEventsByResourceId;
+using SFA.DAS.Events.Application.Queries.GetGenericEventsByResourceUri;
 using SFA.DAS.Events.Domain.Entities;
 
 namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.GenericEventsOrchestratorTests
 {
-    public class WhenIGetEventsByResourceId
+    public class WhenIGetEventsByResourceUri
     {
         private GenericEventOrchestrator _orchestrator;
         private Mock<IMediator> _mediator;
@@ -25,8 +26,8 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.GenericEventsOrchestratorTe
 
             _events = new List<GenericEvent> { new GenericEvent { CreatedOn = DateTime.Now.AddDays(-1), Id = 123, Type = "EventType", Payload = "ld;kjfdlkjfnfdjgfdvg" } };
 
-            _mediator.Setup(x => x.SendAsync(It.IsAny<GetGenericEventsByResourceIdRequest>()))
-                .ReturnsAsync(() => new GetGenericEventsByResourceIdResponse
+            _mediator.Setup(x => x.SendAsync(It.IsAny<GetGenericEventsByResourceUriRequest>()))
+                .ReturnsAsync(() => new GetGenericEventsByResourceUriResponse
                 {
                     Data = _events
                 });
@@ -36,23 +37,22 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.GenericEventsOrchestratorTe
         public async Task ThenIShouldGetAllEvents()
         {
             //Arrange
-            var resourceType = "Type";
-            var resourceId = "ID";
+            var resourceUri = "URI";
             var fromDate = DateTime.Now.AddDays(-1);
             var toDate = DateTime.Now.AddDays(1);
             var pageNumber = 3;
             var pageSize = 50;
 
             //Act
-            var response = await _orchestrator.GetEventsByResourceId(resourceType, resourceId, fromDate, toDate, pageSize, pageNumber);
+            var response = await _orchestrator.GetEventsByResourceUri(resourceUri, fromDate, toDate, pageSize, pageNumber);
 
             //Assert
             _mediator.Verify(
                 x =>
                     x.SendAsync(
-                        It.Is<GetGenericEventsByResourceIdRequest>(
+                        It.Is<GetGenericEventsByResourceUriRequest>(
                             r =>
-                                r.ResourceType == resourceType && r.ResourceId == resourceId && r.FromDateTime == fromDate && r.ToDateTime == toDate && r.PageNumber == pageNumber &&
+                                r.ResourceUri == resourceUri && r.FromDateTime == fromDate && r.ToDateTime == toDate && r.PageNumber == pageNumber &&
                                 r.PageSize == pageSize)), Times.Once);
 
             response.ShouldAllBeEquivalentTo(_events);
