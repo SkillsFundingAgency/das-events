@@ -32,7 +32,10 @@ namespace SFA.DAS.Events.Application.Commands.CreateGenericEvent
             var genericEvent = new GenericEvent
             {
                 Type = command.Type,
-                Payload = command.Payload
+                Payload = command.Payload,
+                ResourceUri = command.ResourceUri,
+                ResourceId = command.ResourceId,
+                ResourceType = command.ResourceType
             };
 
             try

@@ -1,1 +1,10 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="2abf5109-b3f1-4a74-9e66-38d05d8daf4b" ChangeDateTime="06/02/2017 08:53:56">
+    <Property Name="ElementName" Value="[dbo].[GenericEvents].[ResourceUti]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GenericEvents]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ResourceUri" />
+  </Operation>
+</Operations>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using SFA.DAS.Events.Api.Extensions;
@@ -58,6 +59,24 @@ namespace SFA.DAS.Events.Api.Controllers
             var types = new[] { eventType };
 
             return Ok(await _orchestrator.GetEventsSinceEvent(types, fromEventId, pageSize, pageNumber));
+        }
+
+        [Route("getByResourceId")]
+        [Authorize(Roles = "ReadGenericEvent")]
+        public async Task<IHttpActionResult> GetByResourceId(string resourceType, string resourceId, string fromDate = null, string toDate = null, int pageSize = 1000, int pageNumber = 1)
+        {
+            var convertedFromDate = string.IsNullOrEmpty(fromDate) ? (DateTime?)null : fromDate.ParseDateTime();
+            var convertedToDate = string.IsNullOrEmpty(toDate) ? (DateTime?)null : toDate.ParseDateTime();
+            return Ok(await _orchestrator.GetEventsByResourceId(resourceType, resourceId, convertedFromDate, convertedToDate, pageSize, pageNumber));
+        }
+
+        [Route("getByResourceUri")]
+        [Authorize(Roles = "ReadGenericEvent")]
+        public async Task<IHttpActionResult> GetByResourceUri(string resourceUri, string fromDate = null, string toDate = null, int pageSize = 1000, int pageNumber = 1)
+        {
+            var convertedFromDate = string.IsNullOrEmpty(fromDate) ? (DateTime?)null : fromDate.ParseDateTime();
+            var convertedToDate = string.IsNullOrEmpty(toDate) ? (DateTime?)null : toDate.ParseDateTime();
+            return Ok(await _orchestrator.GetEventsByResourceUri(resourceUri, convertedFromDate, convertedToDate, pageSize, pageNumber));
         }
     }
 }

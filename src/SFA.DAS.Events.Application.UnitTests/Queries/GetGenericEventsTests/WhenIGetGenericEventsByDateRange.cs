@@ -10,7 +10,7 @@ using SFA.DAS.Events.Domain.Repositories;
 
 namespace SFA.DAS.Events.Application.UnitTests.Queries.GetGenericEventsTests
 {
-    class WhenIGetGenericEvents
+    class WhenIGetGenericEventsByDateRange
     {
         private Mock<IGenericEventRepository> _repository;
         private GetGenericEventsByDateRangeQueryHandler _handler;
