@@ -26,7 +26,10 @@ namespace SFA.DAS.Events.Api.Orchestrators
             await _mediator.SendAsync(new CreateGenericEventCommand
             {
                 Type = @event.Type,
-                Payload = @event.Payload
+                Payload = @event.Payload,
+                ResourceUri = @event.ResourceUri,
+                ResourceId = @event.ResourceId,
+                ResourceType = @event.ResourceType
             });
         }
 
