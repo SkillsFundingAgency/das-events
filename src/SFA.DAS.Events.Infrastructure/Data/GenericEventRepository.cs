@@ -69,5 +69,42 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
             return result;
         }
+
+        public async Task<IEnumerable<GenericEvent>> GetByResourceId(string resourceType, string resourceId, int pageSize, int pageNumber)
+        {
+            var offset = pageSize * (pageNumber - 1);
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@resourceType", resourceType, DbType.String);
+            parameters.Add("@resourceId", resourceId, DbType.String);
+            parameters.Add("@pageSize", pageSize, DbType.Int32);
+            parameters.Add("@offset", offset, DbType.Int32);
+
+            var result = await WithConnection(async c =>
+                await c.QueryAsync<GenericEvent>(
+                    sql: "[dbo].[GetGenericEventsByResourceId]",
+                    param: parameters,
+                    commandType: CommandType.StoredProcedure));
+
+            return result;
+        }
+
+        public async Task<IEnumerable<GenericEvent>> GetByResourceUri(string resourceUri, int pageSize, int pageNumber)
+        {
+            var offset = pageSize * (pageNumber - 1);
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@resourceUri", resourceUri, DbType.String);
+            parameters.Add("@pageSize", pageSize, DbType.Int32);
+            parameters.Add("@offset", offset, DbType.Int32);
+
+            var result = await WithConnection(async c =>
+                await c.QueryAsync<GenericEvent>(
+                    sql: "[dbo].[GetGenericEventsByResourceUri]",
+                    param: parameters,
+                    commandType: CommandType.StoredProcedure));
+
+            return result;
+        }
     }
 }

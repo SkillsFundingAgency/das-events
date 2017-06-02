@@ -21,5 +21,16 @@ namespace SFA.DAS.Events.Domain.Repositories
             long fromEventId,
             int pageSize, 
             int pageNumber);
+
+        Task<IEnumerable<GenericEvent>> GetByResourceId(
+            string resourceType,
+            string resourceId,
+            int pageSize,
+            int pageNumber);
+
+        Task<IEnumerable<GenericEvent>> GetByResourceUri(
+            string resourceUri,
+            int pageSize,
+            int pageNumber);
     }
 }
