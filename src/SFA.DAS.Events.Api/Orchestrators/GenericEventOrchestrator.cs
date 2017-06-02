@@ -6,6 +6,7 @@ using MediatR;
 using SFA.DAS.Events.Api.Types;
 using SFA.DAS.Events.Application.Commands.CreateGenericEvent;
 using SFA.DAS.Events.Application.Queries.GetGenericEventsByDateRange;
+using SFA.DAS.Events.Application.Queries.GetGenericEventsByResourceId;
 using SFA.DAS.Events.Application.Queries.GetGenericEventsSinceEvent;
 
 namespace SFA.DAS.Events.Api.Orchestrators
@@ -64,6 +65,21 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 Payload = @event.Payload,
                 Type = @event.Type
             };
+        }
+
+        public async Task<ICollection<GenericEvent>> GetEventsByResourceId(string resourceType, string resourceId, DateTime? fromDate, DateTime? toDate, int pageSize, int pageNumber)
+        {
+            var response = await _mediator.SendAsync(new GetGenericEventsByResourceIdRequest
+            {
+                ResourceType = resourceType,
+                ResourceId = resourceId,
+                FromDateTime = fromDate,
+                ToDateTime = toDate,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            });
+
+            return response?.Data.Select(MapFrom).ToList();
         }
     }
 }

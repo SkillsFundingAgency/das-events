@@ -13,7 +13,7 @@ using SFA.DAS.Events.Domain.Logging;
 
 namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.GenericEventsOrchestratorTests
 {
-    public class WhenIGetEvents
+    public class WhenIGetEventsFromAnId
     {
         private GenericEventOrchestrator _orchestrator;
         private Mock<IEventsLogger> _eventsLogger;
