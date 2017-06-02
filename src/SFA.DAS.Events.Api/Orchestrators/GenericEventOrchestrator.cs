@@ -67,7 +67,10 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 Id = @event.Id,
                 CreatedOn = @event.CreatedOn,
                 Payload = @event.Payload,
-                Type = @event.Type
+                Type = @event.Type,
+                ResourceUri = @event.ResourceUri,
+                ResourceType = @event.ResourceType,
+                ResourceId = @event.ResourceId
             };
         }
 
