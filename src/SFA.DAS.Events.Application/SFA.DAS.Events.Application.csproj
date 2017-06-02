@@ -74,6 +74,9 @@
     <Compile Include="Commands\CreateGenericEvent\CreateGenericEventCommand.cs" />
     <Compile Include="Commands\CreateGenericEvent\CreateGenericEventCommandValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\GetGenericEventsByResourceId\GetGenericEventsByResourceIdQueryHandler.cs" />
+    <Compile Include="Queries\GetGenericEventsByResourceId\GetGenericEventsByResourceIdRequest.cs" />
+    <Compile Include="Queries\GetGenericEventsByResourceId\GetGenericEventsByResourceIdResponse.cs" />
     <Compile Include="Queries\GetGenericEventsSinceEvent\GetGenericEventsSinceEventQueryHandler.cs" />
     <Compile Include="Queries\GetGenericEventsSinceEvent\GetGenericEventsSinceEventRequest.cs" />
     <Compile Include="Queries\GetGenericEventsSinceEvent\GetGenericEventsSinceEventRequestValidator.cs" />
