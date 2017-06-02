@@ -13,12 +13,18 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateGenericEventTests
         [Test]
         public async Task ThenTheEventIsCreated()
         {
-            var command = new CreateGenericEventCommand { Payload = "dfljihldfkmgfdg", Type = "EventType" };
+            var command = new CreateGenericEventCommand { Payload = "dfljihldfkmgfdg", Type = "EventType", ResourceUri = "Uri", ResourceId = "Id", ResourceType = "Type" };
 
             await Handler.Handle(command);
 
             EventsLogger.Verify(x => x.Info($"Creating Generic Event of type {command.Type}", null, null, null), Times.Once);
-            Repository.Verify(x => x.Create(It.Is<GenericEvent>(e => e.Payload == command.Payload && e.Type == command.Type)));
+            Repository.Verify(
+                x =>
+                    x.Create(
+                        It.Is<GenericEvent>(
+                            e =>
+                                e.Payload == command.Payload && e.Type == command.Type && e.ResourceUri == command.ResourceUri && e.ResourceId == command.ResourceId &&
+                                e.ResourceType == command.ResourceType)));
         }
 
         [Test]

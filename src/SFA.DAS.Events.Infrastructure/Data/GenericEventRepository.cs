@@ -22,7 +22,9 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
             parameters.Add("@eventType", @event.Type);
             parameters.Add("@eventPayload", @event.Payload);
-
+            parameters.Add("@resourceType", @event.ResourceType);
+            parameters.Add("@resourceId", @event.ResourceId);
+            parameters.Add("@resourceUri", @event.ResourceUri);
 
             await WithConnection(async c =>
                 await c.ExecuteAsync(
