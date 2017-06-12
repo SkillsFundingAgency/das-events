@@ -23,7 +23,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAgreementEventTest
         }
 
         [Test]
-        public async Task AndTheEventCreationFailsThenTheExceptionIsLogged()
+        public void AndTheEventCreationFailsThenTheExceptionIsLogged()
         {
             var command = new CreateAgreementEventCommand { ContractType = "MainProvider", Event = "Some Event", ProviderId = "ZZZ999" };
             var expectedException = new Exception("Test");

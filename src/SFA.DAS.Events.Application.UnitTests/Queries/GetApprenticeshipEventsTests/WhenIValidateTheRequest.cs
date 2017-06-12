@@ -10,7 +10,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetApprenticeshipEventsTe
     public class WhenIValidateTheRequest : GetApprenticeshipEventsTestBase
     {
         [Test]
-        public async Task AndTheFromDateIsAfterTheToDateThenValidationFails()
+        public void AndTheFromDateIsAfterTheToDateThenValidationFails()
         {
             var request = new GetApprenticeshipEventsRequestBuilder().WithFromDate(DateTime.Now.AddDays(-1)).WithToDate(DateTime.Now.AddDays(-2)).Build();
 
@@ -18,7 +18,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetApprenticeshipEventsTe
         }
 
         [Test]
-        public async Task AndThePageNumberIsLessThanOneThenValidationFails()
+        public void AndThePageNumberIsLessThanOneThenValidationFails()
         {
             var request = new GetApprenticeshipEventsRequestBuilder().WithPageNumber(0).Build();
 
@@ -26,7 +26,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetApprenticeshipEventsTe
         }
 
         [Test]
-        public async Task AndThePageSizeIsLessThanOneThenValidationFails()
+        public void AndThePageSizeIsLessThanOneThenValidationFails()
         {
             var request = new GetApprenticeshipEventsRequestBuilder().WithPageSize(0).Build();
 
@@ -34,7 +34,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetApprenticeshipEventsTe
         }
 
         [Test]
-        public async Task AndThePageNumberIsGreaterThanTenThousandThenValidationFails()
+        public void AndThePageNumberIsGreaterThanTenThousandThenValidationFails()
         {
             var request = new GetApprenticeshipEventsRequestBuilder().WithPageSize(10001).Build();
 
@@ -42,7 +42,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetApprenticeshipEventsTe
         }
 
         [Test]
-        public async Task AndTheEventIdIsLessThanZeroThenValidationFails()
+        public void AndTheEventIdIsLessThanZeroThenValidationFails()
         {
             var request = new GetApprenticeshipEventsRequestBuilder().WithEventId(-1).Build();
 

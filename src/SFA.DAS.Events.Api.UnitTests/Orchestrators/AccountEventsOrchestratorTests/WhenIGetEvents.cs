@@ -37,7 +37,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AccountEventsOrchestratorTe
         }
 
         [Test]
-        public async Task AndValidationFails()
+        public void AndValidationFails()
         {
             var validationException = new ValidationException("Exception");
             Mediator.Setup(m => m.SendAsync(It.IsAny<GetAccountEventsRequest>())).ThrowsAsync(validationException);
@@ -48,7 +48,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.AccountEventsOrchestratorTe
         }
 
         [Test]
-        public async Task AndAnExceptionOccursThenTheErrorIsLogged()
+        public void AndAnExceptionOccursThenTheErrorIsLogged()
         {
             var exception = new Exception("Exception");
             Mediator.Setup(m => m.SendAsync(It.IsAny<GetAccountEventsRequest>())).ThrowsAsync(exception);

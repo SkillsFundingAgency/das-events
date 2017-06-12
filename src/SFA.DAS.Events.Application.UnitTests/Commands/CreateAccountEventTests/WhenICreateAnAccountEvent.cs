@@ -23,7 +23,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAccountEventTests
         }
 
         [Test]
-        public async Task AndTheEventCreationFailsThenTheExceptionIsLogged()
+        public void AndTheEventCreationFailsThenTheExceptionIsLogged()
         {
             var command = new CreateAccountEventCommand { ResourceUri = "/api/accounts/ABC123", Event = "Some Event" };
             var expectedException = new Exception("Test");

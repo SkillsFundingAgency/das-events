@@ -4,14 +4,15 @@ using System.Threading.Tasks;
 using Dapper;
 using SFA.DAS.Events.Domain.Entities;
 using SFA.DAS.Events.Domain.Repositories;
+using SFA.DAS.NLog.Logger;
 
 namespace SFA.DAS.Events.Infrastructure.Data
 {
-    public class AccountEventRepository : BaseRepository, IAccountEventRepository
+    public class AccountEventRepository : EventsBaseRepository, IAccountEventRepository
     {
         protected override string TableName => "AccountEvents";
 
-        public AccountEventRepository(string databaseConnectionString) : base(databaseConnectionString) {}
+        public AccountEventRepository(string databaseConnectionString, ILog logger) : base(databaseConnectionString, logger) {}
 
         public async Task Create(AccountEvent @event)
         {
