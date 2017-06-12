@@ -37,3 +37,31 @@ END
 UPDATE dbo.ApprenticeshipEvents
 	SET EffectiveFrom = DATEFROMPARTS(DATEPART(year, TrainingStartDate), DATEPART(month, TrainingStartDate), 1)
 WHERE EffectiveFrom IS NULL AND [Event] = 'APPRENTICESHIP-AGREEMENT-UPDATED' AND AgreementStatus = 3
+
+BEGIN
+
+	DECLARE @Id BIGINT
+	DECLARE @ResourceUrl NVARCHAR(MAX)
+	DECLARE @UpdatedUrl NVARCHAR(MAX)
+
+	DECLARE Event_Cursor CURSOR FOR
+		SELECT [Id], JSON_VALUE(CAST(Payload AS NVARCHAR(MAX)), '$.ResourceUrl') AS ResourceUrl
+		FROM [dbo].[GenericEvents]
+		WHERE Type = 'AgreementSignedEvent' AND Payload LIKE '%https%'
+
+	OPEN Event_Cursor;
+
+	FETCH NEXT FROM Event_Cursor INTO @Id, @ResourceUrl
+	WHILE @@FETCH_STATUS = 0  
+	BEGIN
+		SET @UpdatedUrl = SUBSTRING(@ResourceUrl, CHARINDEX('/', @ResourceUrl, 9), 4000)
+		UPDATE [dbo].[GenericEvents]
+			SET Payload = REPLACE(CAST(Payload AS NVARCHAR(MAX)), @ResourceUrl, @UpdatedUrl)
+		WHERE Id = @Id
+		FETCH NEXT FROM Event_Cursor INTO @Id, @ResourceUrl
+	END;
+
+	CLOSE Event_Cursor
+	DEALLOCATE Event_Cursor
+
+END
