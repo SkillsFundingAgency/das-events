@@ -9,6 +9,8 @@ namespace SFA.DAS.Events.Infrastructure.Logging
     {
         private readonly ILog _logger;
 
+        public ILog BaseLogger => _logger;
+
         public EventsLogger(ILog logger)
         {
             _logger = logger;

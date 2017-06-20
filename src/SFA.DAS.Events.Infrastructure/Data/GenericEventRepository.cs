@@ -5,14 +5,15 @@ using System.Threading.Tasks;
 using Dapper;
 using SFA.DAS.Events.Domain.Entities;
 using SFA.DAS.Events.Domain.Repositories;
+using SFA.DAS.NLog.Logger;
 
 namespace SFA.DAS.Events.Infrastructure.Data
 {
-    public class GenericEventRepository : BaseRepository, IGenericEventRepository
+    public class GenericEventRepository : EventsBaseRepository, IGenericEventRepository
     {
         protected override string TableName => "GenericEvents";
 
-        public GenericEventRepository(string databaseConnectionString) : base(databaseConnectionString)
+        public GenericEventRepository(string databaseConnectionString, ILog logger) : base(databaseConnectionString, logger)
         {
         }
 

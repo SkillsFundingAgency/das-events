@@ -28,7 +28,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateGenericEventTests
         }
 
         [Test]
-        public async Task AndTheEventCreationFailsThenTheExceptionIsLogged()
+        public void AndTheEventCreationFailsThenTheExceptionIsLogged()
         {
             var command = new CreateGenericEventCommand { Payload = "dfljihldfkmgfdg", Type = "EventType" };
             var expectedException = new Exception("Test");

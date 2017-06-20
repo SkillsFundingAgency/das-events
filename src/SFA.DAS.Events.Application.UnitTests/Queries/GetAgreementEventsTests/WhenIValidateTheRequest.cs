@@ -10,7 +10,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetAgreementEventsTests
     public class WhenIValidateTheRequest : GetAgreementEventsTestBase
     {
         [Test]
-        public async Task AndTheFromDateIsAfterTheToDateThenValidationFails()
+        public void AndTheFromDateIsAfterTheToDateThenValidationFails()
         {
             var request = new GetAgreementEventsRequestBuilder().WithFromDate(DateTime.Now.AddDays(-1)).WithToDate(DateTime.Now.AddDays(-2)).Build();
 
@@ -18,7 +18,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetAgreementEventsTests
         }
 
         [Test]
-        public async Task AndThePageNumberIsLessThanOneThenValidationFails()
+        public void AndThePageNumberIsLessThanOneThenValidationFails()
         {
             var request = new GetAgreementEventsRequestBuilder().WithPageNumber(0).Build();
 
@@ -26,7 +26,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetAgreementEventsTests
         }
 
         [Test]
-        public async Task AndThePageSizeIsLessThanOneThenValidationFails()
+        public void AndThePageSizeIsLessThanOneThenValidationFails()
         {
             var request = new GetAgreementEventsRequestBuilder().WithPageSize(0).Build();
 
@@ -34,7 +34,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetAgreementEventsTests
         }
 
         [Test]
-        public async Task AndThePageNumberIsGreaterThanTenThousandThenValidationFails()
+        public void AndThePageNumberIsGreaterThanTenThousandThenValidationFails()
         {
             var request = new GetAgreementEventsRequestBuilder().WithPageSize(10001).Build();
 
@@ -42,7 +42,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Queries.GetAgreementEventsTests
         }
 
         [Test]
-        public async Task AndTheEventIdIsLessThanZeroThenValidationFails()
+        public void AndTheEventIdIsLessThanZeroThenValidationFails()
         {
             var request = new GetAgreementEventsRequestBuilder().WithEventId(-1).Build();
 

@@ -1,48 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Dapper;
 using SFA.DAS.Events.Domain.Entities;
+using SFA.DAS.Sql.Client;
+using SFA.DAS.NLog.Logger;
 
 namespace SFA.DAS.Events.Infrastructure.Data
 {
-    public abstract class BaseRepository
+    public abstract class EventsBaseRepository : BaseRepository
     {
         private readonly string _connectionString;
         protected abstract string TableName { get; }
 
-        protected BaseRepository(string databaseConnectionString)
+        protected EventsBaseRepository(string databaseConnectionString, ILog logger) : base(databaseConnectionString, logger)
         {
             _connectionString = databaseConnectionString;
-        }
-
-        protected async Task<T> WithConnection<T>(Func<SqlConnection, Task<T>> getData)
-        {
-            try
-            {
-                using (var connection = new SqlConnection(_connectionString))
-                {
-                    await connection.OpenAsync();
-                    return await getData(connection);
-                }
-            }
-            catch (TimeoutException ex)
-            {
-                throw new Exception($"{GetType().FullName}.WithConnection() experienced a timeout", ex);
-            }
-            catch (SqlException ex)
-            {
-                if (ex.Number == -2) // SQL Server error number for connection timeout
-                    throw new Exception($"{GetType().FullName}.WithConnection() experienced a SQL timeout", ex);
-
-                throw new Exception($"{GetType().FullName}.WithConnection() experienced a SQL exception (error code {ex.Number})", ex);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"{GetType().FullName}.WithConnection() experienced an exception (not a SQL Exception)", ex);
-            }
         }
 
         protected async Task<IEnumerable<T>> GetByRange<T>(DateTime fromDate, DateTime toDate, int pageSize, int pageNumber, long fromEventId) where T : BaseEvent

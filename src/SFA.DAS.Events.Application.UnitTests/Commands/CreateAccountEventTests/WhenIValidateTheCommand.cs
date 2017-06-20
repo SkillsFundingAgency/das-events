@@ -9,7 +9,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAccountEventTests
     public class WhenIValidateTheCommand : CreateAccountEventTestBase
     {
         [Test]
-        public async Task AndEventIsNotProvidedThenValidationFails()
+        public void AndEventIsNotProvidedThenValidationFails()
         {
             var command = new CreateAccountEventCommand { ResourceUri = "/api/accounts/ABC" };
 
@@ -17,7 +17,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateAccountEventTests
         }
 
         [Test]
-        public async Task AndResourceUriIsNotProvidedThenValidationFails()
+        public void AndResourceUriIsNotProvidedThenValidationFails()
         {
 
             var command = new CreateAccountEventCommand { Event = "ABC" };
