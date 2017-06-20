@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
@@ -54,7 +55,8 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
                    e.LegalEntityId == command.LegalEntityId &&
                    e.LegalEntityName == command.LegalEntityName &&
                    e.LegalEntityOrganisationType == command.LegalEntityOrganisationType &&
-                   e.DateOfBirth == command.DateOfBirth;
+                   e.DateOfBirth == command.DateOfBirth &&
+                   e.PriceHistory.Count() == command.PriceHistory.Count();
         }
     }
 }

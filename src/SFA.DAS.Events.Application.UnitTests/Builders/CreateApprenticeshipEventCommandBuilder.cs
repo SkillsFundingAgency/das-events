@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 using SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent;
 using SFA.DAS.Events.Domain.Entities;
 
@@ -23,6 +25,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
         private string _legalEntityName = "legal entity name";
         private string _legalEntityOrganisationType = "le type";
         private DateTime? _dateOfBirth = DateTime.Now.AddYears(-18);
+        private IEnumerable<PriceHistory> _priceHistory = new List<PriceHistory> { new PriceHistory() };
 
         internal CreateApprenticeshipEventCommand Build()
         {
@@ -44,7 +47,8 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
                 LegalEntityId = _legalEntityId,
                 LegalEntityName = _legalEntityName,
                 LegalEntityOrganisationType = _legalEntityOrganisationType,
-                DateOfBirth = _dateOfBirth
+                DateOfBirth = _dateOfBirth,
+                PriceHistory = _priceHistory
             };
         }
 

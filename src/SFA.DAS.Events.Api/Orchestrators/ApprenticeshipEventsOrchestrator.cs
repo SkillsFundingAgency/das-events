@@ -56,7 +56,7 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     EffectiveFrom = request.EffectiveFrom,
                     EffectiveTo = request.EffectiveTo,
                     DateOfBirth = request.DateOfBirth,
-                    PriceHistory = request.PriceHistory.Select(ToDomainModel)
+                    PriceHistory = request.PriceHistory?.Select(ToDomainModel)
                 });
             }
             catch (ValidationException ex)
