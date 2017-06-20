@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 using MediatR;
 using SFA.DAS.Events.Domain.Entities;
 
@@ -25,5 +27,6 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
         public DateTime? EffectiveFrom { get; set; }
         public DateTime? EffectiveTo { get; set; }
         public DateTime? DateOfBirth { get; set; }
+        public IEnumerable<PriceHistory> PriceHistory { get; set; }
     }
 }

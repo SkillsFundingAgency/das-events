@@ -45,6 +45,7 @@
     <Compile Include="Entities\AgreementStatus.cs" />
     <Compile Include="Entities\GenericEvent.cs" />
     <Compile Include="Entities\PaymentStatus.cs" />
+    <Compile Include="Entities\PriceHistory.cs" />
     <Compile Include="Entities\TrainingTypes.cs" />
     <Compile Include="Logging\IEventsLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

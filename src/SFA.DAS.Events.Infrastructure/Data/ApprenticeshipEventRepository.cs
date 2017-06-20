@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using SFA.DAS.Events.Domain.Entities;
@@ -26,9 +27,28 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
         public async Task Create(ApprenticeshipEvent @event)
         {
-            await WithConnection(async c =>
-                await c.ExecuteAsync($"INSERT INTO [dbo].[{TableName}](Event, CreatedOn, ApprenticeshipId, PaymentStatus, AgreementStatus, ProviderId, LearnerId, EmployerAccountId, TrainingType, TrainingId, TrainingStartDate, TrainingEndDate, TrainingTotalCost, PaymentOrder, LegalEntityId, LegalEntityName, LegalEntityOrganisationType, EffectiveFrom, EffectiveTo, DateOfBirth) " +
-                                     $"VALUES (@event, @createdOn, @apprenticeshipId, @paymentStatus, @agreementStatus, @providerId, @learnerId, @employerAccountId, @trainingType, @trainingId, @trainingStartDate, @trainingEndDate, @trainingTotalCost, @paymentOrder, @legalEntityId, @legalEntityName, @legalEntityOrganisationType, @effectiveFrom, @effectiveTo, @dateOfBirth);", @event));
+            await WithTransaction(
+                async (c, t) =>
+                    {
+                        var eventId = (await c.QueryAsync<long>(
+                                $"INSERT INTO [dbo].[{TableName}](Event, CreatedOn, ApprenticeshipId, PaymentStatus, AgreementStatus, ProviderId, LearnerId, EmployerAccountId, TrainingType, TrainingId, TrainingStartDate, TrainingEndDate, TrainingTotalCost, PaymentOrder, LegalEntityId, LegalEntityName, LegalEntityOrganisationType, EffectiveFrom, EffectiveTo, DateOfBirth) "
+                                + $"VALUES (@event, @createdOn, @apprenticeshipId, @paymentStatus, @agreementStatus, @providerId, @learnerId, @employerAccountId, @trainingType, @trainingId, @trainingStartDate, @trainingEndDate, @trainingTotalCost, @paymentOrder, @legalEntityId, @legalEntityName, @legalEntityOrganisationType, @effectiveFrom, @effectiveTo, @dateOfBirth);"
+                                + "SELECT CAST(SCOPE_IDENTITY() as int)",
+                                @event, transaction: t)).Single();
+
+                        if (@event.PriceHistory != null && @event.PriceHistory.Any())
+                        {
+                            foreach (var priceHistory in @event.PriceHistory)
+                            {
+                                priceHistory.ApprenticeshipEventsId = eventId;
+                                await c.ExecuteAsync("INSERT INTO [dbo].[PriceHistory](apprenticeshipEventsId, TotalCost, EffectiveFrom, EffectiveTo) "
+                                        + "VALUES (@apprenticeshipEventsId, @totalCost, @effectiveFrom, @effectiveTo);",
+                                        priceHistory, t, commandType: CommandType.Text);
+                            }
+
+                        }
+                    }
+                );
         }
 
         public async Task BulkUploadApprenticeshipEvents(IList<ApprenticeshipEvent> apprenticeshipEvents)
