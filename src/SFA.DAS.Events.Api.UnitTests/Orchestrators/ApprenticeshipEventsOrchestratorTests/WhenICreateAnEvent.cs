@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentValidation;
 using Moq;
@@ -25,7 +26,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.ApprenticeshipEventsOrchest
         [Test]
         public void AndValidationFailsThenTheFailureIsLogged()
         {
-            var request = new ApprenticeshipEvent();
+            var request = new ApprenticeshipEvent { PriceHistory = new List<PriceHistory>() };
             var validationException = new ValidationException("Exception");
             Mediator.Setup(m => m.SendAsync(It.IsAny<CreateApprenticeshipEventCommand>())).ThrowsAsync(validationException);
 
@@ -37,7 +38,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.ApprenticeshipEventsOrchest
         [Test]
         public void AndAnExceptionOccursThenTheErrorIsLogged()
         {
-            var request = new ApprenticeshipEvent();
+            var request = new ApprenticeshipEvent { PriceHistory = new List<PriceHistory>() };
             var exception = new Exception("Exception");
             Mediator.Setup(m => m.SendAsync(It.IsAny<CreateApprenticeshipEventCommand>())).ThrowsAsync(exception);
 

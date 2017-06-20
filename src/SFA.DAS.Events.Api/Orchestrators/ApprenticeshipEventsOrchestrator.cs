@@ -56,7 +56,7 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     EffectiveFrom = request.EffectiveFrom,
                     EffectiveTo = request.EffectiveTo,
                     DateOfBirth = request.DateOfBirth,
-                    PriceHistory = request.PriceHistory?.Select(ToDomainModel)
+                    PriceHistory = request.PriceHistory.Select(ToDomainModel).ToList()
                 });
             }
             catch (ValidationException ex)
@@ -136,7 +136,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     LegalEntityOrganisationType = x.LegalEntityOrganisationType,
                     EffectiveFrom = x.EffectiveFrom,
                     EffectiveTo = x.EffectiveTo,
-                    DateOfBirth = x.DateOfBirth
+                    DateOfBirth = x.DateOfBirth,
+                    PriceHistory = x.PriceHistory.Select(MapPriceHistory)
                 });
             }
             catch (ValidationException ex)
@@ -174,7 +175,7 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 EffectiveFrom = a.EffectiveFrom,
                 EffectiveTo = a.EffectiveTo,
                 DateOfBirth = a.DateOfBirth,
-                PriceHistory = a.PriceHistory.Select(ToDomainModel)
+                PriceHistory = a.PriceHistory.Select(ToDomainModel).ToList()
             };
         }
 
@@ -187,5 +188,15 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 EffectiveTo = apiType.EffectiveTo
             };
         }
+
+        private static PriceHistory MapPriceHistory(Domain.Entities.PriceHistory source)
+        {
+            return new PriceHistory
+            {
+                EffectiveFrom = source.EffectiveFrom,
+                EffectiveTo = source.EffectiveTo,
+                TotalCost = source.TotalCost
+            };
+        }       
     }
 }

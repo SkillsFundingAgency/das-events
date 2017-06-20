@@ -19,8 +19,17 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.ApprenticeshipEventsOrchest
         {
             var expectedEvents = new List<ApprenticeshipEvent>
             {
-                new DomainApprenticeshipEventBuilder().WithCreatedOn(DateTime.Now.AddDays(-2)).WithEvent("Event 1").WithTrainingId("ABC123").Build(),
-                new DomainApprenticeshipEventBuilder().WithCreatedOn(DateTime.Now.AddDays(-1)).WithEvent("Event 2").WithTrainingId("ZZZ123").Build()
+                new DomainApprenticeshipEventBuilder()
+                    .WithCreatedOn(DateTime.Now.AddDays(-2))
+                    .WithEvent("Event 1").WithTrainingId("ABC123")
+                    .WithPriceHistory(new List<PriceHistory>())
+                    .Build(),
+                new DomainApprenticeshipEventBuilder()
+                    .WithCreatedOn(DateTime.Now.AddDays(-1))
+                    .WithEvent("Event 2")
+                    .WithTrainingId("ZZZ123")
+                    .WithPriceHistory(new List<PriceHistory>())
+                    .Build()
             };
 
             var toDateTime = DateTime.Now;

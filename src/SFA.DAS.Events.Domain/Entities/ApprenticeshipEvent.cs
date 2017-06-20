@@ -24,6 +24,6 @@ namespace SFA.DAS.Events.Domain.Entities
         public DateTime? EffectiveFrom { get; set; }
         public DateTime? EffectiveTo { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        public IEnumerable<PriceHistory> PriceHistory { get; set; }
+        public IList<PriceHistory> PriceHistory { get; set; }
     }
 }
