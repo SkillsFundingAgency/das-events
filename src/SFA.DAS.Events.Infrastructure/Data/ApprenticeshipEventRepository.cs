@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,28 +26,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
         public async Task Create(ApprenticeshipEvent @event)
         {
-            await WithTransaction(
-                async (c, t) =>
-                    {
-                        var eventId = (await c.QueryAsync<long>(
-                                $"INSERT INTO [dbo].[{TableName}](Event, CreatedOn, ApprenticeshipId, PaymentStatus, AgreementStatus, ProviderId, LearnerId, EmployerAccountId, TrainingType, TrainingId, TrainingStartDate, TrainingEndDate, TrainingTotalCost, PaymentOrder, LegalEntityId, LegalEntityName, LegalEntityOrganisationType, EffectiveFrom, EffectiveTo, DateOfBirth) "
-                                + $"VALUES (@event, @createdOn, @apprenticeshipId, @paymentStatus, @agreementStatus, @providerId, @learnerId, @employerAccountId, @trainingType, @trainingId, @trainingStartDate, @trainingEndDate, @trainingTotalCost, @paymentOrder, @legalEntityId, @legalEntityName, @legalEntityOrganisationType, @effectiveFrom, @effectiveTo, @dateOfBirth);"
-                                + "SELECT CAST(SCOPE_IDENTITY() as int)",
-                                @event, transaction: t)).Single();
-
-                        if (@event.PriceHistory != null && @event.PriceHistory.Any())
-                        {
-                            foreach (var priceHistory in @event.PriceHistory)
-                            {
-                                priceHistory.ApprenticeshipEventsId = eventId;
-                                await c.ExecuteAsync("INSERT INTO [dbo].[PriceHistory](apprenticeshipEventsId, TotalCost, EffectiveFrom, EffectiveTo) "
-                                        + "VALUES (@apprenticeshipEventsId, @totalCost, @effectiveFrom, @effectiveTo);",
-                                        priceHistory, t, commandType: CommandType.Text);
-                            }
-
-                        }
-                    }
-                );
+            await BulkUploadApprenticeshipEvents(new List<ApprenticeshipEvent> { @event });
         }
 
         public async Task BulkUploadApprenticeshipEvents(IList<ApprenticeshipEvent> apprenticeshipEvents)
@@ -57,44 +35,49 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
             var sw = Stopwatch.StartNew();
             var table = BuildApprenticeshipEventsDataTable(apprenticeshipEvents);
-            _logger.Trace($"Building events data table took {sw.ElapsedMilliseconds}");
+            var priceTable = BuildPriceHistoryDataTable(apprenticeshipEvents);
+
+            _logger.Trace($"Building events and price history data table took {sw.ElapsedMilliseconds}");
 
             sw = Stopwatch.StartNew();
-            await WithConnection(async x =>
-            {
-                using (var bulkCopy = new SqlBulkCopy(x))
+
+            await WithConnection(async con =>
                 {
-                    bulkCopy.DestinationTableName = "[dbo].[ApprenticeshipEvents]";
-                    bulkCopy.ColumnMappings.Add("Event", "Event");
-                    bulkCopy.ColumnMappings.Add("CreatedOn", "CreatedOn");
-                    bulkCopy.ColumnMappings.Add("ApprenticeshipId", "ApprenticeshipId");
-                    bulkCopy.ColumnMappings.Add("PaymentOrder", "PaymentOrder");
-                    bulkCopy.ColumnMappings.Add("PaymentStatus", "PaymentStatus");
-                    bulkCopy.ColumnMappings.Add("AgreementStatus", "AgreementStatus");
-                    bulkCopy.ColumnMappings.Add("ProviderId", "ProviderId");
-                    bulkCopy.ColumnMappings.Add("LearnerId", "LearnerId");
-                    bulkCopy.ColumnMappings.Add("EmployerAccountId", "EmployerAccountId");
-                    bulkCopy.ColumnMappings.Add("TrainingType", "TrainingType");
-                    bulkCopy.ColumnMappings.Add("TrainingId", "TrainingId");
-                    bulkCopy.ColumnMappings.Add("TrainingStartDate", "TrainingStartDate");
-                    bulkCopy.ColumnMappings.Add("TrainingEndDate", "TrainingEndDate");
-                    bulkCopy.ColumnMappings.Add("TrainingTotalCost", "TrainingTotalCost");
-                    bulkCopy.ColumnMappings.Add("LegalEntityId", "LegalEntityId");
-                    bulkCopy.ColumnMappings.Add("LegalEntityName", "LegalEntityName");
-                    bulkCopy.ColumnMappings.Add("LegalEntityOrganisationType", "LegalEntityOrganisationType");
-                    bulkCopy.ColumnMappings.Add("EffectiveFrom", "EffectiveFrom");
-                    bulkCopy.ColumnMappings.Add("EffectiveTo", "EffectiveTo");
-                    bulkCopy.ColumnMappings.Add("DateOfBirth", "DateOfBirth");
-                    await bulkCopy.WriteToServerAsync(table);
-                    return 0;
-                }
-            });
+                    await con.ExecuteAsync(
+                        "[dbo].[CreateApprenticeshipEvents]",
+                        param: new
+                                   {
+                                       @events = table.AsTableValuedParameter("[dbo].[ApprenticeshipEventsType]"),
+                                       @priceHistory = priceTable.AsTableValuedParameter("[dbo].[PriceHistoryType]")
+                                   }, 
+                        commandType: CommandType.StoredProcedure);
+                    return 1L;
+                });
             _logger.Trace($"Inserting events in to database took {sw.ElapsedMilliseconds}");
         }
 
         public async Task<IEnumerable<ApprenticeshipEvent>> GetByRange(DateTime fromDate, DateTime toDate, int pageSize, int pageNumber, long fromEventId)
         {
             return await GetByRange<ApprenticeshipEvent>(fromDate, toDate, pageSize, pageNumber, fromEventId);
+        }
+
+        private DataTable BuildPriceHistoryDataTable(IEnumerable<ApprenticeshipEvent> apprenticeshipEvents)
+        {
+            var table = new DataTable();
+            table.Columns.Add("ApprenticeshipId", typeof(long));
+            table.Columns.Add("TotalCost", typeof(decimal));
+            table.Columns.Add("EffectiveFrom", typeof(DateTime));
+            table.Columns.Add("EffectiveTo", typeof(DateTime));
+
+            foreach (var e in apprenticeshipEvents)
+            {
+                foreach (var ph in e.PriceHistory)
+                {
+                    table.Rows.Add(e.ApprenticeshipId, ph.TotalCost, ph.EffectiveFrom, ph.EffectiveTo);
+                }
+            }
+
+            return table;
         }
 
         private DataTable BuildApprenticeshipEventsDataTable(IEnumerable<ApprenticeshipEvent> apprenticeshipEvents)

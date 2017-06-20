@@ -173,11 +173,12 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 LegalEntityOrganisationType = a.LegalEntityOrganisationType,
                 EffectiveFrom = a.EffectiveFrom,
                 EffectiveTo = a.EffectiveTo,
-                DateOfBirth = a.DateOfBirth
+                DateOfBirth = a.DateOfBirth,
+                PriceHistory = a.PriceHistory.Select(ToDomainModel)
             };
         }
 
-        private Domain.Entities.PriceHistory ToDomainModel(PriceHistory apiType)
+        private static Domain.Entities.PriceHistory ToDomainModel(PriceHistory apiType)
         {
             return new Domain.Entities.PriceHistory
             {
