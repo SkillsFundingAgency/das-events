@@ -94,7 +94,58 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
         public async Task<IEnumerable<ApprenticeshipEvent>> GetByRange(DateTime fromDate, DateTime toDate, int pageSize, int pageNumber, long fromEventId)
         {
-            return await GetByRange<ApprenticeshipEvent>(fromDate, toDate, pageSize, pageNumber, fromEventId);
+            return await WithConnection<IEnumerable<ApprenticeshipEvent>>(async c =>
+            {
+                var offset = pageSize * (pageNumber - 1);
+
+                var parameters = new DynamicParameters();
+                var sql = string.Empty;
+
+                if (fromEventId > 0)
+                {
+                    parameters.Add("@fromEventId", fromEventId);
+
+                    sql =
+                        $"SELECT * FROM [dbo].[ApprenticeshipEvents] a " +
+                        $"INNER JOIN [dbo].[PriceHistory] p on p.ApprenticeshipEventsId = a.Id " +
+                        $"WHERE a.Id >= @fromEventId ORDER BY a.Id " +
+                        $"OFFSET {offset} ROWS FETCH NEXT {pageSize} ROWS ONLY;";
+                }
+                else
+                {
+                    parameters.Add("@fromDate", fromDate);
+                    parameters.Add("@toDate", toDate);
+
+                    sql =
+                        $"SELECT * FROM [dbo].[ApprenticeshipEvents] a " +
+                        $"INNER JOIN [dbo].[PriceHistory] p on p.ApprenticeshipEventsId = a.Id " +
+                        $" WHERE a.CreatedOn >=  @fromDate AND a.CreatedOn < @toDate ORDER BY a.CreatedOn " +
+                        $"OFFSET {offset} ROWS FETCH NEXT {pageSize} ROWS ONLY;";
+                }
+
+
+                var apprenticeships = new Dictionary<long, ApprenticeshipEvent>();
+
+                await c.QueryAsync<ApprenticeshipEvent, PriceHistory, ApprenticeshipEvent>(sql, (apprenticeship, history) =>
+                {
+                    ApprenticeshipEvent existing;
+                    if (!apprenticeships.TryGetValue(apprenticeship.Id, out existing))
+                    {
+                        apprenticeships.Add(apprenticeship.Id, apprenticeship);
+                        existing = apprenticeship;
+                        existing.PriceHistory = new List<PriceHistory>();
+                    }
+                    existing.PriceHistory.Add(history);
+
+                    return existing;
+
+                }, parameters);
+
+                return apprenticeships.Values.ToList();
+
+            });
+
+
         }
 
         private DataTable BuildApprenticeshipEventsDataTable(IEnumerable<ApprenticeshipEvent> apprenticeshipEvents)
