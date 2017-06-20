@@ -66,14 +66,13 @@ namespace SFA.DAS.Events.Api.DependencyResolution
         private void ConfigureLogging()
         {
             For<IRequestContext>().Use(x => new RequestContext(new HttpContextWrapper(HttpContext.Current)));
-
+            For<ILog>().Use(x => new NLogLogger(x.ParentType, null, null)).AlwaysUnique();
             For<IEventsLogger>().Use(x => GetBaseLogger(x)).AlwaysUnique();
         }
 
         private IEventsLogger GetBaseLogger(IContext x)
         {
-            var parentType = x.ParentType;
-            return new EventsLogger(new NLogLogger(parentType, x.GetInstance<IRequestContext>()));
+            return new EventsLogger(x.GetInstance<ILog>());
         }
 
         private EventConfiguration GetConfiguration()
