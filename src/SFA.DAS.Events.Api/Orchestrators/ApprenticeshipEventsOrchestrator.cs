@@ -175,7 +175,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 EffectiveFrom = a.EffectiveFrom,
                 EffectiveTo = a.EffectiveTo,
                 DateOfBirth = a.DateOfBirth,
-                PriceHistory = a.PriceHistory.Select(ToDomainModel).ToList()
+                PriceHistory = a.PriceHistory?.Select(ToDomainModel).ToList() 
+                    ?? new List<Domain.Entities.PriceHistory>()
             };
         }
 
