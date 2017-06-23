@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Dapper;
 using SFA.DAS.Events.Domain.Entities;
+using SFA.DAS.Sql.Client;
+using SFA.DAS.NLog.Logger;
 
 namespace SFA.DAS.Events.Infrastructure.Data
 {
-    public abstract class BaseRepository
+    public abstract class EventsBaseRepository : BaseRepository
     {
         private readonly string _connectionString;
         protected abstract string TableName { get; }
@@ -20,7 +20,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
                 -2, 20, 64, 233, 10053, 10054, 10060, 40143
             };
 
-        protected BaseRepository(string databaseConnectionString)
+        protected EventsBaseRepository(string databaseConnectionString, ILog logger) : base(databaseConnectionString, logger)
         {
             _connectionString = databaseConnectionString;
         }

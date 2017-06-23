@@ -11,12 +11,12 @@ using SFA.DAS.Events.Domain.Repositories;
 
 namespace SFA.DAS.Events.Infrastructure.Data
 {
-    public sealed class ApprenticeshipEventRepository : BaseRepository, IApprenticeshipEventRepository
+    public sealed class ApprenticeshipEventRepository : EventsBaseRepository, IApprenticeshipEventRepository
     {
         protected override string TableName => "ApprenticeshipEvents";
         private readonly IEventsLogger _logger;
 
-        public ApprenticeshipEventRepository(string databaseConnectionString, IEventsLogger logger) : base(databaseConnectionString)
+        public ApprenticeshipEventRepository(string databaseConnectionString, IEventsLogger logger) : base(databaseConnectionString, logger.BaseLogger)
         {
             if (logger == null)
                 throw new ArgumentNullException(nameof(logger));

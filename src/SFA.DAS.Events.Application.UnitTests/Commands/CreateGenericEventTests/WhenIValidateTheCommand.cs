@@ -9,7 +9,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateGenericEventTests
     public class WhenIValidateTheCommand : CreateGenericEventTestBase
     {
         [Test]
-        public async Task AndTypeIsNotProvidedThenValidationFails()
+        public void AndTypeIsNotProvidedThenValidationFails()
         {
             var command = new CreateGenericEventCommand { Payload = "dlfkjgndfgfd" };
 
@@ -17,7 +17,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateGenericEventTests
         }
 
         [Test]
-        public async Task AndPayloadIsNotProvidedThenValidationFails()
+        public void AndPayloadIsNotProvidedThenValidationFails()
         {
 
             var command = new CreateGenericEventCommand { Type = "ABC" };
