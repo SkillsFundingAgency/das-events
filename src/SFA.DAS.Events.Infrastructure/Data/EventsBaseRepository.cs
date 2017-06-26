@@ -12,13 +12,6 @@ namespace SFA.DAS.Events.Infrastructure.Data
     {
         private readonly string _connectionString;
         protected abstract string TableName { get; }
-        private static IList<int> _transientErrorNumbers = new List<int>
-            {
-                // https://docs.microsoft.com/en-us/azure/sql-database/sql-database-develop-error-messages
-                // https://docs.microsoft.com/en-us/azure/sql-database/sql-database-connectivity-issues
-                4060, 40197, 40501, 40613, 49918, 49919, 49920, 11001,
-                -2, 20, 64, 233, 10053, 10054, 10060, 40143
-            };
 
         protected EventsBaseRepository(string databaseConnectionString, ILog logger) : base(databaseConnectionString, logger)
         {
