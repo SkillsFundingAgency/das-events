@@ -257,6 +257,7 @@
     <Compile Include="Controllers\AccountEventsController.cs" />
     <Compile Include="Controllers\AgreementEventsController.cs" />
     <Compile Include="Controllers\ApprenticeshipEventsController.cs" />
+    <Compile Include="Controllers\HealthCheckController.cs" />
     <Compile Include="Controllers\GenericEventController.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
