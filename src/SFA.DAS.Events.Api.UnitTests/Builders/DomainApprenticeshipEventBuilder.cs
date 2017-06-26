@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using NUnit.Framework;
 using SFA.DAS.Events.Domain.Entities;
 
 namespace SFA.DAS.Events.Api.UnitTests.Builders
@@ -24,6 +26,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
         private string _legalEntityName = "legal entity name";
         private string _legalEntityOrganisationType = "le type";
         private DateTime? _dateOfBirth = DateTime.Now.AddYears(-18);
+        private List<PriceHistory> _priceHistory;
 
         internal ApprenticeshipEvent Build()
         {
@@ -47,7 +50,8 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
                 LegalEntityId = _legalEntityId,
                 LegalEntityName = _legalEntityName,
                 LegalEntityOrganisationType = _legalEntityOrganisationType,
-                DateOfBirth = _dateOfBirth
+                DateOfBirth = _dateOfBirth,
+                PriceHistory = _priceHistory
             };
         }
 
@@ -66,6 +70,12 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
         internal DomainApprenticeshipEventBuilder WithTrainingId(string trainingId)
         {
             _trainingId = trainingId;
+            return this;
+        }
+
+        internal DomainApprenticeshipEventBuilder WithPriceHistory(List<PriceHistory> priceHistory)
+        {
+            _priceHistory = priceHistory;
             return this;
         }
     }

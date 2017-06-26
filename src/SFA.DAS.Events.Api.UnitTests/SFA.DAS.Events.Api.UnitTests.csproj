@@ -58,8 +58,8 @@
       <HintPath>..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SFA.DAS.Events.Api.Types, Version=1.25.0.32296, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SFA.DAS.Events.Api.Types.1.25.0.32296\lib\net45\SFA.DAS.Events.Api.Types.dll</HintPath>
+    <Reference Include="SFA.DAS.Events.Api.Types, Version=1.27.0.33614, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SFA.DAS.Events.Api.Types.1.27.0.33614\lib\net45\SFA.DAS.Events.Api.Types.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

@@ -55,7 +55,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     LegalEntityOrganisationType = request.LegalEntityOrganisationType,
                     EffectiveFrom = request.EffectiveFrom,
                     EffectiveTo = request.EffectiveTo,
-                    DateOfBirth = request.DateOfBirth
+                    DateOfBirth = request.DateOfBirth,
+                    PriceHistory = request.PriceHistory?.Select(ToDomainModel).ToList() ?? new List<Domain.Entities.PriceHistory>()
                 });
             }
             catch (ValidationException ex)
@@ -135,7 +136,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     LegalEntityOrganisationType = x.LegalEntityOrganisationType,
                     EffectiveFrom = x.EffectiveFrom,
                     EffectiveTo = x.EffectiveTo,
-                    DateOfBirth = x.DateOfBirth
+                    DateOfBirth = x.DateOfBirth,
+                    PriceHistory = x.PriceHistory.Select(MapPriceHistory)
                 });
             }
             catch (ValidationException ex)
@@ -172,8 +174,30 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 LegalEntityOrganisationType = a.LegalEntityOrganisationType,
                 EffectiveFrom = a.EffectiveFrom,
                 EffectiveTo = a.EffectiveTo,
-                DateOfBirth = a.DateOfBirth
+                DateOfBirth = a.DateOfBirth,
+                PriceHistory = a.PriceHistory?.Select(ToDomainModel).ToList() 
+                    ?? new List<Domain.Entities.PriceHistory>()
             };
         }
+
+        private static Domain.Entities.PriceHistory ToDomainModel(PriceHistory apiType)
+        {
+            return new Domain.Entities.PriceHistory
+            {
+                TotalCost = apiType.TotalCost,
+                EffectiveFrom = apiType.EffectiveFrom,
+                EffectiveTo = apiType.EffectiveTo
+            };
+        }
+
+        private static PriceHistory MapPriceHistory(Domain.Entities.PriceHistory source)
+        {
+            return new PriceHistory
+            {
+                EffectiveFrom = source.EffectiveFrom,
+                EffectiveTo = source.EffectiveTo,
+                TotalCost = source.TotalCost
+            };
+        }       
     }
 }

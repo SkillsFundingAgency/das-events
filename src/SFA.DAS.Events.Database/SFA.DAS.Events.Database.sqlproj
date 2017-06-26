@@ -77,9 +77,13 @@
     <Build Include="StoredProcedures\CreateGenericEvent.sql" />
     <Build Include="StoredProcedures\GetGenericEventsByResourceUri.sql" />
     <Build Include="StoredProcedures\GetGenericEventsByResourceId.sql" />
+    <Build Include="Tables\PriceHistory.sql" />
+    <Build Include="StoredProcedures\CreateApprenticeshipEvents.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database.publish.xml" />
+    <Build Include="Types\ApprenticeshipEventsType.sql" />
+    <Build Include="Types\PriceHistoryType.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeployment\Script.MigrateEventsPost.sql" />
