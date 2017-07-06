@@ -7,7 +7,6 @@ using SFA.DAS.Events.Api.Types;
 using SFA.DAS.Events.Application.Commands.CreateGenericEvent;
 using SFA.DAS.Events.Application.Queries.GetGenericEventsByDateRange;
 using SFA.DAS.Events.Application.Queries.GetGenericEventsByResourceId;
-using SFA.DAS.Events.Application.Queries.GetGenericEventsByResourceUri;
 using SFA.DAS.Events.Application.Queries.GetGenericEventsSinceEvent;
 
 namespace SFA.DAS.Events.Api.Orchestrators
@@ -27,7 +26,6 @@ namespace SFA.DAS.Events.Api.Orchestrators
             {
                 Type = @event.Type,
                 Payload = @event.Payload,
-                ResourceUri = @event.ResourceUri,
                 ResourceId = @event.ResourceId,
                 ResourceType = @event.ResourceType
             });
@@ -68,7 +66,6 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 CreatedOn = @event.CreatedOn,
                 Payload = @event.Payload,
                 Type = @event.Type,
-                ResourceUri = @event.ResourceUri,
                 ResourceType = @event.ResourceType,
                 ResourceId = @event.ResourceId
             };
@@ -80,20 +77,6 @@ namespace SFA.DAS.Events.Api.Orchestrators
             {
                 ResourceType = resourceType,
                 ResourceId = resourceId,
-                FromDateTime = fromDate,
-                ToDateTime = toDate,
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            });
-
-            return response?.Data.Select(MapFrom).ToList();
-        }
-
-        public async Task<ICollection<GenericEvent>> GetEventsByResourceUri(string resourceUri, DateTime? fromDate, DateTime? toDate, int pageSize, int pageNumber)
-        {
-            var response = await _mediator.SendAsync(new GetGenericEventsByResourceUriRequest
-            {
-                ResourceUri = resourceUri,
                 FromDateTime = fromDate,
                 ToDateTime = toDate,
                 PageNumber = pageNumber,

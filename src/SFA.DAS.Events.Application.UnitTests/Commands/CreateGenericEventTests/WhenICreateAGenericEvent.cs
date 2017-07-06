@@ -13,7 +13,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateGenericEventTests
         [Test]
         public async Task ThenTheEventIsCreated()
         {
-            var command = new CreateGenericEventCommand { Payload = "dfljihldfkmgfdg", Type = "EventType", ResourceUri = "Uri", ResourceId = "Id", ResourceType = "Type" };
+            var command = new CreateGenericEventCommand { Payload = "dfljihldfkmgfdg", Type = "EventType", ResourceId = "Id", ResourceType = "Type" };
 
             await Handler.Handle(command);
 
@@ -23,7 +23,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateGenericEventTests
                     x.Create(
                         It.Is<GenericEvent>(
                             e =>
-                                e.Payload == command.Payload && e.Type == command.Type && e.ResourceUri == command.ResourceUri && e.ResourceId == command.ResourceId &&
+                                e.Payload == command.Payload && e.Type == command.Type && e.ResourceId == command.ResourceId &&
                                 e.ResourceType == command.ResourceType)));
         }
 

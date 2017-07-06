@@ -8,6 +8,5 @@ namespace SFA.DAS.Events.Application.Commands.CreateGenericEvent
         public string Payload { get; set; }
         public string ResourceType { get; set; }
         public string ResourceId { get; set; }
-        public string ResourceUri { get; set; }
     }
 }

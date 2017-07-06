@@ -75,7 +75,6 @@
     <Build Include="StoredProcedures\GetGenericEventsSinceEvent.sql" />
     <Build Include="StoredProcedures\GetGenericEventsByDateRange.sql" />
     <Build Include="StoredProcedures\CreateGenericEvent.sql" />
-    <Build Include="StoredProcedures\GetGenericEventsByResourceUri.sql" />
     <Build Include="StoredProcedures\GetGenericEventsByResourceId.sql" />
     <Build Include="Tables\PriceHistory.sql" />
     <Build Include="StoredProcedures\CreateApprenticeshipEvents.sql" />
