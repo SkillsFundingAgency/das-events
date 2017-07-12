@@ -73,7 +73,7 @@ BEGIN
 		(ApprenticeshipEventsId,TotalCost, EffectiveFrom)
 		SELECT Id, TrainingTotalCost, TrainingStartDate FROM [dbo].[ApprenticeshipEvents] 
 		WHERE PaymentStatus in (1, 2, 3, 4) -- 5 (deleted) ?
-		AND Id NOT IN (SELECT ApprenticeshipId FROM [dbo].[PriceHistory])
+		AND Id NOT IN (SELECT ApprenticeshipEventsId FROM [dbo].[PriceHistory]) -- FOR test envs
 		AND TrainingTotalCost IS NOT NULL -- NOT NEEDED UNLESS BAD DATA
 
 END
