@@ -71,7 +71,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
                     sql =
                         $"SELECT * FROM [dbo].[ApprenticeshipEvents] a " +
-                        $"INNER JOIN [dbo].[PriceHistory] p on p.ApprenticeshipEventsId = a.Id " +
+                        $"LEFT JOIN [dbo].[PriceHistory] p on p.ApprenticeshipEventsId = a.Id " +
                         $"WHERE a.Id >= @fromEventId ORDER BY a.Id " +
                         $"OFFSET {offset} ROWS FETCH NEXT {pageSize} ROWS ONLY;";
                 }
@@ -82,7 +82,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
                     sql =
                         $"SELECT * FROM [dbo].[ApprenticeshipEvents] a " +
-                        $"INNER JOIN [dbo].[PriceHistory] p on p.ApprenticeshipEventsId = a.Id " +
+                        $"LEFT JOIN [dbo].[PriceHistory] p on p.ApprenticeshipEventsId = a.Id " +
                         $" WHERE a.CreatedOn >=  @fromDate AND a.CreatedOn < @toDate ORDER BY a.CreatedOn " +
                         $"OFFSET {offset} ROWS FETCH NEXT {pageSize} ROWS ONLY;";
                 }
@@ -99,7 +99,11 @@ namespace SFA.DAS.Events.Infrastructure.Data
                         existing = apprenticeship;
                         existing.PriceHistory = new List<PriceHistory>();
                     }
-                    existing.PriceHistory.Add(history);
+
+                    if (history.ApprenticeshipEventsId != 0)
+                    {
+                        existing.PriceHistory.Add(history);
+                    }
 
                     return existing;
 
