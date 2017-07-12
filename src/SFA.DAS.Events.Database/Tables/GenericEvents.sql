@@ -4,6 +4,7 @@
 	[Type] VARCHAR(255) NOT NULL,
 	[Payload] TEXT NOT NULL,
     [CreatedOn] DATETIME NOT NULL, 
+    [ResourceUri] NVARCHAR(1000) NULL,
     [ResourceType] NVARCHAR(255) NULL, 
     [ResourceId] NVARCHAR(255) NULL, 
 )
