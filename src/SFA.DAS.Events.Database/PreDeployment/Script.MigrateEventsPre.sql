@@ -30,3 +30,9 @@ BEGIN
 	alter table dbo.GenericEvents drop column [Event]
 END
 GO
+
+IF EXISTS(select 1 from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'GenericEvents' and COLUMN_NAME = 'ResourceUri')
+BEGIN 
+	alter table dbo.GenericEvents drop column [ResourceUri]
+END
+GO
