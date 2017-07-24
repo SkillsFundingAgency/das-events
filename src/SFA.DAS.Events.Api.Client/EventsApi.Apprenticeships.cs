@@ -5,7 +5,7 @@ using SFA.DAS.Events.Api.Types;
 
 namespace SFA.DAS.Events.Api.Client
 {
-    public partial class EventsApi :  IEventsApi
+    public partial class EventsApi : IEventsApi
     {
         /// <summary>
         /// Creates a new ApprenticeshipEvent
