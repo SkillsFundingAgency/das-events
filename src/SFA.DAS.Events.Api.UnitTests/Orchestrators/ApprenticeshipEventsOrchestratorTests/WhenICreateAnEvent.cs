@@ -65,7 +65,11 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.ApprenticeshipEventsOrchest
                    command.LegalEntityId == request.LegalEntityId &&
                    command.LegalEntityName == request.LegalEntityName &&
                    command.LegalEntityOrganisationType == request.LegalEntityOrganisationType &&
-                   command.DateOfBirth == request.DateOfBirth;
-        }
+                   command.DateOfBirth == request.DateOfBirth &&
+                   command.TransferSenderId == request.TransferSenderId &&
+                   command.TransferSenderName == request.TransferSenderName &&
+                   command.TransferSenderApproved == request.TransferSenderApproved;
+
     }
+}
 }

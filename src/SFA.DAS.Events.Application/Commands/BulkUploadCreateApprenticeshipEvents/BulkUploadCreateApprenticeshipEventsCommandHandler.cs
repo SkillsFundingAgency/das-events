@@ -14,16 +14,14 @@ namespace SFA.DAS.Events.Application.Commands.BulkUploadCreateApprenticeshipEven
     {
         private readonly IApprenticeshipEventRepository _apprenticeshipEventRepository;
         private readonly IEventsLogger _logger;
-        
-        public BulkUploadCreateApprenticeshipEventsCommandHandler(IApprenticeshipEventRepository apprenticeshipEventRepository, IEventsLogger logger)
-        {
-            if (apprenticeshipEventRepository == null)
-                throw new ArgumentNullException(nameof(apprenticeshipEventRepository));
-            if (logger == null)
-                throw new ArgumentNullException(nameof(logger));
-            
+        private readonly AbstractValidator<BulkUploadCreateApprenticeshipEventsCommand> _validator;
+
+        public BulkUploadCreateApprenticeshipEventsCommandHandler(IApprenticeshipEventRepository apprenticeshipEventRepository,
+            IEventsLogger logger, AbstractValidator<BulkUploadCreateApprenticeshipEventsCommand> validator)
+        {           
             _apprenticeshipEventRepository = apprenticeshipEventRepository;
             _logger = logger;
+            _validator = validator;
         }
 
         protected override async Task HandleCore(BulkUploadCreateApprenticeshipEventsCommand command)

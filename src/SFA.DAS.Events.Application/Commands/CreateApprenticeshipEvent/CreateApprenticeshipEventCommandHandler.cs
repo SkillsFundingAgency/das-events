@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
 using SFA.DAS.Events.Domain.Entities;
 using SFA.DAS.Events.Domain.Logging;
@@ -12,21 +13,23 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
     {
         private readonly IEventsLogger _logger;
         private readonly IApprenticeshipEventRepository _apprenticeshipEventRepository;
-        
-        public CreateApprenticeshipEventCommandHandler(IApprenticeshipEventRepository apprenticeshipEventRepository, IEventsLogger logger)
-        {
-            if (apprenticeshipEventRepository == null)
-                throw new ArgumentNullException(nameof(apprenticeshipEventRepository));
-            if (logger == null)
-                throw new ArgumentNullException(nameof(logger));
+        private readonly AbstractValidator<CreateApprenticeshipEventCommand> _validator;
 
+        public CreateApprenticeshipEventCommandHandler(IApprenticeshipEventRepository apprenticeshipEventRepository,
+            IEventsLogger logger,
+            AbstractValidator<CreateApprenticeshipEventCommand> validator)
+        {
             _apprenticeshipEventRepository = apprenticeshipEventRepository;
             _logger = logger;
+            _validator = validator;
         }
 
         protected override async Task HandleCore(CreateApprenticeshipEventCommand command)
         {
             _logger.Info($"Received message {command.Event}", accountId: command.EmployerAccountId, providerId: command.ProviderId, @event: command.Event);
+
+            var validationResult = _validator.Validate(command);
+            if(!validationResult.IsValid) throw new ValidationException(validationResult.Errors);
 
             try
             {
@@ -52,7 +55,10 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
                     EffectiveFrom = command.EffectiveFrom,
                     EffectiveTo = command.EffectiveTo,
                     DateOfBirth = command.DateOfBirth,
-                    PriceHistory = command.PriceHistory
+                    PriceHistory = command.PriceHistory,
+                    TransferSenderId = command.TransferSenderId,
+                    TransferSenderName = command.TransferSenderName,
+                    TransferSenderApproved = command.TransferSenderApproved
                 };
 
                 await _apprenticeshipEventRepository.Create(newApprenticeshipEvent);

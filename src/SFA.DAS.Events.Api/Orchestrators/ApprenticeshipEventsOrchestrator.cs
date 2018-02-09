@@ -20,11 +20,6 @@ namespace SFA.DAS.Events.Api.Orchestrators
 
         public ApprenticeshipEventsOrchestrator(IMediator mediator, IEventsLogger logger)
         {
-            if (mediator == null)
-                throw new ArgumentNullException(nameof(mediator));
-            if (logger == null)
-                throw new ArgumentNullException(nameof(logger));
-
             _mediator = mediator;
             _logger = logger;
         }
@@ -56,7 +51,10 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     EffectiveFrom = request.EffectiveFrom,
                     EffectiveTo = request.EffectiveTo,
                     DateOfBirth = request.DateOfBirth,
-                    PriceHistory = request.PriceHistory?.Select(ToDomainModel).ToList() ?? new List<Domain.Entities.PriceHistory>()
+                    PriceHistory = request.PriceHistory?.Select(ToDomainModel).ToList() ?? new List<Domain.Entities.PriceHistory>(),
+                    TransferSenderId = request.TransferSenderId,
+                    TransferSenderName = request.TransferSenderName ?? string.Empty,
+                    TransferSenderApproved = request.TransferSenderApproved
                 });
             }
             catch (ValidationException ex)
@@ -137,7 +135,10 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     EffectiveFrom = x.EffectiveFrom,
                     EffectiveTo = x.EffectiveTo,
                     DateOfBirth = x.DateOfBirth,
-                    PriceHistory = x.PriceHistory.Select(MapPriceHistory)
+                    PriceHistory = x.PriceHistory.Select(MapPriceHistory),
+                    TransferSenderId = x.TransferSenderId,
+                    TransferSenderName = x.TransferSenderName ?? string.Empty,
+                    TransferSenderApproved = x.TransferSenderApproved
                 });
             }
             catch (ValidationException ex)
@@ -176,7 +177,10 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 EffectiveTo = a.EffectiveTo,
                 DateOfBirth = a.DateOfBirth,
                 PriceHistory = a.PriceHistory?.Select(ToDomainModel).ToList() 
-                    ?? new List<Domain.Entities.PriceHistory>()
+                    ?? new List<Domain.Entities.PriceHistory>(),
+                TransferSenderId = a.TransferSenderId,
+                TransferSenderName = a.TransferSenderName,
+                TransferSenderApproved = a.TransferSenderApproved
             };
         }
 
