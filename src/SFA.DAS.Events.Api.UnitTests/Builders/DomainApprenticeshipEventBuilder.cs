@@ -27,6 +27,9 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
         private string _legalEntityOrganisationType = "le type";
         private DateTime? _dateOfBirth = DateTime.Now.AddYears(-18);
         private List<PriceHistory> _priceHistory;
+        private long? _transferSenderId = 999;
+        private string _transferSenderName = "Transfer Sender";
+        private bool _transferSenderApproved = true;
 
         internal ApprenticeshipEvent Build()
         {
@@ -51,7 +54,10 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
                 LegalEntityName = _legalEntityName,
                 LegalEntityOrganisationType = _legalEntityOrganisationType,
                 DateOfBirth = _dateOfBirth,
-                PriceHistory = _priceHistory
+                PriceHistory = _priceHistory,
+                TransferSenderName = _transferSenderName,
+                TransferSenderId = _transferSenderId,
+                TransferSenderApproved = _transferSenderApproved
             };
         }
 
