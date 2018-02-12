@@ -17,14 +17,14 @@ namespace SFA.DAS.Events.Api.Controllers
         }
 
         [Route("", Name = "GetAllEvents")]
-        //[Authorize(Roles = "ReadApprenticeshipEvent")]
+        [Authorize(Roles = "ReadApprenticeshipEvent")]
         public async Task<IHttpActionResult> Get(string fromDate = null, string toDate = null, int pageSize = 1000, int pageNumber = 1, long fromEventId = 0)
         {
             return Ok(await _orchestrator.GetEvents(fromDate, toDate, pageSize, pageNumber, fromEventId));
         }
 
         [Route("")]
-        //[Authorize(Roles = "StoreApprenticeshipEvent")]
+        [Authorize(Roles = "StoreApprenticeshipEvent")]
         public async Task<IHttpActionResult> Post(ApprenticeshipEvent request)
         {
             await _orchestrator.CreateEvent(request);
@@ -34,7 +34,7 @@ namespace SFA.DAS.Events.Api.Controllers
         }
 
         [Route("bulk")]
-        //[Authorize(Roles = "StoreApprenticeshipEvent")]
+        [Authorize(Roles = "StoreApprenticeshipEvent")]
         public async Task<IHttpActionResult> PostBulkUpload(IList<ApprenticeshipEvent> events)
         {
             await _orchestrator.CreateEvents(events);
