@@ -179,7 +179,7 @@ namespace SFA.DAS.Events.Api.Orchestrators
                 PriceHistory = a.PriceHistory?.Select(ToDomainModel).ToList() 
                     ?? new List<Domain.Entities.PriceHistory>(),
                 TransferSenderId = a.TransferSenderId,
-                TransferSenderName = a.TransferSenderName,
+                TransferSenderName = a.TransferSenderName ?? string.Empty,
                 TransferSenderApproved = a.TransferSenderApproved
             };
         }
