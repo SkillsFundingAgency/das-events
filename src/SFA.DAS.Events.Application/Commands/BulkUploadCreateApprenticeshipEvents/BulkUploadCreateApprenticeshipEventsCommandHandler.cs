@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
 using SFA.DAS.Events.Domain.Entities;
 using SFA.DAS.Events.Domain.Logging;
@@ -26,6 +27,9 @@ namespace SFA.DAS.Events.Application.Commands.BulkUploadCreateApprenticeshipEven
 
         protected override async Task HandleCore(BulkUploadCreateApprenticeshipEventsCommand command)
         {
+            var validationResult = _validator.Validate(command);
+            if(!validationResult.IsValid) throw new ValidationException(validationResult.Errors);
+
             var sw = Stopwatch.StartNew();
             SetCreatedDate(command.ApprenticeshipEvents);
             _logger.Trace($"Setting created date took {sw.ElapsedMilliseconds}");
