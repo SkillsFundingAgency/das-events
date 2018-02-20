@@ -13,6 +13,16 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
     public class WhenICreateAnApprenticeshipEvent : CreateApprenticeshipEventTestBase
     {
         [Test]
+        public async Task ThenTheCommandIsValidated()
+        {
+            var command = new CreateApprenticeshipEventCommandBuilder().Build();
+
+            await Handler.Handle(command);
+
+            Validator.Verify(x => x.Validate(It.Is<CreateApprenticeshipEventCommand>(c=> c == command)), Times.Once);
+        }
+
+        [Test]
         public async Task ThenTheEventIsCreated()
         {
             var command = new CreateApprenticeshipEventCommandBuilder().Build();
@@ -56,7 +66,10 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
                    e.LegalEntityName == command.LegalEntityName &&
                    e.LegalEntityOrganisationType == command.LegalEntityOrganisationType &&
                    e.DateOfBirth == command.DateOfBirth &&
-                   e.PriceHistory.Count() == command.PriceHistory.Count();
+                   e.PriceHistory.Count() == command.PriceHistory.Count() &&
+                   e.TransferSenderId == command.TransferSenderId &&
+                   e.TransferSenderName == command.TransferSenderName &&
+                   e.TransferSenderApproved == command.TransferSenderApproved;
         }
     }
 }

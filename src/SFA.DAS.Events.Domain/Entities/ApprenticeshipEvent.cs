@@ -25,5 +25,8 @@ namespace SFA.DAS.Events.Domain.Entities
         public DateTime? EffectiveTo { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public IList<PriceHistory> PriceHistory { get; set; }
+        public long? TransferSenderId { get; set; }
+        public string TransferSenderName { get; set; }
+        public bool TransferSenderApproved { get; set; }
     }
 }

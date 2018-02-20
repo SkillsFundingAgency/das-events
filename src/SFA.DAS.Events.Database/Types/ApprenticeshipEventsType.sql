@@ -18,6 +18,9 @@
     [LegalEntityOrganisationType] NVARCHAR(20) NOT NULL DEFAULT '', 
     [EffectiveFrom] DATETIME NULL, 
     [EffectiveTo] DATETIME NULL, 
-    [DateOfBirth] DATETIME NULL
+    [DateOfBirth] DATETIME NULL,
+	[TransferSenderId] BIGINT NULL,
+	[TransferSenderName] NVARCHAR(100) NULL,
+	[TransferSenderApproved] BIT NULL
 )
 

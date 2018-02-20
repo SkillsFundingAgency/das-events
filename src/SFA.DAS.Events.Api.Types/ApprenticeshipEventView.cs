@@ -28,5 +28,8 @@ namespace SFA.DAS.Events.Api.Types
         public DateTime? EffectiveTo { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public IEnumerable<PriceHistory> PriceHistory { get; set; }
+        public long? TransferSenderId { get; set; }
+        public string TransferSenderName { get; set; }
+        public bool TransferSenderApproved { get; set; }
     }
 }

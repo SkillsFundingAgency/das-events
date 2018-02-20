@@ -26,6 +26,9 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
         private string _legalEntityOrganisationType = "le type";
         private DateTime? _dateOfBirth = DateTime.Now.AddYears(-18);
         private IList<PriceHistory> _priceHistory = new List<PriceHistory> { new PriceHistory() };
+        private long? _transferSenderId = 123;
+        private string _transferSenderName = "Transfer Sender";
+        private bool _transferSenderApproved = true;
 
         internal CreateApprenticeshipEventCommand Build()
         {
@@ -48,7 +51,10 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
                 LegalEntityName = _legalEntityName,
                 LegalEntityOrganisationType = _legalEntityOrganisationType,
                 DateOfBirth = _dateOfBirth,
-                PriceHistory = _priceHistory
+                PriceHistory = _priceHistory,
+                TransferSenderId = _transferSenderId,
+                TransferSenderName = _transferSenderName,
+                TransferSenderApproved = _transferSenderApproved
             };
         }
 
@@ -121,6 +127,24 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
         internal CreateApprenticeshipEventCommandBuilder WithLegalEntityOrganisationType(string legalEntityOrganisationType)
         {
             _legalEntityOrganisationType = legalEntityOrganisationType;
+            return this;
+        }
+
+        internal CreateApprenticeshipEventCommandBuilder WithTransferSenderId(long? transferSenderId)
+        {
+            _transferSenderId = transferSenderId;
+            return this;
+        }
+
+        internal CreateApprenticeshipEventCommandBuilder WithTransferSenderName(string transferSenderName)
+        {
+            _transferSenderName = transferSenderName;
+            return this;
+        }
+
+        internal CreateApprenticeshipEventCommandBuilder WithTransferSenderApproved(bool approved)
+        {
+            _transferSenderApproved = approved;
             return this;
         }
     }

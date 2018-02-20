@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
 using SFA.DAS.Events.Domain.Entities;
 using SFA.DAS.Events.Domain.Logging;
@@ -14,20 +15,21 @@ namespace SFA.DAS.Events.Application.Commands.BulkUploadCreateApprenticeshipEven
     {
         private readonly IApprenticeshipEventRepository _apprenticeshipEventRepository;
         private readonly IEventsLogger _logger;
-        
-        public BulkUploadCreateApprenticeshipEventsCommandHandler(IApprenticeshipEventRepository apprenticeshipEventRepository, IEventsLogger logger)
-        {
-            if (apprenticeshipEventRepository == null)
-                throw new ArgumentNullException(nameof(apprenticeshipEventRepository));
-            if (logger == null)
-                throw new ArgumentNullException(nameof(logger));
-            
+        private readonly AbstractValidator<BulkUploadCreateApprenticeshipEventsCommand> _validator;
+
+        public BulkUploadCreateApprenticeshipEventsCommandHandler(IApprenticeshipEventRepository apprenticeshipEventRepository,
+            IEventsLogger logger, AbstractValidator<BulkUploadCreateApprenticeshipEventsCommand> validator)
+        {           
             _apprenticeshipEventRepository = apprenticeshipEventRepository;
             _logger = logger;
+            _validator = validator;
         }
 
         protected override async Task HandleCore(BulkUploadCreateApprenticeshipEventsCommand command)
         {
+            var validationResult = _validator.Validate(command);
+            if(!validationResult.IsValid) throw new ValidationException(validationResult.Errors);
+
             var sw = Stopwatch.StartNew();
             SetCreatedDate(command.ApprenticeshipEvents);
             _logger.Trace($"Setting created date took {sw.ElapsedMilliseconds}");
