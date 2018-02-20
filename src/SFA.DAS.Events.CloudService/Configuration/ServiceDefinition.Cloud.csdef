@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceDefinition name="SFA.DAS.Events.CloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2015-04.2.6" upgradeDomainCount="5">
-  <WebRole name="SFA.DAS.Events.Api" vmsize="Standard_D1_v2">
+<ServiceDefinition name="SFA.DAS.Events.CloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2015-04.2.6">
+  <WebRole name="SFA.DAS.Events.Api" vmsize="Small">
     <Sites>
       <Site name="Web">
         <Bindings>
-          <Binding name="HttpsIn" endpointName="HttpsIn" />
+          <Binding name="Endpoint1" endpointName="Endpoint1" />
         </Bindings>
       </Site>
     </Sites>
@@ -12,7 +12,7 @@
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
       <Setting name="ConfigurationStorageConnectionString" />
       <Setting name="EnvironmentName" />
-      <Setting name="ApiTokenSecret" />	
+      <Setting name="ApiTokenSecret" />
       <Setting name="ApiIssuer" />
       <Setting name="ApiAudiences" />
       <Setting name="LoggingRedisConnectionString"/>
@@ -20,7 +20,7 @@
       <Setting name="InstrumentationKey" />
     </ConfigurationSettings>
     <Endpoints>
-      <InputEndpoint name="HttpsIn" protocol="https" port="443" certificate="WebSslCert" loadBalancer="das-pp-evt-ilb"/>
+      <InputEndpoint name="Endpoint1" protocol="https" port="443" certificate="WebSslCert"/>
     </Endpoints>
    <Certificates>
       <Certificate name="WebSslCert" storeLocation="LocalMachine" storeName="My" />
