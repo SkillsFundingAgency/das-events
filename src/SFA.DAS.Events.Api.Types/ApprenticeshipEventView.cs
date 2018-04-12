@@ -31,5 +31,6 @@ namespace SFA.DAS.Events.Api.Types
         public long? TransferSenderId { get; set; }
         public string TransferSenderName { get; set; }
         public bool TransferSenderApproved { get; set; }
+        public string TransferApprovalStatus { get; set; }
     }
 }
