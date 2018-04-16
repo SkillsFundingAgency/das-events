@@ -28,7 +28,8 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
         private IList<PriceHistory> _priceHistory = new List<PriceHistory> { new PriceHistory() };
         private long? _transferSenderId = 123;
         private string _transferSenderName = "Transfer Sender";
-        private bool _transferSenderApproved = true;
+        private TransferApprovalStatus _transferApprovalStatus = TransferApprovalStatus.Pending;
+        private DateTime? _transferApprovalActionedOn  = DateTime.Now;
 
         internal CreateApprenticeshipEventCommand Build()
         {
@@ -54,7 +55,8 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
                 PriceHistory = _priceHistory,
                 TransferSenderId = _transferSenderId,
                 TransferSenderName = _transferSenderName,
-                TransferSenderApproved = _transferSenderApproved
+                TransferApprovalStatus = _transferApprovalStatus,
+                TransferApprovalActionedOn  = _transferApprovalActionedOn
             };
         }
 
@@ -142,9 +144,9 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
             return this;
         }
 
-        internal CreateApprenticeshipEventCommandBuilder WithTransferSenderApproved(bool approved)
+        internal CreateApprenticeshipEventCommandBuilder WithTransferSenderApprovalStatus(TransferApprovalStatus status)
         {
-            _transferSenderApproved = approved;
+            _transferApprovalStatus = status;
             return this;
         }
     }

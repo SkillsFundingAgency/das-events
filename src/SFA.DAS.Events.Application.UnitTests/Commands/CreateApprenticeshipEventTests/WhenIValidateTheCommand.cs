@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent;
+using SFA.DAS.Events.Domain.Entities;
 
 namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEventTests
 {
@@ -54,7 +56,8 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         {
             _command.TransferSenderId = 123;
             _command.TransferSenderName = "Sender";
-            _command.TransferSenderApproved = true;
+            _command.TransferApprovalStatus = TransferApprovalStatus.TransferApproved;
+            _command.TransferApprovalActionedOn = DateTime.Now;
 
             var result = _validator.Validate(_command);
 
@@ -62,9 +65,10 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
         }
 
         [Test]
-        public void ThenTransferSenderApprovedMustNotBeSetWithoutId()
+        public void ThenTransferSenderApprovalMustNotBeSetWithoutId()
         {
-            _command.TransferSenderApproved = true;
+            _command.TransferApprovalStatus = TransferApprovalStatus.TransferApproved;
+            _command.TransferApprovalActionedOn = DateTime.Now;
 
             var result = _validator.Validate(_command);
 

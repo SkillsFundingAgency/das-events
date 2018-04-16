@@ -53,6 +53,7 @@
     <Compile Include="Entities\PaymentStatus.cs" />
     <Compile Include="Entities\PriceHistory.cs" />
     <Compile Include="Entities\TrainingTypes.cs" />
+    <Compile Include="Entities\TransferApprovalStatus.cs" />
     <Compile Include="Logging\IEventsLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IAccountEventRepository.cs" />

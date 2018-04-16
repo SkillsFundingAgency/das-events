@@ -69,7 +69,8 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
                    e.PriceHistory.Count() == command.PriceHistory.Count() &&
                    e.TransferSenderId == command.TransferSenderId &&
                    e.TransferSenderName == command.TransferSenderName &&
-                   e.TransferSenderApproved == command.TransferSenderApproved;
+                   e.TransferApprovalStatus == command.TransferApprovalStatus &&
+                   e.TransferApprovalActionedOn == command.TransferApprovalActionedOn;
         }
     }
 }

@@ -68,7 +68,8 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.ApprenticeshipEventsOrchest
                    command.DateOfBirth == request.DateOfBirth &&
                    command.TransferSenderId == request.TransferSenderId &&
                    command.TransferSenderName == request.TransferSenderName &&
-                   command.TransferSenderApproved == request.TransferSenderApproved;
+                   command.TransferApprovalStatus.ToString() == request.TransferApprovalStatus.ToString() &&
+                   command.TransferApprovalActionedOn == request.TransferApprovalActionedOn;
 
     }
 }

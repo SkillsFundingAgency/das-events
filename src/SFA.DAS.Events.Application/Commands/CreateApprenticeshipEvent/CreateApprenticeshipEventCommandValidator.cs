@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using SFA.DAS.Events.Domain.Entities;
 
 namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
 {
@@ -14,8 +15,15 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
             RuleFor(x => x.TransferSenderId)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty()
-                .When(x => !string.IsNullOrWhiteSpace(x.TransferSenderName) || x.TransferSenderApproved)
-                .WithMessage("'Transfer Sender Id' should not be empty if other Transfer Sender fields are specified");
+                .When(x => !string.IsNullOrWhiteSpace(x.TransferSenderName))
+                .WithMessage("'Transfer Sender Id' should not be empty if 'Transfer Sender Name' is specified");
+
+            RuleFor(x => x.TransferSenderId)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotEmpty()
+                .When(x => x.TransferApprovalStatus != TransferApprovalStatus.Pending)
+                .WithMessage("'Transfer Sender Id' should not be empty if 'Transfer Approval Status' is not 'Pending'");
+
         }
     }
 }
