@@ -173,7 +173,8 @@ namespace SFA.DAS.Events.Infrastructure.Data
             apprenticeshipEventsTable.Columns.Add("DateOfBirth", typeof(DateTime));
             apprenticeshipEventsTable.Columns.Add("TransferSenderId", typeof(long));
             apprenticeshipEventsTable.Columns.Add("TransferSenderName", typeof(string));
-            apprenticeshipEventsTable.Columns.Add("TransferSenderApproved", typeof(bool));
+            apprenticeshipEventsTable.Columns.Add("TransferApprovalStatus", typeof(short));
+            apprenticeshipEventsTable.Columns.Add("TransferApprovalActionedOn", typeof(DateTime));
 
             return apprenticeshipEventsTable;
         }
