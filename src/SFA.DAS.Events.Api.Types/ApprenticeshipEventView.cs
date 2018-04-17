@@ -30,7 +30,7 @@ namespace SFA.DAS.Events.Api.Types
         public IEnumerable<PriceHistory> PriceHistory { get; set; }
         public long? TransferSenderId { get; set; }
         public string TransferSenderName { get; set; }
-        public TransferApprovalStatus TransferApprovalStatus { get; set; }
+        public TransferApprovalStatus? TransferApprovalStatus { get; set; }
         public DateTime? TransferApprovalActionedOn { get; set; }
     }
 }
