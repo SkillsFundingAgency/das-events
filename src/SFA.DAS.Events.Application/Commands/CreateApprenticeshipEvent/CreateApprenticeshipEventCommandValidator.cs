@@ -21,8 +21,8 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
             RuleFor(x => x.TransferSenderId)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty()
-                .When(x => x.TransferApprovalStatus != TransferApprovalStatus.Pending)
-                .WithMessage("'Transfer Sender Id' should not be empty if 'Transfer Approval Status' is not 'Pending'");
+                .When(x => x.TransferApprovalStatus.HasValue)
+                .WithMessage("'Transfer Sender Id' should not be empty if 'Transfer Approval Status' is set");
 
         }
     }
