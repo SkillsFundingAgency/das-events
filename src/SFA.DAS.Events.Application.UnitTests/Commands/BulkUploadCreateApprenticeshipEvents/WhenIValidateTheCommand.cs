@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using SFA.DAS.Events.Application.Commands.BulkUploadCreateApprenticeshipEvents;
 using SFA.DAS.Events.Domain.Entities;
@@ -62,7 +63,8 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.BulkUploadCreateApprenti
         {
             _apprenticeshipEvent.TransferSenderId = 123;
             _apprenticeshipEvent.TransferSenderName = "Sender";
-            _apprenticeshipEvent.TransferSenderApproved = true;
+            _apprenticeshipEvent.TransferApprovalStatus = TransferApprovalStatus.TransferApproved;
+            _apprenticeshipEvent.TransferApprovalActionedOn = DateTime.Now;
 
             var result = _validator.Validate(_command);
 
@@ -72,7 +74,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.BulkUploadCreateApprenti
         [Test]
         public void ThenTransferSenderApprovedMustNotBeSetWithoutId()
         {
-            _apprenticeshipEvent.TransferSenderApproved = true;
+            _apprenticeshipEvent.TransferApprovalStatus = TransferApprovalStatus.TransferApproved;
 
             var result = _validator.Validate(_command);
 

@@ -54,7 +54,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     PriceHistory = request.PriceHistory?.Select(ToDomainModel).ToList() ?? new List<Domain.Entities.PriceHistory>(),
                     TransferSenderId = request.TransferSenderId,
                     TransferSenderName = request.TransferSenderName ?? string.Empty,
-                    TransferSenderApproved = request.TransferSenderApproved
+                    TransferApprovalStatus = (Domain.Entities.TransferApprovalStatus?) request.TransferApprovalStatus,
+                    TransferApprovalActionedOn = request.TransferApprovalActionedOn
                 });
             }
             catch (ValidationException ex)
@@ -138,7 +139,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     PriceHistory = x.PriceHistory.Select(MapPriceHistory),
                     TransferSenderId = x.TransferSenderId,
                     TransferSenderName = x.TransferSenderName ?? string.Empty,
-                    TransferSenderApproved = x.TransferSenderApproved
+                    TransferApprovalStatus = (TransferApprovalStatus?) x.TransferApprovalStatus,
+                    TransferApprovalActionedOn = x.TransferApprovalActionedOn
                 });
             }
             catch (ValidationException ex)
@@ -180,7 +182,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     ?? new List<Domain.Entities.PriceHistory>(),
                 TransferSenderId = a.TransferSenderId,
                 TransferSenderName = a.TransferSenderName ?? string.Empty,
-                TransferSenderApproved = a.TransferSenderApproved
+                TransferApprovalStatus = (Domain.Entities.TransferApprovalStatus?) a.TransferApprovalStatus,
+                TransferApprovalActionedOn = a.TransferApprovalActionedOn
             };
         }
 

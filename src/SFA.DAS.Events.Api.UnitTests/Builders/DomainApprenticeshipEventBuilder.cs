@@ -29,7 +29,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
         private List<PriceHistory> _priceHistory;
         private long? _transferSenderId = 999;
         private string _transferSenderName = "Transfer Sender";
-        private bool _transferSenderApproved = true;
+        private TransferApprovalStatus _transferApprovalStatus = TransferApprovalStatus.TransferApproved;
 
         internal ApprenticeshipEvent Build()
         {
@@ -57,7 +57,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
                 PriceHistory = _priceHistory,
                 TransferSenderName = _transferSenderName,
                 TransferSenderId = _transferSenderId,
-                TransferSenderApproved = _transferSenderApproved
+                TransferApprovalStatus = _transferApprovalStatus
             };
         }
 

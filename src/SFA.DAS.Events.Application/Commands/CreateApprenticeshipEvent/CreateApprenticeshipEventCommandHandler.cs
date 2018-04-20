@@ -58,7 +58,8 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
                     PriceHistory = command.PriceHistory,
                     TransferSenderId = command.TransferSenderId,
                     TransferSenderName = command.TransferSenderName,
-                    TransferSenderApproved = command.TransferSenderApproved
+                    TransferApprovalStatus = command.TransferApprovalStatus,
+                    TransferApprovalActionedOn = command.TransferApprovalActionedOn
                 };
 
                 await _apprenticeshipEventRepository.Create(newApprenticeshipEvent);

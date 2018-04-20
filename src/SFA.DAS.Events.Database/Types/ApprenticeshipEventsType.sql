@@ -21,6 +21,7 @@
     [DateOfBirth] DATETIME NULL,
 	[TransferSenderId] BIGINT NULL,
 	[TransferSenderName] NVARCHAR(100) NULL,
-	[TransferSenderApproved] BIT NULL
+	[TransferApprovalStatus] TINYINT NULL,
+	[TransferApprovalActionedOn] DATETIME2 NULL
 )
 
