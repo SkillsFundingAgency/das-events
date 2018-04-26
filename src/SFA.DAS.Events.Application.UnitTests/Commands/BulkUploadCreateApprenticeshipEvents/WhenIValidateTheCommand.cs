@@ -71,15 +71,17 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.BulkUploadCreateApprenti
             Assert.IsTrue(result.IsValid);
         }
 
-        [Test]
-        public void ThenTransferSenderApprovedMustNotBeSetWithoutId()
+        [TestCase(TransferApprovalStatus.TransferApproved)]
+        [TestCase(TransferApprovalStatus.Pending)]
+        [TestCase(TransferApprovalStatus.TransferRejected)]
+        public void ThenTransferSenderApprovedMustNotBeSetWithoutId(TransferApprovalStatus status)
         {
-            _apprenticeshipEvent.TransferApprovalStatus = TransferApprovalStatus.TransferApproved;
+            _apprenticeshipEvent.TransferSenderId = null;
+            _apprenticeshipEvent.TransferApprovalStatus = status;
 
             var result = _validator.Validate(_command);
 
             Assert.IsFalse(result.IsValid);
         }
-
     }
 }
