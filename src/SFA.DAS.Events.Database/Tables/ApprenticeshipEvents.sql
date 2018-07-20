@@ -24,7 +24,8 @@
 	[TransferSenderId] BIGINT NULL,
 	[TransferSenderName] NVARCHAR(100) NULL,
 	[TransferApprovalStatus] TINYINT NULL,
-	[TransferApprovalActionedOn] DATETIME2 NULL
+	[TransferApprovalActionedOn] DATETIME2 NULL,
+	[AccountLegalEntityPublicHashedId] CHAR(6) NULL
 )
 
 GO

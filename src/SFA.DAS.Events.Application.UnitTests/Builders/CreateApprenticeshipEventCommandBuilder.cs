@@ -24,6 +24,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
         private string _legalEntityId = "LEID";
         private string _legalEntityName = "legal entity name";
         private string _legalEntityOrganisationType = "le type";
+        private string _accountLegalEntityPublicHashedId = "123456";
         private DateTime? _dateOfBirth = DateTime.Now.AddYears(-18);
         private IList<PriceHistory> _priceHistory = new List<PriceHistory> { new PriceHistory() };
         private long? _transferSenderId = 123;
@@ -51,6 +52,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
                 LegalEntityId = _legalEntityId,
                 LegalEntityName = _legalEntityName,
                 LegalEntityOrganisationType = _legalEntityOrganisationType,
+                AccountLegalEntityPublicHashedId = _accountLegalEntityPublicHashedId,
                 DateOfBirth = _dateOfBirth,
                 PriceHistory = _priceHistory,
                 TransferSenderId = _transferSenderId,
@@ -58,96 +60,6 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
                 TransferApprovalStatus = _transferApprovalStatus,
                 TransferApprovalActionedOn  = _transferApprovalActionedOn
             };
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithEvent(string @event)
-        {
-            _event = @event;
-            return this;
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithApprenticeshipId(int apprenticeshipId)
-        {
-            _apprenticeshipId = apprenticeshipId;
-            return this;
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithProviderId(string providerId)
-        {
-            _providerId = providerId;
-            return this;
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithLearnerId(string learnerId)
-        {
-            _learnerId = learnerId;
-            return this;
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithEmployerAccountId(string employerAccountId)
-        {
-            _employerAccountId = employerAccountId;
-            return this;
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithTrainingId(string trainingId)
-        {
-            _trainingId = trainingId;
-            return this;
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithTrainingStartDate(DateTime trainingStartDate)
-        {
-            _trainingStartDate = trainingStartDate;
-            return this;
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithTrainingEndDate(DateTime trainingEndDate)
-        {
-            _trainingEndDate = trainingEndDate;
-            return this;
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithTrainingTotalCost(decimal trainingTotalCost)
-        {
-            _trainingTotalCost = trainingTotalCost;
-            return this;
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithLegalEntityId(string legalEntityId)
-        {
-            _legalEntityId = legalEntityId;
-            return this;
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithLegalEntityName(string legalEntityName)
-        {
-            _legalEntityName = legalEntityName;
-            return this;
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithLegalEntityOrganisationType(string legalEntityOrganisationType)
-        {
-            _legalEntityOrganisationType = legalEntityOrganisationType;
-            return this;
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithTransferSenderId(long? transferSenderId)
-        {
-            _transferSenderId = transferSenderId;
-            return this;
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithTransferSenderName(string transferSenderName)
-        {
-            _transferSenderName = transferSenderName;
-            return this;
-        }
-
-        internal CreateApprenticeshipEventCommandBuilder WithTransferSenderApprovalStatus(TransferApprovalStatus status)
-        {
-            _transferApprovalStatus = status;
-            return this;
         }
     }
 }

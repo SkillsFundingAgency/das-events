@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using FluentValidation;
-using FluentValidation.Results;
 using MediatR;
 using SFA.DAS.Events.Domain.Entities;
 using SFA.DAS.Events.Domain.Logging;
@@ -51,6 +50,7 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
                     PaymentOrder = command.PaymentOrder,
                     LegalEntityId = command.LegalEntityId,
                     LegalEntityOrganisationType = command.LegalEntityOrganisationType,
+                    AccountLegalEntityPublicHashedId = command.AccountLegalEntityPublicHashedId,
                     LegalEntityName = command.LegalEntityName,
                     EffectiveFrom = command.EffectiveFrom,
                     EffectiveTo = command.EffectiveTo,

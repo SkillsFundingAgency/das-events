@@ -22,6 +22,9 @@
 	[TransferSenderId] BIGINT NULL,
 	[TransferSenderName] NVARCHAR(100) NULL,
 	[TransferApprovalStatus] TINYINT NULL,
-	[TransferApprovalActionedOn] DATETIME2 NULL
+	[TransferApprovalActionedOn] DATETIME2 NULL,
+	-- todo: the ApprenticeshipEvents table needs this field nullable so that the update deploy will work
+	-- but we could have it as not nullable in the type, which should force any new additions to have it (it is logically mandatory)
+	[AccountLegalEntityPublicHashedId] CHAR(6) NULL
 )
 

@@ -65,6 +65,7 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
                    e.LegalEntityId == command.LegalEntityId &&
                    e.LegalEntityName == command.LegalEntityName &&
                    e.LegalEntityOrganisationType == command.LegalEntityOrganisationType &&
+                   e.AccountLegalEntityPublicHashedId == command.AccountLegalEntityPublicHashedId &&
                    e.DateOfBirth == command.DateOfBirth &&
                    e.PriceHistory.Count() == command.PriceHistory.Count() &&
                    e.TransferSenderId == command.TransferSenderId &&

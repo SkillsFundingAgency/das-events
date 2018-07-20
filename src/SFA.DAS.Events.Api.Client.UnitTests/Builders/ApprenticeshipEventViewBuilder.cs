@@ -23,6 +23,7 @@ namespace SFA.DAS.Events.Api.Client.UnitTests.Builders
         private string _legalEntityId = "LE ID";
         private string _legalEntityName = "LE Name";
         private string _legalEntityOrganisationType = "LE Org Type";
+        private string _accountLegalEntityPublicHashedId = "123456";
 
         public ApprenticeshipEventView Build()
         {
@@ -45,7 +46,8 @@ namespace SFA.DAS.Events.Api.Client.UnitTests.Builders
                 TrainingType = _trainingTypes,
                 LegalEntityId = _legalEntityId,
                 LegalEntityName = _legalEntityName,
-                LegalEntityOrganisationType = _legalEntityOrganisationType
+                LegalEntityOrganisationType = _legalEntityOrganisationType,
+                AccountLegalEntityPublicHashedId = _accountLegalEntityPublicHashedId
             };
         }
     }
