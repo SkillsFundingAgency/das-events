@@ -43,9 +43,6 @@
       <HintPath>..\packages\NLog.4.3.9\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SFA.DAS.Events.Api.Types, Version=2.1.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SFA.DAS.Events.Api.Types.2.1.9\lib\net45\SFA.DAS.Events.Api.Types.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -105,9 +102,15 @@
     <Folder Include="Validation\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SFA.DAS.Events.Api.Types\SFA.DAS.Events.Api.Types.csproj">
+      <Project>{24f343c7-f39e-4267-b5ab-0972ec18be8c}</Project>
+      <Name>SFA.DAS.Events.Api.Types</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SFA.DAS.Events.Domain\SFA.DAS.Events.Domain.csproj">
       <Project>{b52b57ea-a3b8-4f62-89de-5293b5c7e19d}</Project>
       <Name>SFA.DAS.Events.Domain</Name>

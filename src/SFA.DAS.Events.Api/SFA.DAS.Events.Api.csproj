@@ -159,9 +159,6 @@
       <HintPath>..\packages\SFA.DAS.Configuration.AzureTableStorage.1.0.0.6634\lib\net45\SFA.DAS.Configuration.AzureTableStorage.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SFA.DAS.Events.Api.Types, Version=2.1.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SFA.DAS.Events.Api.Types.2.1.9\lib\net45\SFA.DAS.Events.Api.Types.dll</HintPath>
-    </Reference>
     <Reference Include="SFA.DAS.NLog.Logger, Version=1.0.0.34273, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SFA.DAS.NLog.Logger.1.0.0.34273\lib\net45\SFA.DAS.NLog.Logger.dll</HintPath>
     </Reference>
@@ -302,6 +299,10 @@
     <Folder Include="Views\GenericEvent\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SFA.DAS.Events.Api.Types\SFA.DAS.Events.Api.Types.csproj">
+      <Project>{24f343c7-f39e-4267-b5ab-0972ec18be8c}</Project>
+      <Name>SFA.DAS.Events.Api.Types</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SFA.DAS.Events.Application\SFA.DAS.Events.Application.csproj">
       <Project>{3EA24C2A-D1D7-45A2-9F7A-8719F77021B1}</Project>
       <Name>SFA.DAS.Events.Application</Name>

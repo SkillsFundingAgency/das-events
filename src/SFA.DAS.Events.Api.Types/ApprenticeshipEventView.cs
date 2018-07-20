@@ -23,6 +23,8 @@ namespace SFA.DAS.Events.Api.Types
         public string LegalEntityId { get; set; }
         public string LegalEntityName { get; set; }
         public string LegalEntityOrganisationType { get; set; }
+        //todo: do we need this here? what's this class used for?
+        //public string AccountLegalEntityPublicHashedId { get; set; }
         public string Type => this.GetType().Name;
         public DateTime? EffectiveFrom { get; set; }
         public DateTime? EffectiveTo { get; set; }

@@ -58,9 +58,6 @@
       <HintPath>..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SFA.DAS.Events.Api.Types, Version=2.1.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SFA.DAS.Events.Api.Types.2.1.9\lib\net45\SFA.DAS.Events.Api.Types.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -88,9 +85,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SFA.DAS.Events.Api.Types\SFA.DAS.Events.Api.Types.csproj">
+      <Project>{24f343c7-f39e-4267-b5ab-0972ec18be8c}</Project>
+      <Name>SFA.DAS.Events.Api.Types</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SFA.DAS.Events.Api\SFA.DAS.Events.Api.csproj">
       <Project>{9D070101-BA80-4ED8-8EAA-7E095AC05888}</Project>
       <Name>SFA.DAS.Events.Api</Name>
