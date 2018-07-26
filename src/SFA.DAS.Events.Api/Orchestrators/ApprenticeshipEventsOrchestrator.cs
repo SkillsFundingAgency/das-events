@@ -120,6 +120,8 @@ namespace SFA.DAS.Events.Api.Orchestrators
                     Event = x.Event,
                     ApprenticeshipId = x.ApprenticeshipId,
                     PaymentStatus = (PaymentStatus)x.PaymentStatus,
+                    PausedOnDate = x.PausedOnDate,
+                    StoppedOnDate = x.StoppedOnDate,
                     AgreementStatus = (AgreementStatus)x.AgreementStatus,
                     ProviderId = x.ProviderId,
                     LearnerId = x.LearnerId,

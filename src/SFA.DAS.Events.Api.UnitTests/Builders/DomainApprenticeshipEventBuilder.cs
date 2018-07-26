@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using NUnit.Framework;
 using SFA.DAS.Events.Domain.Entities;
 
 namespace SFA.DAS.Events.Api.UnitTests.Builders
@@ -30,6 +29,8 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
         private long? _transferSenderId = 999;
         private string _transferSenderName = "Transfer Sender";
         private TransferApprovalStatus _transferApprovalStatus = TransferApprovalStatus.TransferApproved;
+        private DateTime _pausedOn = DateTime.Now.AddHours(12);
+        private DateTime _stoppedOn = DateTime.Now.AddHours(36);
 
         internal ApprenticeshipEvent Build()
         {
@@ -49,6 +50,8 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
                 TrainingId = _trainingId,
                 TrainingStartDate = _trainingStartDate,
                 PaymentStatus = _paymentStatus,
+                PausedOnDate = _pausedOn,
+                StoppedOnDate = _stoppedOn,
                 ApprenticeshipId = _apprenticeshipId,
                 LegalEntityId = _legalEntityId,
                 LegalEntityName = _legalEntityName,
