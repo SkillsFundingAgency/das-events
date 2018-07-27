@@ -8,7 +8,6 @@ using NUnit.Framework;
 using SFA.DAS.Events.Api.Types;
 using SFA.DAS.Events.Api.UnitTests.Builders;
 using SFA.DAS.Events.Application.Commands.BulkUploadCreateApprenticeshipEvents;
-using SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent;
 
 namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.ApprenticeshipEventsOrchestratorTests
 {
@@ -51,7 +50,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.ApprenticeshipEventsOrchest
 
             Assert.ThrowsAsync<ValidationException>(() => Orchestrator.CreateEvents(_events));
 
-            EventsLogger.Verify(x => x.Warn(validationException, "Invalid request", null, null, null));
+            EventsLogger.Verify(x => x.Warn(validationException, "Invalid apprenticeship event bulk upload request", null, null, null));
         }
 
         [Test]
