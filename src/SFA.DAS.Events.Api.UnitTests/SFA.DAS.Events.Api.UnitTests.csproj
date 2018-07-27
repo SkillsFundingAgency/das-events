@@ -71,6 +71,7 @@
     <Compile Include="Builders\ApiApprenticeshipEventBuilder.cs" />
     <Compile Include="Builders\DomainApprenticeshipEventBuilder.cs" />
     <Compile Include="Orchestrators\ApprenticeshipEventsOrchestratorTests\ApprenticeshipEventsOrchestratorTestBase.cs" />
+    <Compile Include="Orchestrators\ApprenticeshipEventsOrchestratorTests\WhenICreateAListOfEvents.cs" />
     <Compile Include="Orchestrators\ApprenticeshipEventsOrchestratorTests\WhenICreateAnEvent.cs" />
     <Compile Include="Orchestrators\ApprenticeshipEventsOrchestratorTests\WhenIGetEvents.cs" />
     <Compile Include="Orchestrators\AgreementEventsOrchestratorTests\AgreementEventsOrchestratorTestBase.cs" />

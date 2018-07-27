@@ -56,8 +56,26 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
                 PriceHistory = _priceHistory,
                 TransferSenderId = _transferSenderId,
                 TransferSenderName = _transferSenderName,
-                TransferApprovalStatus = _transferSenderApprovalStatus
+                TransferApprovalStatus = _transferSenderApprovalStatus,
+               
             };
         }
+
+        internal ApiApprenticeshipEventBuilder WithPausedOnDate(DateTime? pausedOn)
+        {
+            _pausedOnDate = pausedOn;
+            return this;
+        }
+        internal ApiApprenticeshipEventBuilder WithStoppededOnDate(DateTime? stoppedOn)
+        {
+            _stoppedOnDate = stoppedOn;
+            return this;
+        }
+        internal ApiApprenticeshipEventBuilder WithPriceHistory(List<PriceHistory> priceHistory)
+        {
+            _priceHistory = priceHistory;
+            return this;
+        }
+
     }
 }
