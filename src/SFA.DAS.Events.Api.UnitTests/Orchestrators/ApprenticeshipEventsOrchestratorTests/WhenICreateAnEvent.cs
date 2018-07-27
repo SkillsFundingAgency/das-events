@@ -57,6 +57,8 @@ namespace SFA.DAS.Events.Api.UnitTests.Orchestrators.ApprenticeshipEventsOrchest
                    command.LearnerId == request.LearnerId &&
                    command.PaymentOrder == request.PaymentOrder &&
                    command.PaymentStatus.ToString() == request.PaymentStatus.ToString() &&
+                   command.PausedOnDate == request.PausedOnDate &&
+                   command.StoppedOnDate == request.StoppedOnDate &&
                    command.TrainingEndDate == request.TrainingEndDate &&
                    command.TrainingId == request.TrainingId &&
                    command.TrainingStartDate == request.TrainingStartDate &&

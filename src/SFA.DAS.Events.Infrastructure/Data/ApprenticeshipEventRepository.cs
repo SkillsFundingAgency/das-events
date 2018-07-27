@@ -175,6 +175,8 @@ namespace SFA.DAS.Events.Infrastructure.Data
             apprenticeshipEventsTable.Columns.Add("TransferSenderName", typeof(string));
             apprenticeshipEventsTable.Columns.Add("TransferApprovalStatus", typeof(short));
             apprenticeshipEventsTable.Columns.Add("TransferApprovalActionedOn", typeof(DateTime));
+            apprenticeshipEventsTable.Columns.Add("StoppedOnDate", typeof(DateTime));
+            apprenticeshipEventsTable.Columns.Add("PausedOnDate", typeof(DateTime));
 
             return apprenticeshipEventsTable;
         }
@@ -186,7 +188,8 @@ namespace SFA.DAS.Events.Infrastructure.Data
             return apprenticeshipEventsTable.Rows.Add(a.Event, a.CreatedOn, a.ApprenticeshipId, a.PaymentOrder, a.PaymentStatus,
                 a.AgreementStatus, a.ProviderId, a.LearnerId, a.EmployerAccountId, a.TrainingType, a.TrainingId, a.TrainingStartDate,
                 a.TrainingEndDate, a.TrainingTotalCost, a.LegalEntityId, a.LegalEntityName, a.LegalEntityOrganisationType,
-                a.EffectiveFrom, a.EffectiveTo, a.DateOfBirth, a.TransferSenderId, a.TransferSenderName, a.TransferApprovalStatus, a.TransferApprovalActionedOn);
+                a.EffectiveFrom, a.EffectiveTo, a.DateOfBirth, a.TransferSenderId, a.TransferSenderName, a.TransferApprovalStatus, a.TransferApprovalActionedOn, 
+                a.StoppedOnDate, a.PausedOnDate);
         }
     }
 }
