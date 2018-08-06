@@ -39,6 +39,8 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
                     CreatedOn = DateTime.UtcNow,
                     ApprenticeshipId = command.ApprenticeshipId,
                     PaymentStatus = command.PaymentStatus,
+                    PausedOnDate = command.PausedOnDate,
+                    StoppedOnDate = command.StoppedOnDate,
                     AgreementStatus = command.AgreementStatus,
                     ProviderId = command.ProviderId,
                     LearnerId = command.LearnerId,

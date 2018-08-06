@@ -11,6 +11,8 @@ namespace SFA.DAS.Events.Application.Commands.CreateApprenticeshipEvent
         public string Event { get; set; }
         public long ApprenticeshipId { get; set; }
         public PaymentStatus PaymentStatus { get; set; }
+        public DateTime? PausedOnDate { get; set; }
+        public DateTime? StoppedOnDate { get; set; }
         public AgreementStatus AgreementStatus { get; set; }
         public string ProviderId { get; set; }
         public string LearnerId { get; set; }

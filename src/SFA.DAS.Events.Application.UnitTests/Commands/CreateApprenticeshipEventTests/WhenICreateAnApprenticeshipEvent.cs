@@ -57,6 +57,8 @@ namespace SFA.DAS.Events.Application.UnitTests.Commands.CreateApprenticeshipEven
                    e.LearnerId == command.LearnerId &&
                    e.PaymentOrder == command.PaymentOrder &&
                    e.PaymentStatus == command.PaymentStatus &&
+                   e.PausedOnDate == command.PausedOnDate &&
+                   e.StoppedOnDate == command.StoppedOnDate &&
                    e.TrainingEndDate == command.TrainingEndDate &&
                    e.TrainingId == command.TrainingId &&
                    e.TrainingStartDate == command.TrainingStartDate &&

@@ -7,6 +7,8 @@ namespace SFA.DAS.Events.Domain.Entities
     {
         public string Event { get; set; }
         public PaymentStatus PaymentStatus { get; set; }
+        public DateTime? PausedOnDate { get; set; }
+        public DateTime? StoppedOnDate { get; set; }
         public long ApprenticeshipId { get; set; }
         public AgreementStatus AgreementStatus { get; set; }
         public string ProviderId { get; set; }
