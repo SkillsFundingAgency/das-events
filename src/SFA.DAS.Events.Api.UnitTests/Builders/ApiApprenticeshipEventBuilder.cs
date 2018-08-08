@@ -18,6 +18,8 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
         private string _trainingId = "ANBC435";
         private DateTime _trainingStartDate = DateTime.Now.AddYears(-1);
         private PaymentStatus _paymentStatus = PaymentStatus.Active;
+        private DateTime? _pausedOnDate = DateTime.Today;
+        private DateTime? _stoppedOnDate = DateTime.Today.AddDays(1);
         private int _apprenticeshipId = 12345;
         private string _legalEntityId = "LEID";
         private string _legalEntityName = "legal entity name";
@@ -45,6 +47,8 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
                 TrainingId = _trainingId,
                 TrainingStartDate = _trainingStartDate,
                 PaymentStatus = _paymentStatus,
+                PausedOnDate = _pausedOnDate,
+                StoppedOnDate = _stoppedOnDate,
                 ApprenticeshipId = _apprenticeshipId,
                 LegalEntityId = _legalEntityId,
                 LegalEntityName = _legalEntityName,
@@ -54,8 +58,26 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
                 PriceHistory = _priceHistory,
                 TransferSenderId = _transferSenderId,
                 TransferSenderName = _transferSenderName,
-                TransferApprovalStatus = _transferSenderApprovalStatus
+                TransferApprovalStatus = _transferSenderApprovalStatus,
+               
             };
         }
+
+        internal ApiApprenticeshipEventBuilder WithPausedOnDate(DateTime? pausedOn)
+        {
+            _pausedOnDate = pausedOn;
+            return this;
+        }
+        internal ApiApprenticeshipEventBuilder WithStoppededOnDate(DateTime? stoppedOn)
+        {
+            _stoppedOnDate = stoppedOn;
+            return this;
+        }
+        internal ApiApprenticeshipEventBuilder WithPriceHistory(List<PriceHistory> priceHistory)
+        {
+            _priceHistory = priceHistory;
+            return this;
+        }
+
     }
 }

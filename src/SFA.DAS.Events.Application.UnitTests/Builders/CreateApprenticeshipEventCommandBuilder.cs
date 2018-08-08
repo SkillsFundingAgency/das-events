@@ -16,6 +16,8 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
         private string _learnerId = "LRNID";
         private int _paymentOrder = 3;
         private PaymentStatus _paymentStatus = PaymentStatus.Active;
+        private DateTime? _pausedOnDate = DateTime.Today;
+        private DateTime? _stoppedOnDate = DateTime.Today.AddDays(1);
         private DateTime _trainingEndDate = DateTime.Now.AddYears(1);
         private string _trainingId = "TRNID";
         private DateTime _trainingStartDate = DateTime.Now.AddDays(-30);
@@ -44,6 +46,8 @@ namespace SFA.DAS.Events.Application.UnitTests.Builders
                 LearnerId = _learnerId,
                 PaymentOrder = _paymentOrder,
                 PaymentStatus = _paymentStatus,
+                PausedOnDate = _pausedOnDate,
+                StoppedOnDate = _stoppedOnDate,
                 TrainingEndDate = _trainingEndDate,
                 TrainingId = _trainingId,
                 TrainingStartDate = _trainingStartDate,

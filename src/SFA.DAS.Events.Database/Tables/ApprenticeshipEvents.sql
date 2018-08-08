@@ -25,6 +25,8 @@
 	[TransferSenderName] NVARCHAR(100) NULL,
 	[TransferApprovalStatus] TINYINT NULL,
 	[TransferApprovalActionedOn] DATETIME2 NULL,
+	[StoppedOnDate] DATETIME2 NULL,
+	[PausedOnDate] DATETIME2 NULL,
 	[AccountLegalEntityPublicHashedId] CHAR(6) NULL
 )
 
