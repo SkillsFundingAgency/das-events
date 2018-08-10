@@ -24,6 +24,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
         private string _legalEntityId = "LEID";
         private string _legalEntityName = "legal entity name";
         private string _legalEntityOrganisationType = "le type";
+        private string _accountLegalEntityPublicHashedId = "123456";
         private DateTime? _dateOfBirth = DateTime.Now.AddYears(-18);
         private List<PriceHistory> _priceHistory = new List<PriceHistory>();
         private long? _transferSenderId = 123;
@@ -52,6 +53,7 @@ namespace SFA.DAS.Events.Api.UnitTests.Builders
                 LegalEntityId = _legalEntityId,
                 LegalEntityName = _legalEntityName,
                 LegalEntityOrganisationType = _legalEntityOrganisationType,
+                AccountLegalEntityPublicHashedId = _accountLegalEntityPublicHashedId,
                 DateOfBirth = _dateOfBirth,
                 PriceHistory = _priceHistory,
                 TransferSenderId = _transferSenderId,

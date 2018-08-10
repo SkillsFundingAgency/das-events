@@ -63,7 +63,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
                 var offset = pageSize * (pageNumber - 1);
 
                 var parameters = new DynamicParameters();
-                var sql = string.Empty;
+                string sql;
 
                 if (fromEventId > 0)
                 {
@@ -112,8 +112,6 @@ namespace SFA.DAS.Events.Infrastructure.Data
                 return apprenticeships.Values.ToList();
 
             });
-
-
         }
 
         private DataTable BuildPriceHistoryDataTable(IEnumerable<ApprenticeshipEvent> apprenticeshipEvents)
@@ -177,6 +175,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
             apprenticeshipEventsTable.Columns.Add("TransferApprovalActionedOn", typeof(DateTime));
             apprenticeshipEventsTable.Columns.Add("StoppedOnDate", typeof(DateTime));
             apprenticeshipEventsTable.Columns.Add("PausedOnDate", typeof(DateTime));
+            apprenticeshipEventsTable.Columns.Add("AccountLegalEntityPublicHashedId", typeof(string));
 
             return apprenticeshipEventsTable;
         }
@@ -189,7 +188,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
                 a.AgreementStatus, a.ProviderId, a.LearnerId, a.EmployerAccountId, a.TrainingType, a.TrainingId, a.TrainingStartDate,
                 a.TrainingEndDate, a.TrainingTotalCost, a.LegalEntityId, a.LegalEntityName, a.LegalEntityOrganisationType,
                 a.EffectiveFrom, a.EffectiveTo, a.DateOfBirth, a.TransferSenderId, a.TransferSenderName, a.TransferApprovalStatus, a.TransferApprovalActionedOn, 
-                a.StoppedOnDate, a.PausedOnDate);
+                a.StoppedOnDate, a.PausedOnDate, a.AccountLegalEntityPublicHashedId);
         }
     }
 }

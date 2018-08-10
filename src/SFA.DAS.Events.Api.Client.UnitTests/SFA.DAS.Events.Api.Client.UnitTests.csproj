@@ -77,7 +77,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builders\ApprenticeshipEventViewBuilder.cs" />
     <Compile Include="EventApiTests\AccountEventsApiTests.cs" />
     <Compile Include="EventApiTests\AgreementEventsApiTests.cs" />
     <Compile Include="EventApiTests\ApprenticeshipsEventsApiTests.cs" />

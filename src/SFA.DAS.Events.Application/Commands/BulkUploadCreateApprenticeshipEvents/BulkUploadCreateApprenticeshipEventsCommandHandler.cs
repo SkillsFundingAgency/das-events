@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using FluentValidation;
-using FluentValidation.Results;
 using MediatR;
 using SFA.DAS.Events.Domain.Entities;
 using SFA.DAS.Events.Domain.Logging;
