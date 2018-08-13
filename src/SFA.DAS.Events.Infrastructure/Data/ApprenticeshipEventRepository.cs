@@ -44,7 +44,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
             await WithConnection(async con =>
                 {
                     await con.ExecuteAsync(
-                        "[dbo].[CreateApprenticeshipEvents]",
+                        "[dbo].[CreateApprenticeshipEventsV2]",
                         param: new
                                    {
                                        @events = table.AsTableValuedParameter("[dbo].[ApprenticeshipEventsTypeV2]"),
