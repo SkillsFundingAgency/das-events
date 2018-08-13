@@ -79,7 +79,6 @@
     <Build Include="Tables\PriceHistory.sql" />
     <Build Include="StoredProcedures\CreateApprenticeshipEventsV2.sql" />
     <Build Include="Types\ApprenticeshipEventsTypeV2.sql" />
-    <Build Include="StoredProcedures\CreateApprenticeshipEvents.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database.publish.xml" />
