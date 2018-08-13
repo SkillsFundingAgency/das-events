@@ -47,7 +47,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
                         "[dbo].[CreateApprenticeshipEvents]",
                         param: new
                                    {
-                                       @events = table.AsTableValuedParameter("[dbo].[ApprenticeshipEventsType]"),
+                                       @events = table.AsTableValuedParameter("[dbo].[ApprenticeshipEventsTypeV2]"),
                                        @priceHistory = priceTable.AsTableValuedParameter("[dbo].[PriceHistoryType]")
                                    }, 
                         commandType: CommandType.StoredProcedure);
