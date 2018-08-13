@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[CreateApprenticeshipEvents]
-	@events [dbo].[ApprenticeshipEventsType] READONLY,
+	@events [dbo].[ApprenticeshipEventsTypeV2] READONLY,
 	@priceHistory [dbo].[PriceHistoryType]  READONLY
 
 AS
