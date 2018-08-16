@@ -5,9 +5,65 @@
 AS
 	DECLARE @generated_keys table([Id] bigint, apprenticeshipId bigint)
 	
-	INSERT INTO [dbo].[ApprenticeshipEvents]
+	INSERT INTO [dbo].[ApprenticeshipEvents] (
+		[Event], 
+		[CreatedOn], 
+		[ApprenticeshipId],
+		[PaymentOrder], 
+		[PaymentStatus],
+		[AgreementStatus],
+		[ProviderId], 
+		[LearnerId], 
+		[EmployerAccountId],
+		[TrainingType], 
+		[TrainingId], 
+		[TrainingStartDate],
+		[TrainingEndDate], 
+		[TrainingTotalCost],
+		[LegalEntityId],
+		[LegalEntityName],
+		[LegalEntityOrganisationType],
+		[EffectiveFrom], 
+		[EffectiveTo], 
+		[DateOfBirth],
+		[TransferSenderId],
+		[TransferSenderName],
+		[TransferApprovalStatus],
+		[TransferApprovalActionedOn],
+		[StoppedOnDate],
+		[PausedOnDate],
+		[AccountLegalEntityPublicHashedId]
+	)
 	OUTPUT inserted.Id, inserted.ApprenticeshipId INTO @generated_keys
-	SELECT * FROM @events
+	SELECT
+		[Event], 
+		[CreatedOn], 
+		[ApprenticeshipId],
+		[PaymentOrder], 
+		[PaymentStatus],
+		[AgreementStatus],
+		[ProviderId], 
+		[LearnerId], 
+		[EmployerAccountId],
+		[TrainingType], 
+		[TrainingId], 
+		[TrainingStartDate],
+		[TrainingEndDate], 
+		[TrainingTotalCost],
+		[LegalEntityId],
+		[LegalEntityName],
+		[LegalEntityOrganisationType],
+		[EffectiveFrom], 
+		[EffectiveTo], 
+		[DateOfBirth],
+		[TransferSenderId],
+		[TransferSenderName],
+		[TransferApprovalStatus],
+		[TransferApprovalActionedOn],
+		[StoppedOnDate],
+		[PausedOnDate],
+		null
+	FROM @events
 
 	INSERT INTO [dbo].PriceHistory
 	(ApprenticeshipEventsId,TotalCost,EffectiveFrom,EffectiveTo)

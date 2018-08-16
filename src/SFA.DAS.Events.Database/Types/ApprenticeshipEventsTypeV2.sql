@@ -1,4 +1,4 @@
-﻿CREATE TYPE [dbo].[ApprenticeshipEventsType] AS TABLE(
+﻿CREATE TYPE [dbo].[ApprenticeshipEventsTypeV2] AS TABLE(
     [Event] VARCHAR(50) NOT NULL, 
     [CreatedOn] DATETIME NOT NULL, 
 	[ApprenticeshipId] BIGINT NOT NULL,
@@ -24,6 +24,6 @@
 	[TransferApprovalStatus] TINYINT NULL,
 	[TransferApprovalActionedOn] DATETIME2 NULL,
 	[StoppedOnDate] DATETIME2 NULL,
-	[PausedOnDate] DATETIME2 NULL
+	[PausedOnDate] DATETIME2 NULL,
+	[AccountLegalEntityPublicHashedId] CHAR(6) NULL
 )
-
