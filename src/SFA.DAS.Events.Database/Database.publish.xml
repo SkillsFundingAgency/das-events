@@ -70,5 +70,9 @@
     <DoNotDropUsers>True</DoNotDropUsers>
     <DoNotDropViews>True</DoNotDropViews>
     <DoNotDropXmlSchemaCollections>True</DoNotDropXmlSchemaCollections>
+    <DropExtendedPropertiesNotInSource>False</DropExtendedPropertiesNotInSource>
+    <DropDmlTriggersNotInSource>False</DropDmlTriggersNotInSource>
+    <DropConstraintsNotInSource>False</DropConstraintsNotInSource>
+    <DropIndexesNotInSource>False</DropIndexesNotInSource>
   </PropertyGroup>
 </Project>
