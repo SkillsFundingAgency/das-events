@@ -14,7 +14,7 @@
       <Setting name="InstrumentationKey" value="__InstrumentationKey__" />
     </ConfigurationSettings>
     <Certificates>
-      <Certificate name="WebSslCert" thumbprint="CB66C247C10C079E3C2CB91A8A9E963B9DC767AA" thumbprintAlgorithm="sha1" />
+      <Certificate name="WebSslCert" thumbprint="1C0E56F855040810E161863D2704D207F9B46C5A" thumbprintAlgorithm="sha1" />
     </Certificates>
   </Role>
 	<NetworkConfiguration>
@@ -31,5 +31,5 @@
         <FrontendIPConfiguration type="private" subnet="__subnet__" staticVirtualNetworkIPAddress="10.78.125.252" />
       </LoadBalancer>
     </LoadBalancers>
-  </NetworkConfiguration>  
+  </NetworkConfiguration>
 </ServiceConfiguration>
