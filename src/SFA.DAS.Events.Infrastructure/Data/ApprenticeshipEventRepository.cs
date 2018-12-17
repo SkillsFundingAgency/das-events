@@ -69,22 +69,34 @@ namespace SFA.DAS.Events.Infrastructure.Data
                 {
                     parameters.Add("@fromEventId", fromEventId);
 
-                    sql =
-                        $"SELECT * FROM [dbo].[ApprenticeshipEvents] a " +
-                        $"LEFT JOIN [dbo].[PriceHistory] p on p.ApprenticeshipEventsId = a.Id " +
-                        $"WHERE a.Id >= @fromEventId ORDER BY a.Id " +
-                        $"OFFSET {offset} ROWS FETCH NEXT {pageSize} ROWS ONLY;";
+                    sql = $@"
+;WITH pagedEvents AS (
+    SELECT* FROM[dbo].[ApprenticeshipEvents] a
+    WHERE a.Id >= @fromEventId 
+    ORDER BY a.Id
+    OFFSET {offset} ROWS FETCH NEXT {pageSize} ROWS ONLY
+)
+SELECT *
+FROM pagedEvents e
+LEFT JOIN[dbo].[PriceHistory] p
+    ON p.ApprenticeshipEventsId = e.Id;";
                 }
                 else
                 {
                     parameters.Add("@fromDate", fromDate);
                     parameters.Add("@toDate", toDate);
 
-                    sql =
-                        $"SELECT * FROM [dbo].[ApprenticeshipEvents] a " +
-                        $"LEFT JOIN [dbo].[PriceHistory] p on p.ApprenticeshipEventsId = a.Id " +
-                        $" WHERE a.CreatedOn >=  @fromDate AND a.CreatedOn < @toDate ORDER BY a.CreatedOn " +
-                        $"OFFSET {offset} ROWS FETCH NEXT {pageSize} ROWS ONLY;";
+                    sql = $@"
+;WITH pagedEvents AS (
+    SELECT* FROM[dbo].[ApprenticeshipEvents] a
+    WHERE a.CreatedOn >=  @fromDate AND a.CreatedOn < @toDate 
+    ORDER BY a.CreatedOn
+    OFFSET {offset} ROWS FETCH NEXT {pageSize} ROWS ONLY
+)
+SELECT *
+FROM pagedEvents e
+LEFT JOIN[dbo].[PriceHistory] p
+    ON p.ApprenticeshipEventsId = e.Id;";
                 }
 
 
