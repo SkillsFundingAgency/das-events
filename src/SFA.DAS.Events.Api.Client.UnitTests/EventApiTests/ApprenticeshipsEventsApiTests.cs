@@ -61,7 +61,11 @@ namespace SFA.DAS.Events.Api.Client.UnitTests.EventApiTests
             int pageSize = 20;
             int pageNumber = 3;
             var employerRequest = new TestRequest(new Uri(ExpectedApiBaseUrl + $"api/events/apprenticeships?fromEventId={fromEventId}&pageSize={pageSize}&pageNumber={pageNumber}"), string.Empty);
-            _fakeHandler.AddFakeResponse(employerRequest, new HttpResponseMessage { StatusCode = HttpStatusCode.OK, Content = new StringContent(JsonConvert.SerializeObject(new List<ApprenticeshipEventView>())) });
+            _fakeHandler.AddFakeResponse(employerRequest, new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new JsonContent<List<AccountEventView>>(new List<AccountEventView>())
+            });
 
             var result = await _sut.GetApprenticeshipEventsById(fromEventId, pageSize, pageNumber);
 
@@ -78,8 +82,11 @@ namespace SFA.DAS.Events.Api.Client.UnitTests.EventApiTests
             
             var dateString = "hej";
             var employerRequest = new TestRequest(new Uri(ExpectedApiBaseUrl + $"api/events/apprenticeships?fromDate=20170501000000&toDate=20171208000000&pageSize={pageSize}&pageNumber={pageNumber}"), string.Empty);
-            _fakeHandler.AddFakeResponse(employerRequest, new HttpResponseMessage { StatusCode = HttpStatusCode.OK,
-                Content = new StringContent(JsonConvert.SerializeObject(new List<ApprenticeshipEventView>())) });
+            _fakeHandler.AddFakeResponse(employerRequest, new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new JsonContent<List<AccountEventView>>(new List<AccountEventView>())
+            });
 
             var apprenticeshipEventList = await _sut.GetApprenticeshipEventsByDateRange(fromDate, toDate, pageSize, pageNumber);
 

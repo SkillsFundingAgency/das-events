@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Events.Api", "SFA.DAS.Events.Api\SFA.DAS.Events.Api.csproj", "{9D070101-BA80-4ED8-8EAA-7E095AC05888}"
 EndProject
@@ -90,5 +90,8 @@ Global
 		{A50C6A06-FD5F-49C6-9712-77FCB4BCB3B4} = {B7696D0E-4CA4-4F6C-9F8E-831B00AB9A8F}
 		{836D7A40-246D-4C14-952B-F82BF30AF510} = {B7696D0E-4CA4-4F6C-9F8E-831B00AB9A8F}
 		{26472431-8F69-42BD-8892-6EF1B2043759} = {B7696D0E-4CA4-4F6C-9F8E-831B00AB9A8F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3BEFA96A-50E3-46C3-88A9-2309127AC518}
 	EndGlobalSection
 EndGlobal
