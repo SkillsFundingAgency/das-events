@@ -9,9 +9,9 @@ let nunitTestFormat = getBuildParamOrDefault "nunitTestFormat" "nunit2"
 Target "Dotnet Restore" (fun _ ->
     DotNetCli.Restore(fun p ->
         { p with
-                Project = ".\\SFA.DAS.Events.Api.Client" })
+                Project = ".\\SFA.DAS.Events.Api.Client\SFA.DAS.Events.Api.Client.csproj" })
     DotNetCli.Restore(fun p ->
         { p with
-                Project = ".\\SFA.DAS.Events.Api.Types" })
+                Project = ".\\SFA.DAS.Events.Api.Types\SFA.DAS.Events.Api.Types.csproj" })
 
 )
