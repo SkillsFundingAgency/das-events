@@ -7,9 +7,10 @@ let acceptanceTestPlayList = getBuildParamOrDefault "playList" ""
 let nunitTestFormat = getBuildParamOrDefault "nunitTestFormat" "nunit2"
 
 Target "Restore Solution Packages" (fun _ ->
-     "./SFA.DAS.Events.sln"
-     |> RestoreMSSolutionPackages (fun p ->
-         { p with
-             OutputPath = ".\\packages"
-             Retries = 4 })
+    DotNetCli.Restore(fun p ->
+        { p with
+                Project = ".\\SFA.DAS.Events.Api.Client\SFA.DAS.Events.Api.Client.csproj" })
+    DotNetCli.Restore(fun p ->
+        { p with
+                Project = ".\\SFA.DAS.Events.Api.Types\SFA.DAS.Events.Api.Types.csproj" })
  )
