@@ -50,7 +50,12 @@ namespace SFA.DAS.Events.Api.Client.UnitTests.EventApiTests
             int pageSize = 200;
             int pageNumber = 2;
             var employerRequest = new TestRequest(new Uri(ExpectedApiBaseUrl + $"api/events/engagements?fromEventId={fromEventId}&pageSize={pageSize}&pageNumber={pageNumber}"), string.Empty);
-            _fakeHandler.AddFakeResponse(employerRequest, new HttpResponseMessage { StatusCode = HttpStatusCode.OK, Content = new StringContent(JsonConvert.SerializeObject(new List<AgreementEventView>())) });
+
+            _fakeHandler.AddFakeResponse(employerRequest, new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new JsonContent<List<AccountEventView>>(new List<AccountEventView>())
+            });
 
             await _sut.GetAgreementEventsById(fromEventId, pageSize, pageNumber);
 
@@ -66,7 +71,11 @@ namespace SFA.DAS.Events.Api.Client.UnitTests.EventApiTests
             int pageNumber = 1;
             
             var employerRequest = new TestRequest(new Uri(ExpectedApiBaseUrl + $"api/events/engagements?fromDate=20170501000000&toDate=20171208000000&pageSize={pageSize}&pageNumber={pageNumber}"), string.Empty);
-            _fakeHandler.AddFakeResponse(employerRequest, new HttpResponseMessage { StatusCode = HttpStatusCode.OK, Content = new StringContent(JsonConvert.SerializeObject(new List<AgreementEventView>())) });
+            _fakeHandler.AddFakeResponse(employerRequest, new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new JsonContent<List<AccountEventView>>(new List<AccountEventView>())
+            });
 
             await _sut.GetAgreementEventsByDateRange(fromDate, toDate, pageSize, pageNumber);
 

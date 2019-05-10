@@ -1,10 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Http;
-using NLog.Time;
 using SFA.DAS.Events.Api.Orchestrators;
 using SFA.DAS.Events.Api.Types;
-
+      
 namespace SFA.DAS.Events.Api.Controllers
 {
     [RoutePrefix("api/events/accounts")]

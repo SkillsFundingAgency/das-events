@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 using Moq;
@@ -52,7 +53,11 @@ namespace SFA.DAS.Events.Api.Client.UnitTests.EventApiTests
             int pageNumber = 2;
 
             var employerRequest = new TestRequest(new Uri(ExpectedApiBaseUrl + $"api/events/accounts?fromEventId={fromEventId}&pageSize={pageSize}&pageNumber={pageNumber}"), string.Empty);
-            _fakeHandler.AddFakeResponse(employerRequest, new HttpResponseMessage { StatusCode = HttpStatusCode.OK, Content = new StringContent(JsonConvert.SerializeObject(new List<AccountEventView>())) });
+            _fakeHandler.AddFakeResponse(employerRequest, new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new JsonContent<List<AccountEventView>>(new List<AccountEventView>())
+            });
 
             await _sut.GetAccountEventsById(fromEventId, pageSize, pageNumber);
 
@@ -68,11 +73,24 @@ namespace SFA.DAS.Events.Api.Client.UnitTests.EventApiTests
             int pageNumber = 1;
 
             var employerRequest = new TestRequest(new Uri(ExpectedApiBaseUrl + $"api/events/accounts?fromDate=20170501000000&toDate=20171208000000&pageSize={pageSize}&pageNumber={pageNumber}"), string.Empty);
-            _fakeHandler.AddFakeResponse(employerRequest, new HttpResponseMessage { StatusCode = HttpStatusCode.OK, Content = new StringContent(JsonConvert.SerializeObject(new List<AccountEventView>())) });
+            _fakeHandler.AddFakeResponse(employerRequest, new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new JsonContent<List<AccountEventView>>(new List<AccountEventView>())
+            });
 
             await _sut.GetAccountEventsByDateRange(fromDate, toDate, pageSize, pageNumber);
 
             Assert.Pass();
+        }
+    }
+
+
+    internal class JsonContent<TContentType> : StringContent
+    {
+        public JsonContent(TContentType content) : base(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json")
+        {
+            // just call base   
         }
     }
 }
