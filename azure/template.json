@@ -52,16 +52,20 @@
             "type": "string"
         },
         "customHostname": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": ""
         },
         "certificateName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": ""
         },
         "keyVaultName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": ""
         },
         "keyVaultResourceGroup": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": ""
         },
         "loggingRedisConnectionString": {
             "type": "securestring"
@@ -102,6 +106,7 @@
             }
         },
         {
+            "condition": "[greater(length(parameters('customHostName')), 0)]",
             "apiVersion": "2017-05-10",
             "name": "app-service-certificate",
             "type": "Microsoft.Resources/deployments",
@@ -204,7 +209,7 @@
                         "value": "[parameters('customHostname')]"
                     },
                     "certificateThumbprint": {
-                        "value": "[reference('app-service-certificate').outputs.certificateThumbprint.value]"
+                        "value": "[if(greater(length(parameters('customHostname')), 0), reference('app-service-certificate', '2018-11-01').outputs.certificateThumbprint.value, '')]"
                     },
                     "ipSecurityRestrictions": {
                         "value": "[parameters('appServiceAllowedIPs')]"
