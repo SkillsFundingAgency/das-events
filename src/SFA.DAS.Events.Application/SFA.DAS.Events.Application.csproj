@@ -53,9 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="Commands\BulkUploadCreateApprenticeshipEvents\BulkUploadCreateApprentieshipEventsCommandValidator.cs" />
     <Compile Include="Commands\CreateAccountEvent\CreateAccountEventCommand.cs" />
     <Compile Include="Commands\CreateAccountEvent\CreateAccountEventCommandHandler.cs" />

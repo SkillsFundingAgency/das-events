@@ -16,11 +16,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Configuration;
 using System.ServiceModel.Channels;
 using System.Web;
 using FluentValidation;
 using MediatR;
-using Microsoft.Azure;
 using SFA.DAS.Configuration;
 using SFA.DAS.Configuration.AzureTableStorage;
 using SFA.DAS.Events.Domain.Logging;
@@ -77,7 +77,7 @@ namespace SFA.DAS.Events.Api.DependencyResolution
 
         private EventConfiguration GetConfiguration()
         {
-            var environment = CloudConfigurationManager.GetSetting("EnvironmentName");
+            var environment = ConfigurationManager.AppSettings["EnvironmentName"];
 
             var configurationRepository = GetConfigurationRepository();
             var configurationService = new ConfigurationService(configurationRepository, new ConfigurationOptions(ServiceName, environment, Version));
@@ -87,7 +87,7 @@ namespace SFA.DAS.Events.Api.DependencyResolution
 
         private static IConfigurationRepository GetConfigurationRepository()
         {
-            return new AzureTableStorageConfigurationRepository(CloudConfigurationManager.GetSetting("ConfigurationStorageConnectionString"));
+            return new AzureTableStorageConfigurationRepository(ConfigurationManager.AppSettings["ConfigurationStorageConnectionString"]);
         }
 
         private void RegisterMediator()

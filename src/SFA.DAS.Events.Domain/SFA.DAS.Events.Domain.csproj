@@ -41,9 +41,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="Entities\AccountEvent.cs" />
     <Compile Include="Entities\AgreementEvent.cs" />
     <Compile Include="Entities\ApprenticeshipEvent.cs" />

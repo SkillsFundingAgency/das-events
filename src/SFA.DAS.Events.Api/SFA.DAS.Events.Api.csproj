@@ -242,9 +242,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="App_Start\StrictEnumConverter.cs" />
     <Compile Include="App_Start\ValidationExceptionHandler.cs" />
     <Compile Include="App_Start\ValidationErrorResult.cs" />
