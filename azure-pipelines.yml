@@ -57,6 +57,7 @@ steps:
   inputs:
     command: pack
     packagesToPack: 'src\SFA.DAS.Events.Api.Client\SFA.DAS.Events.Api.Client.csproj;src\SFA.DAS.Events.Api.Types\SFA.DAS.Events.Api.Types.csproj;'
+    packDestination: '$(build.artifactstagingdirectory)/publish'
     versioningScheme: byBuildNumber
     
 - task: CopyFiles@2
@@ -65,7 +66,6 @@ steps:
     Contents: |
      azure/**
      src/**/bin/**/*.dacpac
-     src/**/bin/**/*.nupkg
     TargetFolder: '$(build.artifactstagingdirectory)/publish'
 
 - task: PublishBuildArtifacts@1
