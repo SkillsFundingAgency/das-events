@@ -48,7 +48,7 @@ steps:
 - task: VSTest@2
   displayName: 'VsTest - testAssemblies'
   inputs:
-    testAssemblyVer2: "**/bin/*UnitTests.dll"
+    testAssemblyVer2: "**/*UnitTests.dll"
     platform: '$(BuildPlatform)'
     configuration: '$(BuildConfiguration)'
 
@@ -63,9 +63,9 @@ steps:
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
     Contents: |
-     "azure/**""
-     "src/**/*.dacpac"
-     "src/**/bin/Release/*.nupkg"
+     "azure/**"
+     "src/**/bin/*.dacpac"
+     "src/**/bin/*.nupkg"
     TargetFolder: '$(build.artifactstagingdirectory)/publish'
 
 - task: PublishBuildArtifacts@1
