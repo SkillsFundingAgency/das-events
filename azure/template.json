@@ -210,7 +210,10 @@
                         "value": "[parameters('appServiceAllowedIPs')]"
                     }
                 }
-            }
+            },
+            "dependsOn": [
+                "app-service-certificate"
+            ]
         },
         {
             "apiVersion": "2017-05-10",
