@@ -33,13 +33,8 @@
         "apiAudiences": {
             "type": "string"
         },
-        "databaseSkuName": {
-            "type": "string",
-            "defaultValue": "S0"
-        },
-        "databaseTier": {
-            "type": "string",
-            "defaultValue": "Standard"
+        "elasticPoolName": {
+            "type": "string"
         },
         "logAnalyticsSubscriptionId": {
             "type": "string",
@@ -235,11 +230,8 @@
                     "sqlServerName": {
                         "value": "[parameters('sharedSqlServerName')]"
                     },
-                    "databaseSkuName": {
-                        "value": "[parameters('databaseSkuName')]"
-                    },
-                    "databaseTier": {
-                        "value": "[parameters('databaseTier')]"
+                    "elasticPoolName": {
+                        "value": "[parameters('elasticPoolName')]"
                     },
                     "logAnalyticsSubscriptionId": {
                         "value": "[parameters('logAnalyticsSubscriptionId')]"
