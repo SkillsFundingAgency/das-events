@@ -12,7 +12,7 @@
     <summary>Client layer for SFA.DAS.Events.Api service</summary>
     <releaseNotes />
     <dependencies>
-      <group targetFramework=".NETFramework4.5">
+      <group targetFramework="net462">
         <dependency id="SFA.DAS.Events.Api.Types" version="1.29.0"/>
         <dependency id="Newtonsoft.Json" version="9.0.1" />
         <dependency id="SFA.DAS.Http" version="1.0.0"/>
@@ -20,6 +20,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\SFA.DAS.Events.Api.Client.dll" target="lib\net45\SFA.DAS.Events.Api.Client.dll" />
+    <file src="bin\Release\SFA.DAS.Events.Api.Client.dll" target="lib\net462\SFA.DAS.Events.Api.Client.dll" />
   </files>
 </package>
