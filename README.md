@@ -8,6 +8,13 @@ The API deals with apprenticeship and provider agreement events
 
 ![Build Status](https://sfa-gov-uk.visualstudio.com/_apis/public/build/definitions/c39e0c0b-7aff-4606-b160-3566f3bbce23/164/badge)
 
+## Getting Started
+
+* Clone das-events repo
+* Open das-events solution
+* Set startup project to SFA.DAS.Events.CloudService
+* Publish db project
+* Start
 
 ## Functionality: apprenticeships ##
 
