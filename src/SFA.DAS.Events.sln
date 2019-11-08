@@ -1,22 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Events.Api", "SFA.DAS.Events.Api\SFA.DAS.Events.Api.csproj", "{9D070101-BA80-4ED8-8EAA-7E095AC05888}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6DA014EC-D456-4090-A909-DE2FE487858A}"
-	ProjectSection(SolutionItems) = preProject
-		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Events.Domain", "SFA.DAS.Events.Domain\SFA.DAS.Events.Domain.csproj", "{B52B57EA-A3B8-4F62-89DE-5293B5C7E19D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Events.Application", "SFA.DAS.Events.Application\SFA.DAS.Events.Application.csproj", "{3EA24C2A-D1D7-45A2-9F7A-8719F77021B1}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SFA.DAS.Events.Database", "SFA.DAS.Events.Database\SFA.DAS.Events.Database.sqlproj", "{41663093-957B-45D9-A8F0-B1C89C9EC742}"
-EndProject
-Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "SFA.DAS.Events.CloudService", "SFA.DAS.Events.CloudService\SFA.DAS.Events.CloudService.ccproj", "{462CFCB3-14D8-4A3C-AAA2-B743F1FC3DA0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFA.DAS.Events.Infrastructure", "SFA.DAS.Events.Infrastructure\SFA.DAS.Events.Infrastructure.csproj", "{383F9BC2-B631-4BE8-97E0-56362FC24D67}"
 EndProject
@@ -54,10 +47,8 @@ Global
 		{41663093-957B-45D9-A8F0-B1C89C9EC742}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41663093-957B-45D9-A8F0-B1C89C9EC742}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{41663093-957B-45D9-A8F0-B1C89C9EC742}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{462CFCB3-14D8-4A3C-AAA2-B743F1FC3DA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{462CFCB3-14D8-4A3C-AAA2-B743F1FC3DA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{462CFCB3-14D8-4A3C-AAA2-B743F1FC3DA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{462CFCB3-14D8-4A3C-AAA2-B743F1FC3DA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41663093-957B-45D9-A8F0-B1C89C9EC742}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41663093-957B-45D9-A8F0-B1C89C9EC742}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{383F9BC2-B631-4BE8-97E0-56362FC24D67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{383F9BC2-B631-4BE8-97E0-56362FC24D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{383F9BC2-B631-4BE8-97E0-56362FC24D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -90,5 +81,8 @@ Global
 		{A50C6A06-FD5F-49C6-9712-77FCB4BCB3B4} = {B7696D0E-4CA4-4F6C-9F8E-831B00AB9A8F}
 		{836D7A40-246D-4C14-952B-F82BF30AF510} = {B7696D0E-4CA4-4F6C-9F8E-831B00AB9A8F}
 		{26472431-8F69-42BD-8892-6EF1B2043759} = {B7696D0E-4CA4-4F6C-9F8E-831B00AB9A8F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {116D1676-A476-48EE-8A5D-045A045ABE32}
 	EndGlobalSection
 EndGlobal
