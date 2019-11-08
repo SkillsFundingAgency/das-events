@@ -200,43 +200,43 @@
             "dependsOn": [
                 "app-service-certificate"
             ]
-        },
-        {
-            "apiVersion": "2017-05-10",
-            "name": "events-sql-database",
-            "type": "Microsoft.Resources/deployments",
-            "resourceGroup": "[parameters('sharedResourceGroup')]",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[concat(variables('deploymentUrlBase'),'sql-database.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "databaseName": {
-                        "value": "[variables('databaseName')]"
-                    },
-                    "sqlServerName": {
-                        "value": "[parameters('sharedSqlServerName')]"
-                    },
-                    "databaseSkuName": {
-                        "value": "[parameters('databaseSkuName')]"
-                    },
-                    "databaseTier": {
-                        "value": "[parameters('databaseTier')]"
-                    },
-                    "logAnalyticsSubscriptionId": {
-                        "value": "[parameters('logAnalyticsSubscriptionId')]"
-                    },
-                    "logAnalyticsResourceGroup": {
-                        "value": "[parameters('logAnalyticsResourceGroup')]"
-                    },
-                    "logAnalyticsWorkspaceName": {
-                        "value": "[parameters('logAnalyticsWorkspaceName')]"
-                    }
-                }
-            }
         }
+        // {
+        //     "apiVersion": "2017-05-10",
+        //     "name": "events-sql-database",
+        //     "type": "Microsoft.Resources/deployments",
+        //     "resourceGroup": "[parameters('sharedResourceGroup')]",
+        //     "properties": {
+        //         "mode": "Incremental",
+        //         "templateLink": {
+        //             "uri": "[concat(variables('deploymentUrlBase'),'sql-database.json')]",
+        //             "contentVersion": "1.0.0.0"
+        //         },
+        //         "parameters": {
+        //             "databaseName": {
+        //                 "value": "[variables('databaseName')]"
+        //             },
+        //             "sqlServerName": {
+        //                 "value": "[parameters('sharedSqlServerName')]"
+        //             },
+        //             "databaseSkuName": {
+        //                 "value": "[parameters('databaseSkuName')]"
+        //             },
+        //             "databaseTier": {
+        //                 "value": "[parameters('databaseTier')]"
+        //             },
+        //             "logAnalyticsSubscriptionId": {
+        //                 "value": "[parameters('logAnalyticsSubscriptionId')]"
+        //             },
+        //             "logAnalyticsResourceGroup": {
+        //                 "value": "[parameters('logAnalyticsResourceGroup')]"
+        //             },
+        //             "logAnalyticsWorkspaceName": {
+        //                 "value": "[parameters('logAnalyticsWorkspaceName')]"
+        //             }
+        //         }
+        //     }
+        // }
     ],
     "outputs": {
         "databaseName": {
