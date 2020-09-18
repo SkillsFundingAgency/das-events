@@ -16,13 +16,16 @@
         "environmentName": {
             "type": "string"
         },
-        "sharedAppServicePlanName": {
+        "sharedBackEndAppServicePlanName": {
+            "type": "string"
+        },
+        "sharedBackEndSubnetResourceId": {
             "type": "string"
         },
         "sharedSqlServerName": {
             "type": "string"
         },
-        "sharedResourceGroup": {
+        "sharedEnvResourceGroup": {
             "type": "string"
         },
         "configurationStorageConnectionString": {
@@ -89,7 +92,7 @@
             "condition": "[greater(length(parameters('customHostName')), 0)]",
             "apiVersion": "2017-05-10",
             "name": "app-service-certificate",
-            "resourceGroup": "[parameters('sharedResourceGroup')]",
+            "resourceGroup": "[parameters('sharedEnvResourceGroup')]",
             "type": "Microsoft.Resources/deployments",
             "properties": {
                 "mode": "Incremental",
@@ -145,10 +148,13 @@
                         "value": "[variables('appServiceName')]"
                     },
                     "appServicePlanName": {
-                        "value": "[parameters('sharedAppServicePlanName')]"
+                        "value": "[parameters('sharedBackEndAppServicePlanName')]"
                     },
                     "appServicePlanResourceGroup": {
-                        "value": "[parameters('sharedResourceGroup')]"
+                        "value": "[parameters('sharedEnvResourceGroup')]"
+                    },
+                    "subnetResourceId": {
+                        "value": "[parameters('sharedBackEndSubnetResourceId')]"
                     },
                     "appServiceAppSettings": {
                         "value": [
@@ -205,7 +211,7 @@
             "apiVersion": "2017-05-10",
             "name": "events-sql-database",
             "type": "Microsoft.Resources/deployments",
-            "resourceGroup": "[parameters('sharedResourceGroup')]",
+            "resourceGroup": "[parameters('sharedEnvResourceGroup')]",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
