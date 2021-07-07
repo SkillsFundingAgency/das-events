@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using SFA.DAS.Authentication.Extensions.Legacy;
 using SFA.DAS.Events.Api.Client.Configuration;
-using SFA.DAS.Http;
 
 namespace SFA.DAS.Events.Api.Client
 {

@@ -15,9 +15,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Configuration;
-using System.ServiceModel.Channels;
 using System.Web;
 using FluentValidation;
 using MediatR;
@@ -65,8 +63,8 @@ namespace SFA.DAS.Events.Api.DependencyResolution
 
         private void ConfigureLogging()
         {
-            For<IRequestContext>().Use(x => new RequestContext(new HttpContextWrapper(HttpContext.Current)));
-            For<ILog>().Use(x => new NLogLogger(x.ParentType, null, null)).AlwaysUnique();
+            For<ILoggingContext>().Use(x => new WebLoggingContext(new HttpContextWrapper(HttpContext.Current)));
+            For<ILog>().Use(c => new NLogLogger(c.ParentType, c.GetInstance<ILoggingContext>(), null)).AlwaysUnique();
             For<IEventsLogger>().Use(x => GetBaseLogger(x)).AlwaysUnique();
         }
 
