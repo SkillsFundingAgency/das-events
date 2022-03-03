@@ -8,6 +8,7 @@ workspace:
     clean: all
 
 variables:
+  - group: "ESFA - SonarCloud"
   - group: 'Prod Management Resources'
   - name: buildConfiguration
     value: 'release'
