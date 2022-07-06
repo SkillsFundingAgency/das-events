@@ -50,7 +50,6 @@ steps:
   inputs:
     solution: 'src/SFA.DAS.Events.sln'
     vsVersion: 15.0
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)/publish"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     clean: true
@@ -61,7 +60,7 @@ steps:
     testAssemblyVer2: '**/bin/**/*UnitTests.dll'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-  
+
 - task: SonarCloudAnalyze@1
   displayName: Run SonarCloud analysis
   condition: and(succeeded(), or(in(variables['Build.SourceBranch'], 'refs/heads/master', 'refs/heads/main'), eq(variables['Build.Reason'], 'PullRequest')))
@@ -72,6 +71,23 @@ steps:
   inputs:
     pollingTimeoutSec: '300'
 
+- task: VSBuild@1
+  displayName: 'Build SFA.DAS.Events.Api'
+  inputs:
+    solution: 'src/SFA.DAS.Events.Api/SFA.DAS.Events.Api.csproj'
+    vsVersion: 15.0
+    msbuildArgs: '/p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:SkipInvalidConfigurations=true /p:publishUrl="$(build.artifactstagingdirectory)/publish/SFA.DAS.Events.Api"'
+    platform: 'anycpu'
+    configuration: '$(buildConfiguration)'
+    clean: true
+
+- task: ArchiveFiles@2
+  displayName: 'Archive API'
+  inputs:
+    includeRootFolder: false
+    rootFolderOrFile: '$(build.artifactstagingdirectory)/publish/SFA.DAS.Events.Api'
+    archiveFile: '$(build.artifactstagingdirectory)/publish/SFA.DAS.Events.Api.zip'
+
 - task: NuGetCommand@2
   displayName: 'NuGet pack'
   inputs:
@@ -79,7 +95,7 @@ steps:
     packagesToPack: 'src\SFA.DAS.Events.Api.Client\SFA.DAS.Events.Api.Client.csproj;src\SFA.DAS.Events.Api.Types\SFA.DAS.Events.Api.Types.csproj;'
     packDestination: '$(build.artifactstagingdirectory)/publish'
     versioningScheme: byBuildNumber
-    
+
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
