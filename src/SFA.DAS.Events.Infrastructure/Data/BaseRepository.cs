@@ -8,7 +8,7 @@ using Polly;
 using Polly.Retry;
 using SFA.DAS.NLog.Logger;
 
-namespace SFA.DAS.Tasks.DataAccess.Repositories
+namespace SFA.DAS.Events.Infrastructure.Data
 {
     public abstract class BaseRepository
     {
