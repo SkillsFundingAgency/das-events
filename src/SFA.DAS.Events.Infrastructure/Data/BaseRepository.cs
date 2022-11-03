@@ -1,15 +1,14 @@
-﻿using Microsoft.Azure.Services.AppAuthentication;
-using Polly;
-using Polly.Retry;
-using SFA.DAS.NLog.Logger;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using Microsoft.Azure.Services.AppAuthentication;
+using Polly;
+using Polly.Retry;
+using SFA.DAS.NLog.Logger;
 
-namespace SFA.DAS.Events.Infrastructure.Data
+namespace SFA.DAS.Tasks.DataAccess.Repositories
 {
     public abstract class BaseRepository
     {
@@ -38,7 +37,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
             {
                 return await _retryPolicy.ExecuteAsync(async () =>
                 {
-                    using (var connection = GetSqlConnecction(_connectionString))
+                    using (var connection = GetSqlConnection(_connectionString))
                     {
                         await connection.OpenAsync();
                         return await getData(connection);
@@ -71,7 +70,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
 
                 return await _retryPolicy.ExecuteAsync(async () =>
                 {
-                    using (var connection = GetSqlConnecction(_connectionString))
+                    using (var connection = GetSqlConnection(_connectionString))
                     {
                         await connection.OpenAsync();
                         using (var trans = connection.BeginTransaction())
@@ -108,7 +107,7 @@ namespace SFA.DAS.Events.Infrastructure.Data
             {
                 await _retryPolicy.ExecuteAsync(async () =>
                 {
-                    using (var connection = GetSqlConnecction(_connectionString))
+                    using (var connection = GetSqlConnection(_connectionString))
                     {
                         await connection.OpenAsync();
                         using (var trans = connection.BeginTransaction())
@@ -152,14 +151,12 @@ namespace SFA.DAS.Events.Infrastructure.Data
                 );
         }
 
-        private SqlConnection GetSqlConnecction(string connectionString)
+        private SqlConnection GetSqlConnection(string connectionString)
         {
-            bool isDevelopment = ConfigurationManager.AppSettings["EnvironmentName"]?.Equals("LOCAL") ?? false;
-            if (isDevelopment)
-            {
-                return new SqlConnection(connectionString);
-            }
-            else
+            var connectionStringBuilder = new SqlConnectionStringBuilder(connectionString);
+            bool useManagedIdentity = !connectionStringBuilder.IntegratedSecurity && string.IsNullOrEmpty(connectionStringBuilder.UserID);
+
+            if (useManagedIdentity)
             {
                 var azureServiceTokenProvider = new AzureServiceTokenProvider();
                 var accessToken = azureServiceTokenProvider.GetAccessTokenAsync(AzureResource).Result;
@@ -168,6 +165,10 @@ namespace SFA.DAS.Events.Infrastructure.Data
                     ConnectionString = connectionString,
                     AccessToken = accessToken,
                 };
+            }
+            else
+            {
+                return new SqlConnection(connectionString);
             }
         }
     }
