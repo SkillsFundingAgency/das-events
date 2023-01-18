@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dapper;
 using SFA.DAS.Events.Domain.Entities;
-using SFA.DAS.Sql.Client;
 using SFA.DAS.NLog.Logger;
 
 namespace SFA.DAS.Events.Infrastructure.Data
